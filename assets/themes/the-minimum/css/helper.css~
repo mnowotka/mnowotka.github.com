@@ -82,7 +82,7 @@ padding-right:15px;
  .gcard {
 	position:fixed;
 	top:0;
-	left:0;
+	right:15px;
 	width:100%;
 }
 
