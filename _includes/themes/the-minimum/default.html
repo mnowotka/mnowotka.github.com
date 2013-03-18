@@ -9,8 +9,36 @@
 	<title>{{ page.title }}</title>
 	<meta name="author" content="{{ site.author.name }}">
 	<link href='{{ ASSET_PATH }}/css/style.css' rel="stylesheet" media="all">
+        <link rel="stylesheet" type="text/css" href="http://stephband.info/css/template.min.css" />
+	<link rel="stylesheet" type="text/css" href="http://stephband.info/css/template.theme.min.css" />
+        <link rel="stylesheet" href="{{ ASSET_PATH }}/css/jquery.parallax.css" />
+
 	<link href="http://feeds.feedburner.com/{{ site.author.feedbaname }}" rel="alternate" title="{{ page.title }}" type="application/atom+xml">
+
+	<style type="text/css" media="screen, projection">
+		#port {
+			background: rgb(219, 228, 200);
+			margin: 1.5em 0px;
+			overflow: hidden;
+			position: relative;
+			height: 180px;
+		}
+	</style>
+
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+        <script src="{{ ASSET_PATH }}/js/jquery.parallax.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
+	<script type="text/javascript">
+	
+		jQuery(document).ready(function(){
+			// Declare parallax on layers
+			jQuery('.parallax-layer').parallax({
+				mouseport: jQuery("#port")
+			});
+		});
+	
+	</script>
 </head>
 <body>
 
