@@ -83,8 +83,7 @@ h4, .h4 {
 p,
 ul,
 ol,
-dl,
-img {
+dl{
   margin-top: 0;
   margin-bottom: 1.625em;
 }

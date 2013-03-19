@@ -38,7 +38,7 @@
 			jQuery('.parallax-layer').parallax({
 				mouseport: jQuery("#port")
 			});
-			$('.gcard').waypoint('sticky', {offset: 30});
+			$('.gcard').waypoint('sticky', {offset: 15});
 		});
 	
 	</script>
