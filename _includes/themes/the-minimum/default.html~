@@ -22,6 +22,7 @@
 			overflow: hidden;
 			position: relative;
 			height: 180px;
+			max-width: 1400px;
 		}
 	</style>
 
@@ -39,6 +40,9 @@
 				mouseport: jQuery("#port")
 			});
 			$('.gcard').waypoint('sticky', {offset: 15});
+			$.when($.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.SOID }}")).then(function(data){
+			    console.log(data);
+			});
 		});
 	
 	</script>
@@ -56,9 +60,7 @@
 						<li class="page"><a href="/pages.html">pages</a></li>
 						<li class="category"><a href="/categories.html">categories</a></li>
 						<li class="tag"><a href="/tags.html">tags</a></li>
-						<li class="forkme"><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=plusjade&repo=jekyll-bootstrap&type=fork&count=true"
-								allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe></li>
-					</ul>
+					</ul>	
 				</nav>
 			</div><!-- unit-inner -->
 		</div><!-- unit-head -->
@@ -85,7 +87,6 @@
 					</ul>
 				</div><!-- misc -->
 				<p class="licence">
-					Theme: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
 					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
 				</p>
 			</div><!-- unit-foot-inner -->

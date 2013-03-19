@@ -22,6 +22,7 @@
 			overflow: hidden;
 			position: relative;
 			height: 180px;
+			max-width: 1400px;
 		}
 	</style>
 
@@ -39,6 +40,9 @@
 				mouseport: jQuery("#port")
 			});
 			$('.gcard').waypoint('sticky', {offset: 15});
+			$.when($.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}")).then(function(data){
+			    console.log(data);
+			});
 		});
 	
 	</script>
@@ -83,7 +87,6 @@
 					</ul>
 				</div><!-- misc -->
 				<p class="licence">
-					Theme: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
 					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
 				</p>
 			</div><!-- unit-foot-inner -->
