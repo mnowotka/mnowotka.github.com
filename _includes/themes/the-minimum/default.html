@@ -28,6 +28,8 @@
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
         <script src="{{ ASSET_PATH }}/js/jquery.parallax.min.js"></script>
+        <script src="{{ ASSET_PATH }}/js/waypoints.min.js"></script>
+        <script src="{{ ASSET_PATH }}/js/waypoints-sticky.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 	<script type="text/javascript">
 	
@@ -36,6 +38,7 @@
 			jQuery('.parallax-layer').parallax({
 				mouseport: jQuery("#port")
 			});
+			$('.gcard').waypoint('sticky', {offset: 15});
 		});
 	
 	</script>

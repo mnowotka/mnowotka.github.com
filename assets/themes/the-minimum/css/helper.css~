@@ -67,6 +67,8 @@ body {
 padding-right:15px;
 }
 
+
+
 /* Static Gravatar in Homepage Header */
 
 .gcard
@@ -80,10 +82,13 @@ padding-right:15px;
 }
 
  .gcard {
+	width:100%;
+}
+
+.gcard.stuck {
 	position:fixed;
 	top:0;
-	right:15px;
-	width:100%;
+	right: 15px;
 }
 
 .gcard .grav-inner
