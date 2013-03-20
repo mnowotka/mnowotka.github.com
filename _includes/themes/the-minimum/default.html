@@ -42,8 +42,8 @@
 			$('.gcard').waypoint('sticky', {offset: 15});
 
 
-$.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}?callback=?",null,function(res){
-    console.log('Your name is '+res.users);
+$.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}?jsonp=?",null,function(res){
+    console.log(res.users);
 });
 
 
