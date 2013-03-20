@@ -71,6 +71,12 @@ padding-right:15px;
 
 /* Static Gravatar in Homepage Header */
 
+.sticky-wrapper{
+float:right;
+width:420px;
+height: 270px;
+}
+
 .gcard
 {
 	position: relative;
@@ -79,6 +85,7 @@ padding-right:15px;
 	box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
 	max-width:400px;
 	z-index\*:auto\9;
+        border: 1px solid red;
 }
 
  .gcard {
@@ -87,7 +94,7 @@ padding-right:15px;
 
 .gcard.stuck {
 	position:fixed;
-	top:0;
+	top:15px;
 	right: 15px;
 }
 
