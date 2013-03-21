@@ -23,6 +23,8 @@
 			position: relative;
 			height: 180px;
 			max-width: 1400px;
+			margin-left: auto;
+            margin-right: auto;
 		}
 	</style>
 
@@ -33,16 +35,22 @@
         <script src="{{ ASSET_PATH }}/js/waypoints-sticky.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
 	<script type="text/javascript">
-	
+
 		jQuery(document).ready(function(){
 			// Declare parallax on layers
 			jQuery('.parallax-layer').parallax({
 				mouseport: jQuery("#port")
 			});
 			$('.gcard').waypoint('sticky', {offset: 15});
-			$.when($.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}")).then(function(data){
-			    console.log(data);
-			});
+
+
+$.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}?jsonp=?",null,function(res){
+    console.log(res.users);
+});
+
+
+
+
 		});
 	
 	</script>
