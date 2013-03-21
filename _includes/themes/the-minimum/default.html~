@@ -40,7 +40,7 @@
 				mouseport: jQuery("#port")
 			});
 			$('.gcard').waypoint('sticky', {offset: 15});
-			$.when($.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.SOID }}")).then(function(data){
+			$.when($.getJSON("http://api.stackoverflow.com/1.1/users/{{ site.author.soid }}")).then(function(data){
 			    console.log(data);
 			});
 		});
