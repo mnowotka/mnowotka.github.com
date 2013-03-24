@@ -65,6 +65,7 @@ body {
 .bd
 {
 padding-right:15px;
+min-height: 250px;
 }
 
 
@@ -254,6 +255,14 @@ height: 270px;
 	background-size: 21px 122px;
 }
 
+div.entry-content p{
+ max-width:550px;
+}
+
+div.entry-content pre{
+ max-width:550px;
+}
+
 .pos-left .grav-tag a
 {
 	-o-transform:scaleX(-1);
@@ -388,6 +397,66 @@ a.grav-view-complete:active
 	clear:left;
 }
 
+.grav-about{
+position: relative;
+}
 
+.grav-so{
+position: absolute;
+bottom:0;
+left:20px;
+width:100px;
+height: 90px;
+}
 
+.grav-stackicon{
+display:block;
+width:16px;
+height:16px;
+float:left;
+background:url(../img/stackoverflow.png) top right no-repeat;
+margin-right:7px;
+}
 
+.grav-stacklogin{
+float:left;
+}
+
+.grav-stackrep{
+font-weight:bold;
+float:left;
+}
+
+.grav-stack-silverbadge-count{
+float:left;
+}
+
+.grav-stack-bronzebadge-count{
+float:left;
+}
+
+.grav-stack-silverbadge{
+display:block;
+width:6px;
+height:6px;
+float:left;
+margin-left:5px;
+margin-right:2px;
+margin-top:6px;
+background:url(../img/silver.png) top right no-repeat;
+}
+
+.grav-stack-bronzebadge{
+display:block;
+width:6px;
+height:6px;
+margin-left:5px;
+margin-right:2px;
+margin-top:6px;
+float:left;
+background:url(../img/bronze.png) top right no-repeat;
+}
+
+.licence{
+float:left;
+}
