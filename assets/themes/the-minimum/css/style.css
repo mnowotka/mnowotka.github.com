@@ -655,9 +655,12 @@ pre {
 	Smartphone
 */
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  img {
-    max-width: 100%;
-  }
+.the-header .logo{
+margin-bottom:15px;
+}
+pre{
+padding:0;
+}
 }
 /*
 	Wide Smartphone

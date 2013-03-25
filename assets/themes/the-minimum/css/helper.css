@@ -96,6 +96,12 @@ height: 270px;
 	position:fixed;
 	top:15px;
 	right: 15px;
+	z-index:20;
+	-webkit-box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+	box-shadow:0 0 5px rgba(0, 0, 0, 0.5);
+	max-width:400px;
+	z-index\*:auto\9;
+	width:100%;
 }
 
 .gcard .grav-inner
@@ -279,6 +285,7 @@ div.entry-content pre{
 	margin:5px 5px 0 0;
 }
 
+
 .gcard .grav-extra,x:-moz-any-link,x:default
 {
 	margin-top:1px;
@@ -459,4 +466,16 @@ background:url(../img/bronze.png) top right no-repeat;
 
 .licence{
 float:left;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    div.gcard, div.gcard.stuck {
+        display:none !important;
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 960px) {
+    div.entry-content{
+        margin-left:0 !important;
+    }
 }
