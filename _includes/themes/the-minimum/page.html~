@@ -35,6 +35,9 @@
 
 			<footer class="unit-foot">
 				<div class="unit-inner unit-foot-inner">
+								<p class="licence">
+					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
+				</p>
 					<p class="gotop">
 						<a href="#page">Back to Top</a>
 					</p>

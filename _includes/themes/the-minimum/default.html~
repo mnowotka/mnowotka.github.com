@@ -142,17 +142,6 @@
 			</div><!-- unit-inner -->
 		</div><!-- unit-body -->
 	</div><!-- body -->
-	<footer class="the-footer">
-		<div class="unit-foot">
-			<div class="unit-inner unit-foot-inner">
-				<div class="misc vcard">
-				<p class="licence">
-					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
-				</p>
-				</div><!-- misc -->
-			</div><!-- unit-foot-inner -->
-		</div><!-- unit-foot -->
-	</footer>
 </div><!-- page -->
 <script>
 	(function(d, s) {
