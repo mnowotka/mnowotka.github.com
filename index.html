@@ -1,0 +1,35 @@
+---
+layout: page
+title: Hello World!
+tagline: Supporting tagline
+---
+{% include JB/setup %}
+
+{% for post in site.posts %}
+{{ post.content }}
+{% endfor %}
+    
+<h2>Other Posts</h2>
+
+<p>Here's a sample "posts list".</p>
+
+<ul class="posts">
+  {% for post in site.posts %}
+    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+
+<!-- Pagination links -->
+<nav id="pagination">
+{% if paginator.previous_page %}
+  {% if paginator.previous_page == 1 %}
+  <a href="/" title="Previous Page">&laquo; Previous</a>
+  {% else %}
+  <a href="/page{{ paginator.previous_page }}/" title="Previous Page">&laquo; Previous</a>
+  {% endif %}
+{% endif %}
+
+{% if paginator.next_page %} 
+<a href="/page{{ paginator.next_page }}/" title="Next Page">Next &raquo;</a>
+{% endif %} 
+</nav>

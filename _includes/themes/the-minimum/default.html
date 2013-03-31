@@ -26,10 +26,13 @@
 			margin-left: auto;
             margin-right: auto;
 		}
+		
+		code.has-jax {font: inherit; font-size: 100%; background: inherit; border: inherit;}
 	</style>
 
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 	<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
 	<script src="{{ ASSET_PATH }}/js/underscore-min.js"></script>
@@ -103,7 +106,6 @@
                 var soData = so[0].users[0];
                 var gravData = gravatar[0].entry[0];
                 var data = _.extend(soData, gravData);
-                console.log(data);
                 data.linkedInUrl = data.accounts[2].url;
                 data.rep = addCommas(data.reputation.toString());
                 data.ASSET_PATH = "{{ ASSET_PATH }}";
