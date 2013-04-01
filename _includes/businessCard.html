@@ -1,0 +1,36 @@
+{% raw %}
+<script id="user" type="text/html">
+			<div class="gcard" style="display: block; opacity: 1; float:right; margin-left:15px;">
+			<div class="grav-inner gcard-about">
+				<div class="grav-grav">
+					<a href="{{ profileUrl }}" target="_blank"><img src="{{ thumbnailUrl }}?size=100" width="100" height="100"></a>
+				</div>
+				<div class="grav-so">
+				<span class="grav-stackicon" />
+				<span class="grav-stacklogin"><a href="http://stackoverflow.com/users/{{ user_id }}" target="_blank">{{ display_name }}</a></span>
+				<span class="grav-stackrep"><a href="http://stackoverflow.com{{ user_reputation_url }}" target="_blank">{{ rep }}</a></span>
+				<span class="grav-stack-silverbadge" />
+				<span class="grav-stack-silverbadge-count">{{ badge_counts.silver }}</span>
+				<span class="grav-stack-bronzebadge" />
+				<span class="grav-stack-bronzebadge-count">{{ badge_counts.bronze }}</span>
+				</div>
+				<div class="grav-info">
+					<h4><a href="{{ profileUrl }}" target="_blank">{{ name.givenName }} {{ name.formatted }}</a></h4>
+					<p class="grav-loc">
+						{{ currentLocation }}
+					</p>
+					<p class="grav-about">
+						{{ aboutMe }} 
+					</p>
+					<div class="grav-view-complete-button">
+						<a href="{{ linkedInUrl }}" target="_blank" class="grav-view-complete">View Complete Profile</a>
+					</div>					
+				</div>
+				<div style="clear:both">
+				</div>
+			</div>
+			<div class="grav-cardarrow" style="height: 148.5px; right: auto; left: -7px; background-position: 0px 25px; ">
+			</div>
+		</div>
+</script>
+{% endraw %}

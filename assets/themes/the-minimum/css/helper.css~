@@ -75,7 +75,7 @@ min-height: 250px;
 .sticky-wrapper{
 float:right;
 width:420px;
-height: 270px;
+height: 100px;
 }
 
 .gcard
@@ -475,7 +475,15 @@ float:left;
 }
 
 @media only screen and (min-width: 767px) and (max-width: 960px) {
-    .entry-content{
-        margin-left:0;
+    div.entry-content{
+        margin-left:20px !important;
+    }
+    
+    div.entry-content p{
+     max-width:370px;
+    }
+
+    div.entry-content pre{
+     max-width:370px;
     }
 }

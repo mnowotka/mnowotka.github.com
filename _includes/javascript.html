@@ -1,0 +1,18 @@
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.1.1.min.js"></script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/underscore-min.js"></script>
+<script src="{{ ASSET_PATH }}/js/jquery.parallax.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/waypoints.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/waypoints-sticky.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/md5.js"></script>
+<script src="{{ ASSET_PATH }}/js/ICanHaz.min.js"></script>
+<script src="{{ ASSET_PATH }}/js/modernizr.custom.js"></script>
+<script src="{{ ASSET_PATH }}/js/utils.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+    mailhash = md5("{{ site.author.email }}");
+    soid = {{ site.author.soid }};
+</script>
+<script src="{{ ASSET_PATH }}/js/blogInit.js"></script>
