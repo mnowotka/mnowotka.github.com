@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Raphaël Molecules demo</title>
+        <link rel="stylesheet" href="demo.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="demo-print.css" type="text/css" media="print">
+        <script src="raphael-min.js"></script>
+        <style media="screen">
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            h1 {
+                font-weight: 400;
+                height: 5%;
+            }
+            #canvas {
+                height: 480px;
+                margin: 0 auto;
+                text-align: left;
+                width: 640px;
+            }
+            #code {
+                font-family: Consolas, Monaco, "Lucida Console", monospace;
+                height: 4em;
+                margin: 10px;
+                padding: 0;
+                width: 90%;
+            }
+            #run {
+                font-size: 2em;
+            }
+        </style>
+        <script>
+            window.onload = function () {
+                var paper = Raphael("canvas", 300, 300);
+                paper.add([{"path": "M35.25,158.859799289L46.2240422292,158.189658998", "stroke": "rgb(51.0, 204.0, 204.0)", "stroke-width": 1.2, "type": "path"}, {"path": "M46.2240422292,158.189658998L57.1980844584,157.519518707", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 7, "width": 7, "stroke": "rgb(255, 255, 255)", "y": 155.85979928910479, "x": 32.25, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 7, "text": "F", "stroke": "rgb(51.0, 204.0, 204.0)", "y": 158.85979928910479, "x": 35.25, "type": "text"}, {"path": "M57.1980844584,157.519518707L67.0114092375,137.841778906", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M62.809473343,157.860762313L70.6601331663,142.118570473", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M69.3328441377,175.856977487L57.1980844584,157.519518707", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M67.0114092375,137.841778906L88.9594936959,136.501498761", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M88.9594936959,136.501498761L101.094253375,154.83895776", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M85.8582734808,141.190482198L95.5660812242,155.860449397", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M101.094253375,154.83895776L91.280928596,174.516696468", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M101.094253375,154.83895776L123.042337834,153.498677177", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M91.280928596,174.516696468L69.3328441377,175.856977487", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M88.7707599042,169.486469303L71.2122923375,170.558694118", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M123.042337834,153.498677177L135.177097513,171.836136176", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M128.570509984,152.47718554L138.278317728,167.147152739", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M132.85566436,133.820938469L123.042337834,153.498677177", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M135.177097513,171.836136176L157.125182408,170.495855157", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M157.125182408,170.495855157L166.938508498,150.818116121", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M153.476458769,166.219063348L161.327119641,150.476872119", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M166.938508498,150.818116121L188.128315084,144.943860764", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M154.8037486,132.48065745L166.938508498,150.818116121", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M188.128315084,144.943860764L196.732028375,151.78891711", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M196.732028375,151.78891711L205.335741666,158.633973456", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"path": "M188.128315084,144.943860764L188.608945978,133.959886688", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M188.608945978,133.959886688L189.089576873,122.975912612", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"path": "M183.055512216,142.520886702L183.440016931,133.73370744", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M183.440016931,133.73370744L183.824521647,124.946528179", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"path": "M205.335741666,158.633973456L215.565592832,154.605466567", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"path": "M215.565592832,154.605466567L225.795443999,150.576959677", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 7, "width": 14, "stroke": "rgb(255, 255, 255)", "y": 155.63397345614922, "x": 198.33574166569304, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 7, "text": "NH", "stroke": "rgb(0, 0, 255)", "y": 158.63397345614922, "x": 205.33574166569304, "type": "text"}, {"path": "M228.353929461,150.959579953L229.980065589,140.086017046", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M229.980065589,140.086017046L231.606201717,129.212454138", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M223.236958536,150.194339401L224.863094665,139.320776493", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M224.863094665,139.320776493L226.489230793,128.447213586", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M225.795443999,150.576959677L243.002874075,164.267072915", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 7, "width": 7, "stroke": "rgb(255, 255, 255)", "y": 125.8298338617995, "x": 226.04771625497028, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 7, "text": "O", "stroke": "rgb(255, 0, 0)", "y": 128.8298338617995, "x": 229.04771625497028, "type": "text"}, {"path": "M243.002874075,164.267072915L264.75,167.519344298", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M251.059885998,184.726772627L243.002874075,164.267072915", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M264.75,167.519344298L251.059885998,184.726772627", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M189.089576873,122.975912612L168.493861073,115.273227373", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"height": 7, "width": 7, "stroke": "rgb(255, 255, 255)", "y": 119.97591261153252, "x": 186.0895768729431, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 7, "text": "N", "stroke": "rgb(0, 0, 255)", "y": 122.97591261153252, "x": 189.0895768729431, "type": "text"}, {"path": "M168.493861073,115.273227373L161.648804837,123.876942412", "stroke": "rgb(0, 0, 255)", "stroke-width": 1.2, "type": "path"}, {"path": "M161.648804837,123.876942412L154.8037486,132.48065745", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 7, "width": 14, "stroke": "rgb(255, 255, 255)", "y": 112.27322737328842, "x": 161.49386107338046, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 7, "text": "NH", "stroke": "rgb(0, 0, 255)", "y": 115.27322737328842, "x": 168.49386107338046, "type": "text"}, {"path": "M154.8037486,132.48065745L132.85566436,133.820938469", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M152.924300425,137.778940819L135.365833033,138.851165634", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}]);
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Raphaël Molecule Demo</h1>
+        <div id="canvas"></div>
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+    </body>
+</html>
+

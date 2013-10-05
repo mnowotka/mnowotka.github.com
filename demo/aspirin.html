@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Raphaël Molecules demo</title>
+        <link rel="stylesheet" href="demo.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="demo-print.css" type="text/css" media="print">
+        <script src="raphael-min.js"></script>
+        <style media="screen">
+            body {
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+            h1 {
+                font-weight: 400;
+                height: 5%;
+            }
+            #canvas {
+                height: 480px;
+                margin: 0 auto;
+                text-align: left;
+                width: 640px;
+            }
+            #code {
+                font-family: Consolas, Monaco, "Lucida Console", monospace;
+                height: 4em;
+                margin: 10px;
+                padding: 0;
+                width: 90%;
+            }
+            #run {
+                font-size: 2em;
+            }
+        </style>
+        <script>
+            window.onload = function () {
+                var paper = Raphael("canvas", 300, 300);
+                paper.add([{"path": "M63.0193111897,183.584741056L91.4156130552,157.958335519", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M95.8162152969,157.017750642L91.8187294804,138.315190694", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M91.8187294804,138.315190694L87.821243664,119.612630746", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M87.0150108135,158.898920396L83.0175249971,140.196360448", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M83.0175249971,140.196360448L79.0200391806,121.4938005", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M91.4156130552,157.958335519L109.611246765,163.847691938", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M109.611246765,163.847691938L127.806880474,169.737048358", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 12, "width": 12, "stroke": "rgb(255, 255, 255)", "y": 114.55321562290192, "x": 77.42064142227173, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 12, "text": "O", "stroke": "rgb(255, 0, 0)", "y": 120.55321562290192, "x": 83.42064142227173, "type": "text"}, {"path": "M127.806880474,169.737048358L142.005030647,156.923845589", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M142.005030647,156.923845589L156.20318082,144.110642821", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 12, "width": 12, "stroke": "rgb(255, 255, 255)", "y": 163.73704835772514, "x": 121.80688047409058, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 12, "text": "O", "stroke": "rgb(255, 0, 0)", "y": 169.73704835772514, "x": 127.80688047409058, "type": "text"}, {"path": "M156.20318082,144.110642821L148.208211467,106.705524445", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M164.204888462,138.488961669L157.808912979,108.564866968", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M192.594449759,155.889356039L156.20318082,144.110642821", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M148.208211467,106.705524445L176.604511052,81.0791189075", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M176.604511052,81.0791189075L212.995779991,92.8578302264", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M177.472176455,90.8196415681L206.585191606,100.242610623", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M212.995779991,92.8578302264L220.990745544,130.262950122", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M220.990745544,130.262950122L192.594449759,155.889356039", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M212.121372974,126.144108884L189.404336345,146.645233617", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M192.594449759,155.889356039L200.589418352,193.294475555", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M199.203687335,197.575801232L217.399322564,203.465158411", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M217.399322564,203.465158411L235.594957793,209.354515591", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M201.975149369,189.013149879L220.170784598,194.902507058", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M220.170784598,194.902507058L238.366419827,200.791864238", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M200.589418352,193.294475555L186.391268939,206.107678324", "stroke": "rgb(0, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"path": "M186.391268939,206.107678324L172.193119526,218.920881093", "stroke": "rgb(255, 0, 0)", "stroke-width": 1.2, "type": "path"}, {"height": 12, "width": 12, "stroke": "rgb(255, 255, 255)", "y": 199.07318991422653, "x": 230.9806888103485, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 12, "text": "O", "stroke": "rgb(255, 0, 0)", "y": 205.07318991422653, "x": 236.9806888103485, "type": "text"}, {"height": 12, "width": 24, "stroke": "rgb(255, 255, 255)", "y": 212.92088109254837, "x": 160.19311952590942, "type": "rect", "fill": "rgb(255, 255, 255)"}, {"font-size": 12, "text": "HO", "stroke": "rgb(255, 0, 0)", "y": 218.92088109254837, "x": 172.19311952590942, "type": "text"}]);
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Raphaël Molecule Demo</h1>
+        <div id="canvas"></div>
+        <p id="copy">Demo of <a href="http://raphaeljs.com/">Raphaël</a>—JavaScript Vector Library</p>
+    </body>
+</html>
+
