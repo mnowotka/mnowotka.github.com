@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Curation Interface</title>
+    <meta name="description" content="Web based presentation about curation interface.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h1>Curation<br/>Interface</h1>
+
+    <p>Application overview</p>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h2>Overview</h2>
+    <ol>
+        <li class="fragment">Application architecture</li>
+        <li class="fragment">Python interface</li>
+        <li class="fragment">RESTful API</li>
+        <li class="fragment">Web interface demo</li>
+        <li class="fragment">Extras</li>
+    </ol>
+    <aside class="notes">
+        Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the
+        speaker notes window (hit 's' on your keyboard).
+    </aside>
+</section>
+<section>
+    <h2>Application<br/>architecture</h2>
+
+    <p>Used languages:
+    <ul>
+        <li class="fragment">Python,</li>
+        <li class="fragment">JavaScript,</li>
+        <li class="fragment">HTML5,</li>
+        <li class="fragment">CSS,</li>
+        <li class="fragment">(Java, SQL, C++, PP),</li>
+        <li class="fragment">[CoffeeScript, less]</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Application<br/>architecture</h2>
+
+    <p>
+        Network architecture: <span class="fragment" style="margin-left:5px;margin-right:5px;">(thin)</span> Client -
+        Server<br/>
+    </p>
+
+    <p style="margin-top:30px">
+    <ul class="fragment">
+        <li class="fragment">Presentation tier: JavaScript, HTML5, CSS</li>
+        <li class="fragment">Application tier: Python (Django), third-party apps (Java, C++, PP)</li>
+        <li class="fragment">Data tier: Python (Django ORM), SQL</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Application<br/>architecture</h2>
+
+    <p>
+        Model View Controller
+    </p>
+
+    <p style="margin-top:30px">
+    <ul>
+        <li class="fragment">Model: Django ORM (Python)</li>
+        <li class="fragment">View: ICanHaz.js (JavaScript, browser side)</li>
+        <li class="fragment">Controller: Django (Python)</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Three accessability<br/>layers</h2>
+    <ul>
+        <li class="fragment">Python modules</li>
+        <li class="fragment">RESTful API</li>
+        <li class="fragment">Web interface</li>
+    </ul>
+</section>
+<section data-state="filosofia-porque">
+    <h2>Object Relational<br/>Mapping</h2>
+    <blockquote cite="http://en.wikipedia.org/wiki/Object-relational_mapping">
+        Technique for converting data between incompatible type systems in object-oriented programming languages. This
+        creates, in effect, a "virtual object database" that can be used from within the programming language.
+    </blockquote>
+    <p style="margin-top:30px;">
+        In simple words:
+    <ul style="margin-top:30px;">
+        <li>DB Table ➡ Class</li>
+        <li>DB Column ➡ Class attribute</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Example code</h2>
+					<pre><code class="python">
+class CompoundStructures(ChemblCoreAbstractModel):
+
+    molecule = models.OneToOneField(MoleculeDictionary)
+    molfile = ChemblTextField(null=True)
+    standard_inchi = ChemblCharField(max_length=4000)
+    standard_inchi_key = ChemblCharField(unique=True)
+    canonical_smiles = ChemblCharField(db_index=True)
+    molformula = ChemblCharField(help_text="Molecular formula of compound")
+
+    ...
+
+                    </code></pre>
+    <p>Classes code is generated semi-automatically from existing database</p>
+</section>
+<section>
+    <h2>Basic Usage</h2>
+					<pre><code class="python">
+from chembl.models import MoleculeDictionary
+
+molecule = MoleculeDictionary.objects.get(molregno=97)
+assertEqual(molecule.pref_name, 'PRAZOSIN')
+assertEqual(molecule.molecule_type, 'Small molecule')
+                    </code></pre>
+</section>
+
+<section>
+    <h2>Filtering</h2>
+					<pre><code class="python">
+Assays.objects.filter(curated_by__curated_by__startswith='Expert')
+Assays.objects.filter(description__icontains='affinity')
+Assays.objects.filter(assay_cell_type__startswith='CHO')
+Assays.objects.filter(assay_tissue__endswith='Brain')
+Assays.objects.filter(chembl__isnull=False).exclude(chembl__entity_type__exact='ASSAY')
+Assays.objects.filter(updated_on__range=(start_date, end_date))
+Assays.objects.filter(activity_count__isnull=False).exclude(activity_count__gte=5)
+Assays.objects.filter(doc__doc_id=9964)
+Assays.objects.filter(src__src_id=1).exists()
+                    </code></pre>
+</section>
+
+
+<section>
+    <h2>Basic relations</h2>
+					<pre><code class="python">
+# test OneToOneFields:
+assertEquals(molecule.compoundproperties.molecular_species, 'NEUTRAL')
+assertEquals(molecule.moleculehierarchy.parent_molecule, molecule)
+assertEquals(molecule.compoundstructures.standard_inchi_key, 'IENZQIKPVFGBNW-UHFFFAOYSA-N')
+
+act = molecule.activities_set.all()[0]
+assertEquals(act.activity_type, 'ED50')
+rec = molecule.compoundrecords_set.all()[0]
+
+synonyms = molecule.moleculesynonyms_set.all()[0]
+assertEquals(synonyms.synonyms, 'CP-12299')
+                    </code></pre>
+</section>
+
+<section>
+    <h2>Many to Many relations back and forth</h2>
+					<pre><code class="python">
+td = TargetDictionary.objects.get(pk=104088)
+docs = td.docs.all()
+
+doc = Docs.objects.get(pk=57482)
+targets = doc.targetdictionary_set.all()
+                    </code></pre>
+</section>
+
+<section>
+    <h2>Chemistry awareness</h2>
+					<pre><code class="python">
+ctabs = CompoundMols.objects.with_substructure(smiles)
+ids = ctabs.values_list('molecule_id').distinct()
+
+ctabs = CompoundMols.objects.similar_to(smiles,simscore)
+                    </code></pre>
+</section>
+
+<section>
+    <h2>More complicated stuff</h2>
+					<pre><code class="python">
+TargetType.objects.filter(parent_type__isnull=False).exclude(
+parent_type__in=map(lambda x: x[0],TargetType.objects.
+values_list('target_type').distinct())).exists()
+                    </code></pre>
+</section>
+
+<section>
+    <h2>Real world usage</h2>
+					<pre><code class="python">
+def checkOSRA(molecule):
+    img = molecule.compoundimages.png_500
+    im = Image.open(StringIO.StringIO(molecule.compoundimages.png_500))
+    canonical_smiles = molecule.compoundstructures.canonical_smiles
+    smile = smileFromImage(img, OSRA_BINARIES_LOCATION, canonical_smiles)
+    im.show()
+    return canonical_smiles == Chem.MolToSmiles(Chem.MolFromSmiles(smile[0]), True)
+                    </code></pre>
+</section>
+
+<section>
+    <h2>Tests</h2>
+
+    <p>All examples are taken from <a
+            href="http://howe.ebi.ac.uk:8080/projects/curation_interface/browser/trunk/src/curation_interface/chembl/tests.py" target="_blank">test.py</a>
+        file (2267 lines!).
+        All classes/fields/relations are covered.</p>
+
+    <p>
+         <pre><code class="python">
+             python manage.py test chembl
+         </code></pre>
+    <br/>
+    All examples can be executed in interactive shell:<br/>
+         <pre><code class="python">
+             python manage.py shell
+         </code></pre>
+    </p>
+</section>
+<section>
+    <h2>Tests</h2>
+
+    <p>
+        Shell can be configured to display SQL statements executed by middleware:<br/>
+         <pre><code class="python">
+ python manage.py debugsqlshell
+ >>> from chembl.models import MoleculeDictionary
+ >>> molecules = MoleculeDictionary.objects.all()
+ >>> molecules.count()
+ SELECT COUNT(*)
+ FROM "MOLECULE_DICTIONARY" [1.82ms]
+
+ 1254575
+
+         </code></pre>
+    </p>
+</section>
+<section>
+    <h2>So, why not SQL?</h2>
+
+    <p>
+    <ul>
+        <li>There is nothing wrong in SQL</li>
+        <li>In fact, SQL is the only language to interact with relational DBs</li>
+        <li>But it's not perfect in ChEMBL case...</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Problems with SQL</h2>
+
+    <p>
+    <ul>
+        <li>There is as many SQL dialects as DB engines</li>
+        <li>e.g. Oracle doesn't support <code>limit</code></li>
+        <li>Code with inline SQL is not portable across db engines</li>
+        <li>Injected code can't be validated - it's error prone</li>
+        <li>When parametrised, injected SQL is exposed to attacks</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>ORM</h2>
+
+    <p>
+    <ul>
+        <li>Provides DB agnostic interface</li>
+        <li>Takes care about generating valid SQL</li>
+        <li>Class objects can be de/serialised</li>
+        <li>Data migration across db engines are possible</li>
+        <li>Less sensitive to schema changes</li>
+        <li>In fact, schema changes can be done by changing models</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Example - cross engine migration</h2>
+				    <pre><code class="python">
+python manage.py migrate --sourceDatabase=ora --targetDatabase=pg
+
+Migrating chemtst to curation_interface
+ChemblIdLookup [################################] 2010/2010
+Version [################################] 1/1
+Docs [################################] 48/48
+Source [################################] 1/1
+MoleculeDictionary [# ] 51/1281
+                    </code></pre>
+</section>
+<section>
+    <h2>RESTful API</h2>
+
+    <p>
+        All model classes are <strong>automatically</strong> exposed as REST resources.
+        Documentation is generated <strong>automatically</strong> as well!
+    </p>
+</section>
+
+
+<section>
+    <h2><a href="http://localhost:3000/chembl" target="_blank">Real time examples</a></h2>
+    <iframe id="slideshare" src="http://localhost:3000/chembl" width="800" height="450"
+            style="margin:0;overflow:scroll;border:1px solid #CCC;border-width:1px 1px 0;" allowfullscreen></iframe>
+</section>
+<section>
+    <h2>Basic API queries</h2>
+					<pre><code class="ruby">
+http://localhost:8000/api/v1/moleculedictionary/?format=json
+
+http://localhost:8000/api/v1/compoundstructures/2?format=json
+
+http://localhost:8000/api/v1/compoundstructures/2.json
+
+http://localhost:8000/api/v1/targetdictionary/set/11283;11292/
+                    </code></pre>
+</section>
+<section>
+    <h2>Basic Filtering</h2>
+					<pre><code class="ruby">
+/api/v1/moleculedictionary/?molregno__gte=3&format=json
+
+/api/v1/moleculedictionary/?molregno__gte=3&structure_type__startswith=M&format=json
+
+/api/v1/compoundstructures/?molformula__icontains=H20&format=json
+                    </code></pre>
+</section>
+<section>
+    <h2>Advanced Filtering</h2>
+					<pre><code>
+http://localhost:8000/api/v1/moleculedictionary/search/?q=TRIMETHOPRIM&format=json
+                    </code></pre>
+</section>
+<section>
+    <h1>DEMO</h1>
+</section>
+<section>
+    <h2><a href="http://candela.windows.ebi.ac.uk:8000/load_compounds/" target="_blank">Real time examples</a></h2>
+    <iframe id="slideshare" src="http://candela.windows.ebi.ac.uk:8000/load_compounds/" width="800" height="450"
+            style="margin:0;overflow:scroll;border:1px solid #CCC;border-width:1px 1px 0;" allowfullscreen></iframe>
+</section>
+<section>
+    <p>Presentation code can be obtained from github:</p>
+					<pre><code>
+git clone git://github.com/mnowotka/ci-presentation.git
+                    </code></pre>
+</section>
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/> Hinxton, 23 April 2013
+        <div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:true,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/remotes/remotes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+

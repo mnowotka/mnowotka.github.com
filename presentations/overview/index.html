@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ChEMBL beaker</title>
+    <meta name="description" content="Web based presentation about chembl beaker server.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h1>Software overview</h1>
+    <p style="font-size:22pt;">Michał Nowotka</p>
+
+    <p>
+        <small>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h2>Dependency DAG</h2>
+    <img src="img/dep.png" height=500 />
+</section>
+<section>
+    <em>Core Model<br/><br/></em>
+
+    <p>
+    <ul>
+        <li class="fragment">Handle differences between SQL dialects.</li>
+        <li class="fragment">Defines ChEMBL specific datatypes.</li>
+        <li class="fragment">Implements substructure and similarity search.</li>
+        <li class="fragment">Abstracts database operations.</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>About SQL</h2>
+
+    <blockquote>
+    SQL is the Fortran of databases - nobody likes it much, the language is ugly and ad hoc, every database supports it, and we all use it.</blockquote>
+
+    <p>
+    </br>
+-- John Levine. Flex & Bison: text processing tools
+    </p>
+</section>
+<section>
+    <h2>Example(s) from FAQ</h2>
+
+    <p>
+        Retrieve all the compounds which have an IC50 bioactivity value in nM:
+    </p>
+
+    <pre class="fragment"><code class="python">
+            MoleculeDictionary.objects.filter(activities__standard_type='IC50', 
+                      activities__standard_units='nM')
+    </code></pre>
+    
+    <pre class="fragment"><code class="SQL">
+            SELECT DISTINCT md.molregno, 
+            md.chembl_id,   
+            act.standard_type,   
+            act.standard_value, 
+            act.standard_units 
+            FROM activities act, 
+            molecule_dictionary md 
+            WHERE act.molregno     = MD.molregno 
+            AND act.standard_type  = 'IC50' 
+            AND act.standard_units = 'nM';
+    </code></pre>    
+</section>
+<section>
+    <h2>Migration</h2>
+    <p>
+    <ul>
+        <li class="fragment">Copies data from one DB to another</li>
+        <li class="fragment">Databases can run on different engines</li>
+        <li class="fragment">Taget database can be empty (no structure)</li>
+        <li class="fragment">Source database must have model defined</li>
+    </ul>
+    
+    <pre class="fragment"><code class="python">
+            python manage.py migrate --source=ora --target=pg
+    </code></pre>
+    
+    </p>    
+</section>
+<section>
+    <h2>Motivation is not easy</h2>
+
+    <p style="margin-top:30px">
+    <ul>
+        <li class="fragment">Dependencies in data</li>
+        <li class="fragment">Differences in datatypes, constraints...</li>
+        <li class="fragment">Big amount of data</li>
+        <li class="fragment">Can be easily interrupted</li>
+        <li class="fragment">Parallelisation?</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>dependencies in ChEMBL</h2>
+    <img src="img/out.svg" height=500 />
+</section>
+<section data-state="filosofia-porque">
+    <h2>manage.py migrate</h2>
+    <p>
+        <ul>
+            <li class="fragment">Constructs dependencies DAG</li>
+            <li class="fragment">Traverses it, creating new processes</li>
+            <li class="fragment">Table data is migrated in small chunks</li>
+            <li class="fragment">Each chunk is migrated in separate transaction</li>
+            <li class="fragment">Chunk size can be modified at runtime</li>
+            <li class="fragment">Whole process can be resumed</li>
+        </ul>
+    </p> 
+</section>
+<section>
+    <h2>Creating a model</h2>
+    
+    <p>
+    <br/>
+        <ul>
+            <li class="fragment">I need a model for my app/migration process</li>
+            <li class="fragment">There are lots of tables in my DB</li>
+            <li class="fragment">I'm not django expert</li>
+            <li class="fragment">How do I create model?</li>
+        </ul>
+    </p>
+    
+   <pre class="fragment"><code class="python">
+            python manage.py reverseEngineer --database=myDB
+   </code></pre>
+    
+</section>
+
+<section>
+    <h2>reverseEngineer command</h2>
+    
+    <ul>
+        <li class="fragment">Takes care about model dependencies</li>
+        <li class="fragment">Knows ChEMBL data types</li>
+        <li class="fragment">Preserves logical structrue</li>
+        <li class="fragment">Produces helpful warnings</li>
+    </ul>
+    
+</section>
+
+<section>
+    <h2>Warnings for ChEMBL 17</h2>
+    <ul>
+        <li class="fragment">12 different kinds of warnings</li>
+        <li class="fragment">93 in total</li>
+        <li class="fragment">Different importance</strong></li>
+        <li class="fragment">Some of them invalid</li>
+        <li class="fragment">No critical issues</li>
+    </ul>                
+                    
+</section>
+
+<section>
+    <h2>Warnings</h2>
+    
+    <div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>                
+                    
+</section>
+
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/> Hinxton, 22 October 2013
+        <div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:false,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src: 'js/jquery.min.js' },
+            
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/highcharts/highcharts.js', async: true, condition: function() { 
+                return !!document.body.classList; 
+            } },
+            { src: 'piechart.js', async: true, condition: function() { 
+                return !!document.body.classList; 
+            } },
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
