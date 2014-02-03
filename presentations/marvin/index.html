@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Reverse engineering Marvin</title>
+    <meta name="description" content="Web based presentation about marvin and marvin for js.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>Reverse engineering Marvin</h2>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h3>New Java vulnerability</br>discovered</h3>
+
+    <blockquote>
+    Unspecified vulnerability in the Java Runtime Environment (JRE) component in Oracle Java SE 7 Update 21 and earlier, 6 Update 45 and earlier, and 5.0 Update 45 and earlier, and OpenJDK 7, allows remote attackers to affect confidentiality, integrity, and availability via unknown vectors related to 2D. NOTE: the previous information is from the June 2013 CPU. Oracle has not commented on claims from another vendor that this issue allows remote attackers to bypass the Java sandbox via vectors related to “Incorrect image attribute verification” in 2D.
+    </blockquote>
+</section>
+<section>
+    <h3>Consequences</h3>
+    <ul>
+        <li class="fragment"><q>Java enabled browsers are highly vulnerable</q> (<code>thehackernews.com, 27-03-2013</code>)</li>
+        <li class="fragment"><q>Firefox 26 Released With On Demand Java Plugin Feature</q> (<code>omgubuntu.co.uk, 10-12-2013</code>)</li>
+        <li class="fragment"><q>Apple updates Safari web plugin blocker to disable new Java vulnerability</q> (<code>9to5mac.com, 29-08-2013</code>)</li>
+        <li class="fragment">Chrome does not support Java 7 on the Mac platform anyway...</li>  
+    </ul>
+</section>
+<section>
+    <h2>More consequences</h2>
+
+    <img src="img/java.png" />
+
+</section>
+<section>
+    <h3>JavaScript to the rescue</h3>
+
+    <p>
+        <img src="img/m4js.jpg" />
+    </p>
+
+    <p class="fragment">
+        <br/>Curation Interface detects Java availability and decides at runtime, which version to load.
+    </p>
+</section>
+<section>
+    <h2>DEMO</h2>
+</section>
+<section>
+    <h3>Viewer - technologies</h3>
+    <p>
+        <img src="img/viewer.png" />
+    </p>
+    
+    <p>ChEMBL contribution to RDKit:<br /> <a href="https://github.com/rdkit/rdkit/pull/124/files">https://github.com/rdkit/rdkit/pull/124/files</a></p>
+</section>
+<section>
+    <h3>Compounds as JSON</h3>
+
+    <ul class="fragment">
+        <li class="fragment">Smaller than images</li>
+        <li class="fragment">Highly compressible</li>
+        <li class="fragment">Better quality</li>
+        <li class="fragment">Web friendly</li>
+    </ul>
+    
+    <p class="fragment" >Use cases:</p>
+    
+    <ul class="fragment" >
+        <li class="fragment">Interactive web widgets</li>
+        <li class="fragment">Easily stored in DBs</li>
+        <li class="fragment">Webservices?</li>
+    </ul>
+
+</section>
+<section>
+    <h2>Problems with viewer</h2>
+    <p>
+    <ul>
+        <li class="fragment">Every web application is sandboxed by browser</li>
+        <li class="fragment">No way to access clipboard</li>
+        <li class="fragment">How to copy from viewer and paste to sketcher?</li>
+    </ul>
+    </p>
+
+</section>
+<section>
+    <h3>Solution - SO</h3>
+    <p>Stack Overflow question:<br /> <a href="http://stackoverflow.com/questions/17527870/how-does-trello-access-the-users-clipboard">How does Trello access the user's clipboard?</a></p>
+    <pre><code data-trim contenteditable>
+    _.defer =&gt;
+        $clipboardContainer = $(&quot;#clipboard-container&quot;)
+        $clipboardContainer.empty().show()
+        $(&quot;&lt;textarea id='clipboard'&gt;&lt;/textarea&gt;&quot;)
+        .val(@value)
+        .appendTo($clipboardContainer)
+        .focus()
+        .select()
+    </code></pre>
+    <p>Append invisible textarea, fill it with molfile, set focus, select whole text when user press <code>Ctrl</code>.</p>
+</section>
+<section data-state="filosofia-porque">
+    <h2>Demo</h2>
+</section>
+<section data-state="filosofia-porque">
+    <h3>Marvin for JS (sketcher) limitations</h3>
+    <p>
+    <ul>
+        <li class="fragment">Not all functionality present in Java version can be reimplemented in Javascript</li>
+        <li class="fragment">Format conversion...</li>
+        <li class="fragment">Calculating 2D coordinates...</li>
+        <li class="fragment">Stereo information...</li>
+        <li class="fragment">Need to be performed on the server side</li>
+        <li class="fragment">Webservices!</li>
+        <li class="fragment">ChemAxon requires separate licence to use their webservices!</li>
+        <li class="fragment">But at least they publish <a href="https://marvin4js.chemaxon.com/marvin4js-latest/docs/dev/webservices.html">specification</a></li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Open source solution - Beaker</h2>
+
+    <img src="img/beaker.png" style="position:fixed;left:1%;top:2%;">
+
+    <p style="font-size:22pt;">RDKit and OSRA in Bottle on Tornado</p>
+
+</section>
+
+<section>
+    <h2>Motivation</h2>
+
+    <p>
+        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>Sorl</strong></em> to
+        <em><strong>Lucene</strong></em>.
+    </p>
+
+    <p class="fragment">
+        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>aquarium</strong></em>
+        to <em><strong>fish</strong></em>.
+    </p>
+
+    <p style="margin-top:30px">
+    <ul>
+        <li class="fragment">Server platform and RDKit container</li>
+        <li class="fragment">Provides cheminformatics tools</li>
+        <li class="fragment">REST-like HTTP API</li>
+        <li class="fragment">Easy to use from any programming language</li>
+        <li class="fragment">Install Beaker on one machine instead of installing RDKit on many hardware/software
+            configurations
+        </li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Demo</h2>
+					<pre><code class="ruby">
+                        curl -X POST http://beaker/ctab2image -F filedata="@out.mol" > out.png
+                        curl -X POST http://beaker/image2ctab --data-binary "@aspirin.jpg" > out.mol
+                        curl -X POST http://beaker/smiles2ctab --data-binary "@a.smi"
+                        curl -X POST http://beaker/smiles2ctab --data "CNc1ncnc2c1ncn2Cc1cccc(F)c1F
+                        curl -X POST http://beaker/inchi2inchiKey --data "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"
+                    </code></pre>
+
+    <p><br/>Better example: <strong>Clippy</strong></p>
+
+</section>
+
+<section>
+    <h2>Potential use cases</h2>
+
+    <ul>
+        <li class="fragment">Access from languages like java script, ruby</li>
+        <li class="fragment">Webapplications</li>
+        <li class="fragment">Mobile apps (camera + OSRA + RDKit)</li>
+        <li class="fragment">Small desktop apps (clippy)</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Future</h2>
+    <ul>
+        <li class="fragment">Different output formats: json, jsonp, xml</li>
+        <li class="fragment">Implement stub methods</li>
+        <li class="fragment">Compound descriptors: logP, TPSA, molWt, etc.</strong></li>
+        <li class="fragment">Editing molecules: addHs, removeHs, kekulize</li>
+        <li class="fragment">Ring information, SSSR, sanitize...</li>
+        <li class="fragment">IUPAC names</li>
+        <li class="fragment">Pymol, matplotlib</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Code!</h2>
+
+    <p>Beaker code is available as github repository:
+        <br/>
+        <a href="https://github.com/mnowotka/chembl_beaker">https://github.com/mnowotka/chembl_beaker</a>
+        <br/>
+    </p>
+
+</section>
+
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/> Hinxton, 4 February 2014
+    </div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:false,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
+
