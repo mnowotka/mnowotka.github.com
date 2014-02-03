@@ -330,13 +330,19 @@
 <section>
     <h2>Document segmentation</h2>
     
-    <img src="img/presegment.png" />
+    <img src="img/presegment.png" width="60%"/>
 </section>
 
 <section>
     <h2>Document segmentation</h2>
     
-    <img src="img/postsegment.png" />
+    <img src="img/postsegment.png" width="55%"/>
+</section>
+
+<section>
+    <h2>CI use cases</h2>
+    
+    <img src="img/usecase.png" width="80%"/>
 </section>
 
 <section>
