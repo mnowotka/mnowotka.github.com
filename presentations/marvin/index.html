@@ -60,7 +60,7 @@
     <h3>JavaScript to the rescue</h3>
 
     <p>
-        <img src="img/m4js.jpg" />
+        <img src="img/m4js.jpg" width="40%"/>
     </p>
 
     <p class="fragment">
@@ -76,7 +76,7 @@
         <img src="img/viewer.png" />
     </p>
     
-    <p>ChEMBL contribution to RDKit:<br /> <a href="https://github.com/rdkit/rdkit/pull/124/files">https://github.com/rdkit/rdkit/pull/124/files</a></p>
+    <p>ChEMBL contribution to RDKit:<br /><br /> <a href="https://github.com/rdkit/rdkit/pull/124/files">https://github.com/rdkit/rdkit/pull/124/files</a></p>
 </section>
 <section>
     <h3>Compounds as JSON</h3>
@@ -88,7 +88,7 @@
         <li class="fragment">Web friendly</li>
     </ul>
     
-    <p class="fragment" >Use cases:</p>
+    <p class="fragment"><strong><br />Use cases:</strong></p>
     
     <ul class="fragment" >
         <li class="fragment">Interactive web widgets</li>
@@ -131,9 +131,7 @@
     <p>
     <ul>
         <li class="fragment">Not all functionality present in Java version can be reimplemented in Javascript</li>
-        <li class="fragment">Format conversion...</li>
-        <li class="fragment">Calculating 2D coordinates...</li>
-        <li class="fragment">Stereo information...</li>
+        <li class="fragment">Format conversion / 2D coords / stereo info...</li>
         <li class="fragment">Need to be performed on the server side</li>
         <li class="fragment">Webservices!</li>
         <li class="fragment">ChemAxon requires separate licence to use their webservices!</li>
@@ -144,48 +142,47 @@
 <section>
     <h2>Open source solution - Beaker</h2>
 
-    <img src="img/beaker.png" style="position:fixed;left:1%;top:2%;">
+    <img src="img/beaker.png" style="position:fixed;left:1%;top:30%;">
 
     <p style="font-size:22pt;">RDKit and OSRA in Bottle on Tornado</p>
 
 </section>
 
 <section>
-    <h2>Motivation</h2>
+    <h3>What is Beaker?</h3>
 
     <p>
-        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>Sorl</strong></em> to
-        <em><strong>Lucene</strong></em>.
-    </p>
-
-    <p class="fragment">
-        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>aquarium</strong></em>
-        to <em><strong>fish</strong></em>.
-    </p>
-
-    <p style="margin-top:30px">
     <ul>
-        <li class="fragment">Server platform and RDKit container</li>
-        <li class="fragment">Provides cheminformatics tools</li>
-        <li class="fragment">REST-like HTTP API</li>
-        <li class="fragment">Easy to use from any programming language</li>
-        <li class="fragment">Install Beaker on one machine instead of installing RDKit on many hardware/software
-            configurations
-        </li>
+        <li class="fragment">A portable, lightweight webserver</li>
+        <li class="fragment">REST-speaking</li>
+        <li class="fragment">CORS-ready</li>
+        <li class="fragment">Wraps RDKit and OSRA</li>
+        <li class="fragment">Built on Bottle and Tornado</li>
     </ul>
     </p>
 </section>
 <section>
-    <h2>Demo</h2>
-					<pre><code class="ruby">
-                        curl -X POST http://beaker/ctab2image -F filedata="@out.mol" > out.png
-                        curl -X POST http://beaker/image2ctab --data-binary "@aspirin.jpg" > out.mol
-                        curl -X POST http://beaker/smiles2ctab --data-binary "@a.smi"
-                        curl -X POST http://beaker/smiles2ctab --data "CNc1ncnc2c1ncn2Cc1cccc(F)c1F
-                        curl -X POST http://beaker/inchi2inchiKey --data "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"
-                    </code></pre>
+    <h3>What it does?</h3>
+    <p>
+    <ul>
+        <li class="fragment">Format convertion</li>
+        <li class="fragment">Compound recognition</li>
+        <li class="fragment">Image generation (including JSON)</li>
+        <li class="fragment">Fingerprints, descriptors</li>
+        <li class="fragment">Marvin 4 JS compilant webservices</li>
+    </ul>
+    </p>
 
-    <p><br/>Better example: <strong>Clippy</strong></p>
+</section>
+
+<section>
+    <h2>Code & demo!</h2>
+
+    <p>Beaker code is available as github repository:
+        <br/>
+        <a href="https://github.com/mnowotka/chembl_beaker">https://github.com/mnowotka/chembl_beaker</a>
+        <br/>
+    </p>
 
 </section>
 
@@ -197,35 +194,156 @@
         <li class="fragment">Webapplications</li>
         <li class="fragment">Mobile apps (camera + OSRA + RDKit)</li>
         <li class="fragment">Small desktop apps (clippy)</li>
+        <li class="fragment">Marvin Backend</li>
+        <li class="fragment">Part of webservices?</li>
     </ul>
 
 </section>
 
 <section>
-    <h2>Future</h2>
+    <h3>New webservices</h3>
     <ul>
-        <li class="fragment">Different output formats: json, jsonp, xml</li>
-        <li class="fragment">Implement stub methods</li>
-        <li class="fragment">Compound descriptors: logP, TPSA, molWt, etc.</strong></li>
-        <li class="fragment">Editing molecules: addHs, removeHs, kekulize</li>
-        <li class="fragment">Ring information, SSSR, sanitize...</li>
-        <li class="fragment">IUPAC names</li>
-        <li class="fragment">Pymol, matplotlib</li>
+        <li class="fragment">Released last week</li>
+        <li class="fragment">Different sofware stack: Java/Spring -> Python/Django</li>
+        <li class="fragment">Can run on Oracle, Postgres, (MySQL)</strong></li>
     </ul>
 
 </section>
 
 <section>
-    <h2>Code!</h2>
-
-    <p>Beaker code is available as github repository:
-        <br/>
-        <a href="https://github.com/mnowotka/chembl_beaker">https://github.com/mnowotka/chembl_beaker</a>
-        <br/>
-    </p>
-
+    <h3>New webservices</h3>
+    <p>Can run on any machine:</p>
+    <img src="img/raspberry.jpg" width="40%"/>
 </section>
 
+<section>
+    <h3>New webservices</h3>
+    <p>Image generation:</p>
+    <ul>
+        <li class="fragment">Improved quality</li>
+        <li class="fragment">Two engines: RDKit and Indigo</li>
+        <li class="fragment">Computing coordinates</strong></li>
+        <li class="fragment">Dimensions</li>
+    </ul>
+</section>
+
+<section>
+    <h3>New webservices</h3>
+    <p class="fragment">JSONP and CORS support</p>
+    <p class="fragment">Can be used from JavaScript</p>
+    <p class="fragment"><a href="http://www.ebi.ac.uk/Tools/biojs/registry/Biojs.ChEMBLCompound.html">Bio.js ChEMBL</a> component can be improved</p>
+
+    <img class="fragment" src="img/biojs.png" width="60%"/>
+</section>
+
+<section>
+    <h3>New webservices</h3>
+    <p class="fragment">NoSQL approach to caching:</p>
+    <ul>
+        <li class="fragment">New webservices are intended to be used outside ChEMBL</li>
+        <li class="fragment">They can use only public part of the DB schema</li>
+        <li class="fragment">No materialised views</strong></li>
+        <li class="fragment">Requests can be expensive</li>
+        <li class="fragment">Caching is required</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Cache characteristics</h3>
+    <ul>
+        <li class="fragment">Once cached, request won't change until next ChEMBL release</li>
+        <li class="fragment">Cache should be shared across many production machines</li>
+        <li class="fragment">Independent of output format</strong></li>
+        <li class="fragment">Available from python, supported by EBI</li>
+        <li class="fragment">Failproof, timeout</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Our implementation</h3>
+    <ul>
+        <li class="fragment">Key-value store built on MongoDB</li>
+        <li class="fragment">Key is MD5 hash of certain request parameters</li>
+        <li class="fragment">Value is base64-encoded, z-lib compressed pickle of Django QuerySet</li>
+        <li class="fragment">Values are divided into 16MB chunks to bypass MongoDB limitation</li>
+        <li class="fragment">Timeout set to 1 second.</li>
+    </ul>
+</section>
+
+<section>
+    <h3>How to monitor cache?</h3>
+    
+    <p class="fragment">Sentry!</p>
+    
+    <ul>
+        <li class="fragment">Realtime event logging and aggregation platform</li>
+        <li class="fragment">Specializes in monitoring errors</li>
+        <li class="fragment">Alternative to standard user feedback loop.</li>
+        <li class="fragment">Can be used with any programming language.</li>
+    </ul>
+</section>
+
+<section data-state="filosofia-porque">
+    <h2>Demo</h2>
+</section>
+
+<section>
+    <h3>Sentry is just a part of deployment environment</h3>
+    
+    <p class="fragment">Other parts</p>
+    
+    <ul>
+        <li class="fragment">Fabric</li>
+        <li class="fragment">PIP</li>
+        <li class="fragment">Virtualenv/Virtualenv wrapper</li>
+        <li class="fragment">Rsync</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Relationship between components</h2>
+    
+    <img src="img/devel.png" />
+</section>
+
+<section>
+    <h2>Deployment in practice</h2>
+    
+    <img src="img/deploy.png" width="60%"/>
+    <p class="fragment">Almost zero downtime (apache restart)</p>
+</section>
+
+<section>
+    <h2>Curation Interface update</h2>
+    
+    <ul>
+        <li class="fragment">Github-like image comparison</li>
+        <li class="fragment">Document segmentation</li>
+        <li class="fragment">Use case scenarios</li>
+    </ul>
+</section>
+
+<section data-state="filosofia-porque">
+    <h2>Demo</h2>
+</section>
+
+<section>
+    <h2>Document segmentation</h2>
+    
+    <img src="img/presegment.png" />
+</section>
+
+<section>
+    <h2>Document segmentation</h2>
+    
+    <img src="img/postsegment.png" />
+</section>
+
+<section>
+    <h2>CI use cases</h2>
+    
+    <img src="img/usecase.png" />
+</section>
 
 <section>
     <h2>Thank you!</h2>
