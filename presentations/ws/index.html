@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Web services future</title>
+    <meta name="description" content="Web based presentation about ChEMBL webservices.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>Future of ChEMBL <br/>webservices</h2>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h3>What has been done so far?</h3>
+    <p>Technology switch<br /></p>
+    <p>
+        <br />
+        <ul>
+            <li class="fragment">Java -> Python</li>
+            <li class="fragment">Spring -> Django</li>
+            <li class="fragment">ORM made WS database agnostic</li>
+            <li class="fragment">WS shipped with myChEMBL (RDKit + PG)</li>
+            <li class="fragment">We can open the source code now</li> 
+        </ul>
+    </p>
+</section>
+<section>
+    <h3>Consequences</h3>
+    <ul>
+        <li class="fragment">Web services are easier to maintain and deploy for <b>US</b></li>
+        <li class="fragment">What about our <b>USERS?</b></li>
+        <li class="fragment"><b>WHO</b> are our users?</li>
+        <li class="fragment"><b>Code developers</b> - just like us!</li>  
+    </ul>
+</section>
+<section>
+    <h2>Are webservices easy to use by developers?</h2>
+
+    <p>Which programming languages are supported?<br /></p>
+    <p>
+        <br />
+        <ul>
+            <li class="fragment">This is REST API so every language is supported!</li>
+            <li class="fragment">Not exactly...</li>
+            <li class="fragment">Web application security model implemented in web browsers defines same origin-policy</li>
+            <li class="fragment">Java Script code outside EBI domain can't call WS directly</li>
+            <li class="fragment">We support JSONP and CORS now</li> 
+        </ul>
+    </p>
+
+</section>
+<section>
+    <p>Very nice! But what are architectual constraints <br />of RESFul API?</p>
+    <p><br />
+        <ul>
+            <li class="fragment">Client-server</li>
+            <li class="fragment">Stateless</li>
+            <li class="fragment">Cacheable</li>
+            <li class="fragment">Layered system</li>
+            <li class="fragment">Uniform interface</li> 
+        </ul> 
+    </p>    
+</section>
+<section>
+    <p>And what is the most important feature <br />of the RESFul API?</p>
+    
+    <p class="fragment"><br /><b>Uniform interface</b>, which manifests itselfs in:</p>
+
+    <h1 class="fragment">URI!</h1>
+    
+    <p class="fragment">(Uniform Resource Identifier)</p>
+    
+    <p class="fragment">The uniform interface constraint is fundamental to the design of any REST service. The uniform interface simplifies and decouples the architecture, which enables each part to evolve independently.</p> 
+</section>
+<section>
+    <h2>URI?</h2>
+
+    <p>
+        <ul>
+            <li class="fragment">string of characters used to identify a name of a web resource</li>
+            <li class="fragment">simple</li>
+            <li class="fragment">fixed</li>
+            <li class="fragment">self descriptive</li>
+            <li class="fragment">self decumenting - HATEOAS</li>
+        </ul>
+    </p>
+    
+</section>
+
+<section>
+    <h2>URI?</h2>
+
+    <p>
+        <img src="img/uri.png" />
+    </p>
+    
+</section>
+
+<section>
+    <h3>Web resource?</h3>
+    <p>
+        A primitive, fundamental element of web architecture.<br />
+        Web resources in ChEMBL WS:
+    </p>
+    
+    <p><br/>
+        <ul>
+            <li class="fragment">Compound</li>
+            <li class="fragment">Target</li>
+            <li class="fragment">Assay</li>
+            <li class="fragment">Bioactivity (not currently)</li>
+            <li class="fragment">Image (not currently)</li>
+            <li class="fragment">Drug Mechanism (not currently)</li>
+            <li class="fragment">Form (not currently)</li>
+        </ul>
+    </p>
+    
+</section>
+
+<section>
+    <h3>HATEOAS?</h3>
+    <p>
+        Hypermedia as the Engine of Application State
+    </p>
+    
+    <p><br />
+        <ul>
+            <li class="fragment">A REST client enters a REST application through a simple fixed URL.</li>
+            <li class="fragment">All future actions the client may take are discovered within resource representations returned from the server.</li>
+        </ul>
+    </p>
+    
+</section>
+
+<section>
+    <h3>So what's wrong with URIs in our WS?</h3>
+
+    <ul class="fragment">
+        <li class="fragment">Redundancy</li>
+        <li class="fragment">Lack of consistency</li>
+        <li class="fragment">Not too flexible</li>
+        <li class="fragment">Not conforming to standards and thus hard to guess</li>
+    </ul>
+
+</section>
+<section>
+    <h3>Redundancy in the identifier type</h3>
+    <p class="fragment"><b>Wrong:</b></p>
+    <ul>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1">compounds/CHEMBL1</a></li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/sdtinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N">compounds/sdtinchikey/QFFGVLORLPOAEC-SNVBAGLBSA-N</a></li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/smiles/CCCCCC">compounds/smiles/CCCCCC</a></li>
+    </ul>
+    <p class="fragment"><b>Right:</b></p>
+    <ul>
+        <li class="fragment">compounds/CHEMBL1</li>
+        <li class="fragment">compounds/QFFGVLORLPOAEC-SNVBAGLBSA-N</li>
+        <li class="fragment">compounds/CCCCCC</li>
+    </ul>
+
+    <p class="fragment"><b>The form of identifier can be used it distinguish it's type.</b></p>
+
+</section>
+<section>
+    <h3>Redundancy in ChEMBL ID</h3>
+    <p class="fragment"><b>Wrong:</b></p>
+    <ul>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1">compounds/CHEMBL1</a> - returns 200</li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/1">... but compounds/1</a> - returns 400</li>
+        <li class="fragment">Invalid Chembl Identifier supplied: 1</li>
+    </ul>
+    <p class="fragment"><b>Right:</b></p>
+    <ul>
+        <li class="fragment">compounds/1 is equvalent to</li>
+        <li class="fragment">compounds/CHEMBL1</li>
+    </ul>
+
+    <p class="fragment"><b>still can be distinguished from SMILES and inchi key</b></p>
+
+</section>
+<section>
+    <h3>Redundancy in resource type</h3>
+    <p class="fragment"><b>Wrong:</b></p>
+    <ul>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL2/bioactivities">compounds/CHEMBL2/bioactivities</a></li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/targets/CHEMBL240/bioactivities">targets/CHEMBL240/bioactivities</a></li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities">assays/CHEMBL1217643/bioactivities</a></li>
+    </ul>
+    <p class="fragment"><b>Right:</b></p>
+    <ul>
+        <li class="fragment">bioactivities/CHEMBL2</li>
+        <li class="fragment">bioactivities/CHEMBL240</li>
+        <li class="fragment">bioactivities/CHEMBL1217643</li>
+    </ul>
+
+    <p class="fragment"><b>In order to get bioactivity data I have to know entity type - why???</b></p>
+
+</section>
+
+<section>
+    <h2>Redundancy in resource type</h2>
+    <p class="fragment">This type of redundancy is especially unpleasant:</p>
+
+    <ul>
+        <li class="fragment">No ability to loop over ids</li>
+        <li class="fragment">To get data you need to know a piece od this data</li>
+        <li class="fragment">This is not a canonical URI</li>
+        <li class="fragment">Bioactivity should be resource on it's own</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Lack of consistency</h3>
+    <p class="fragment">There is an URI to get all targets in ChEMBL: <a href="https://www.ebi.ac.uk/chemblws/targets">https://www.ebi.ac.uk/chemblws/targets</a></p>
+    <p class="fragment"><br />But there is no URI to get all compounds or assays...</p>
+    <p class="fragment"><br /><b>WHY?</b></p>
+</section>
+
+<section>
+    <h3>Lack of consistency</h3>
+    <p>
+    <ul>
+        <li class="fragment">There is 9,414 targets currently in ChEMBL, which is about 5MB when saved as xml.</li>
+        <li class="fragment">But there is 1,566,998 compounds and 1,042,374 assays...</li>
+        <li class="fragment">Gigabytes of data in single request</li>
+        <li class="fragment">Potential DDOS threat</li>
+        <li class="fragment">And the solution is...</li>
+    </ul>
+    </p>
+
+</section>
+
+<section>
+    <h2>Pagination</h2>
+
+    <img src="img/pagination.png"/>
+
+</section>
+
+<section>
+    <h2>Filtering</h2>
+
+    <ul>
+        <li class="fragment">Pagination is nice but I don't need all compounds</li>
+        <li class="fragment">Only compounds with alogp greater than 5.3 and 4 rotatable bonds</li>
+        <li class="fragment"><pre><code>compounds?alogp__gte=5.3&rotatable_bonds=4</code></pre></li>
+        <li class="fragment"><code>Acid</code> in name</li>
+        <li class="fragment"><pre><code>compounds?preferredCompoundName__icontains=acid</code></pre></li>
+        <li class="fragment">Similar for all other resources</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Benefits of filtering</h3>
+    <ul>
+        <li class="fragment">Reduces amount of data only to interesting items</li>
+        <li class="fragment">Batch retrieval without specifying a list of ids</li>
+        <li class="fragment">Easy to cache</li>
+        <li class="fragment">Easy to implement</li>
+        <li class="fragment">Makes webservices almost as flexible as SQL</li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Lack of consistency - continued</h3>
+    <ul>
+        <li class="fragment">Different bioactivities field names for json and xml</li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities.xml">https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities.xml</a></li>
+        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities.json">https://www.ebi.ac.uk/chemblws/assays/CHEMBL1217643/bioactivities.json</a></li>
+        <li class="fragment">Very problematic when generating cache</li>
+        <li class="fragment">Kept for legacy reasons</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Lack of consistency - GET and POST</h3>
+    <ul>
+        <li class="fragment">In POST, data is not embedded into URI</li>
+        <li class="fragment">Using POST is the only way for SMILES containing URI unsafe characters</li>
+        <li class="fragment">This is why all 3 API methods requiring SMILES (compound by SMILES, substructure, similarity) support POST</li>
+        <li class="fragment">But others don't - why?</li>
+        <li class="fragment">Let's give the user decide</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Conforming to standards - POST arguments</h3>
+    <ul>
+        <li class="fragment">Support for <code>x-www-form-urlencoded</code> POST arguments should be dropped</li>
+        <li class="fragment">In early days of Web POST was used to send data from online forms</li>
+        <li class="fragment">Special encoding called <code>x-www-form-urlencoded</code> was designed for that purpose</li>
+        <li class="fragment">REST API uses POST in different context</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Conforming to standards - POST arguments</h3>
+    <ul>
+        <li class="fragment">Modern REST APIs don't allow <code>x-www-form-urlencoded</code></li>
+        <li class="fragment">The rule is: you get your data encoded in format in which your POST arguments were encoded</li>
+        <li class="fragment">This means that only json and xml should be supported in our case</li>
+        <li class="fragment">Currently we accept <code>x-www-form-urlencoded</code> by default and use <code>'Accept'</code> and <code>'Content-Type'</code> to get around some problems</li>
+    </ul>
+</section>
+
+<section>
+    <p class="fragment">To keep URIs simple we should have new kinds of resources:</p>
+    <p><br />
+    <ul>
+        <li class="fragment">Image</li>
+        <li class="fragment">Bioactivity</li>
+        <li class="fragment">Compound Form</strong></li>
+        <li class="fragment">Mechanism of Action</li>
+        <li class="fragment">Approved Drug</li>
+        <li class="fragment">Similarity</li>
+        <li class="fragment">Substructure</li>
+    </ul></p>
+</section>
+
+<section>
+    <p class="fragment">To keep URIs simple we should have new kinds of resources:</p>
+    <p><br />
+    <ul>
+        <li class="fragment">compounds/CHEMBL2/image -> images/CHEMBL2</li>
+        <li class="fragment">targets/CHEMBL240/bioactivities -> bioactivities/CHEMBL240 </li>
+        <li class="fragment">compounds/CHEMBL278020/form -> form/CHEMBL278020</strong></li>
+        <li class="fragment">compounds/CHEMBL1642/drugMechanism -> drugMechanisms/CHEMBL1642</li>
+        <li class="fragment">compounds/substructure/CCCCC -> substructure/CCCCC</li>
+        <li class="fragment">compounds/similarity/CCCCC/70 -> similarity/CCCCC?simscore=70</li>
+    </ul></p>
+</section>
+
+<section>
+    <h3>Conforming to standards - HATEOAS</h3>
+    <ul>
+        <li class="fragment">Having flat resources SPORE endpoint can be generated automatically</li>
+        <li class="fragment">Current SPORE endopint is written by hand because it's faster</li>
+        <li class="fragment">We use SPORE to generate JavaScript based live documentation</li>
+        <li class="fragment">This documentation is shipped with myChEMBL</li>
+        <li class="fragment">It should be presented on webservices index page as well</li>
+        <li class="fragment">This would be a nice example of using ws from js</li>
+        <li class="fragment">Proof we have CORS up and running</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Other useful things</h3>
+    <ul>
+        <li class="fragment">Make webserices code open source and available on github</li>
+        <li class="fragment">Everyone can have it's own ws instance even without myChEMBL</li>
+        <li class="fragment">Gitub excellent issue tracking</li>
+        <li class="fragment">Community support</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Include Beaker in webserives</h3>
+    <ul>
+        <li class="fragment">So far ws only serve data</li>
+        <li class="fragment">Tandem with beaker would add ability to manipulate with compounds</li>
+        <li class="fragment">Still free and open source</li>
+        <li class="fragment">Ability to create web and mobile apps without installing software</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Add vector formats for images</h3>
+    <ul>
+        <li class="fragment">More web friendly</li>
+        <li class="fragment">Smaller</li>
+        <li class="fragment">Better quality</li>
+        <li class="fragment">Interactive</li>
+    </ul>
+</section>
+
+<section>
+    <h3>How much work is this?</h3>
+    <ul>
+        <li class="fragment">Most of the features desribed are already implemented in our other apps</li>
+        <li class="fragment">Some of them are simply commented out from ws code to maintain backwards compatibility</li>
+        <li class="fragment">Very small amound of development required</li>
+        <li class="fragment">Still needs to be carefully tested</li>
+        <li class="fragment">Won't break anything (v2)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/> Hinxton, 27 May 2014
+    </div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:false,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
+
