@@ -58,11 +58,10 @@
     </ul>
 </section>
 <section>
-    <h2>Are webservices easy to use by developers?</h2>
+    <h3>Are webservices easy to use <br />by developers?</h3>
 
     <p>Which programming languages are supported?<br /></p>
-    <p>
-        <br />
+    <p><br />
         <ul>
             <li class="fragment">This is REST API so every language is supported!</li>
             <li class="fragment">Not exactly...</li>
@@ -74,21 +73,21 @@
 
 </section>
 <section>
-    <p>Very nice! But what are architectual constraints <br />of RESFul API?</p>
+    <p>Very nice! But what are architectural constraints <br />of RESTFul API?</p>
     <p><br />
         <ul>
-            <li class="fragment">Client-server</li>
-            <li class="fragment">Stateless</li>
-            <li class="fragment">Cacheable</li>
-            <li class="fragment">Layered system</li>
+            <li class="fragment" style="width:100%;">Client-server <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Stateless <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Cacheable <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Layered system <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
             <li class="fragment">Uniform interface</li> 
         </ul> 
     </p>    
 </section>
 <section>
-    <p>And what is the most important feature <br />of the RESFul API?</p>
+    <p>And what is the most important feature <br />of the RESTFul API?</p>
     
-    <p class="fragment"><br /><b>Uniform interface</b>, which manifests itselfs in:</p>
+    <p class="fragment"><br /><b>Uniform interface</b>, which manifests itself in:</p>
 
     <h1 class="fragment">URI!</h1>
     
@@ -105,7 +104,7 @@
             <li class="fragment">simple</li>
             <li class="fragment">fixed</li>
             <li class="fragment">self descriptive</li>
-            <li class="fragment">self decumenting - HATEOAS</li>
+            <li class="fragment">self documenting - HATEOAS</li>
         </ul>
     </p>
     
@@ -121,7 +120,7 @@
 </section>
 
 <section>
-    <h3>Web resource?</h3>
+    <h4>Web resource?</h4>
     <p>
         A primitive, fundamental element of web architecture.<br />
         Web resources in ChEMBL WS:
@@ -168,7 +167,7 @@
 
 </section>
 <section>
-    <h3>Redundancy in the identifier type</h3>
+    <h4>Redundancy in the identifier type</h4>
     <p class="fragment"><b>Wrong:</b></p>
     <ul>
         <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1">compounds/CHEMBL1</a></li>
@@ -182,7 +181,7 @@
         <li class="fragment">compounds/CCCCCC</li>
     </ul>
 
-    <p class="fragment"><b>The form of identifier can be used it distinguish it's type.</b></p>
+    <p class="fragment"><b>Identifier's form can be used it distinguish it's type.</b></p>
 
 </section>
 <section>
@@ -195,7 +194,7 @@
     </ul>
     <p class="fragment"><b>Right:</b></p>
     <ul>
-        <li class="fragment">compounds/1 is equvalent to</li>
+        <li class="fragment">compounds/1 is equivalent to</li>
         <li class="fragment">compounds/CHEMBL1</li>
     </ul>
 
@@ -203,7 +202,7 @@
 
 </section>
 <section>
-    <h3>Redundancy in resource type</h3>
+    <h4>Redundancy in resource type</h4>
     <p class="fragment"><b>Wrong:</b></p>
     <ul>
         <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL2/bioactivities">compounds/CHEMBL2/bioactivities</a></li>
@@ -345,8 +344,8 @@
 </section>
 
 <section>
-    <p class="fragment">To keep URIs simple we should have new kinds of resources:</p>
-    <p><br />
+    <p class="fragment">New kinds of resources:</p>
+    <p>
     <ul>
         <li class="fragment">compounds/CHEMBL2/image -> images/CHEMBL2</li>
         <li class="fragment">targets/CHEMBL240/bioactivities -> bioactivities/CHEMBL240 </li>
@@ -358,13 +357,13 @@
 </section>
 
 <section>
-    <h3>Conforming to standards - HATEOAS</h3>
+    <h4>Conforming to standards - HATEOAS</h4>
     <ul>
         <li class="fragment">Having flat resources SPORE endpoint can be generated automatically</li>
         <li class="fragment">Current SPORE endopint is written by hand because it's faster</li>
         <li class="fragment">We use SPORE to generate JavaScript based live documentation</li>
         <li class="fragment">This documentation is shipped with myChEMBL</li>
-        <li class="fragment">It should be presented on webservices index page as well</li>
+        <li class="fragment">It should be presented on webservices index page</li>
         <li class="fragment">This would be a nice example of using ws from js</li>
         <li class="fragment">Proof we have CORS up and running</li>
     </ul>
@@ -375,7 +374,7 @@
     <ul>
         <li class="fragment">Make webserices code open source and available on github</li>
         <li class="fragment">Everyone can have it's own ws instance even without myChEMBL</li>
-        <li class="fragment">Gitub excellent issue tracking</li>
+        <li class="fragment">Github excellent issue tracking</li>
         <li class="fragment">Community support</li>
     </ul>
 </section>
@@ -403,9 +402,9 @@
 <section>
     <h3>How much work is this?</h3>
     <ul>
-        <li class="fragment">Most of the features desribed are already implemented in our other apps</li>
+        <li class="fragment">Most of the features described are already implemented in our other apps</li>
         <li class="fragment">Some of them are simply commented out from ws code to maintain backwards compatibility</li>
-        <li class="fragment">Very small amound of development required</li>
+        <li class="fragment">Very small amount of development required</li>
         <li class="fragment">Still needs to be carefully tested</li>
         <li class="fragment">Won't break anything (v2)</li>
     </ul>
