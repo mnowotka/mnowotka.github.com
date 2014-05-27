@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Web services future</title>
-    <meta name="description" content="Web based presentation about ChEMBL webservices.">
+    <meta name="description" content="Web based presentation about ChEMBL web services.">
     <meta name="author" content="Michał Nowotka">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -28,7 +28,7 @@
 <div class="reveal">
 <div class="slides">
 <section>
-    <h2>Future of ChEMBL <br/>webservices</h2>
+    <h2>Future of ChEMBL <br/>web services</h2>
 
     <p>
         <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
@@ -58,11 +58,10 @@
     </ul>
 </section>
 <section>
-    <h2>Are webservices easy to use by developers?</h2>
+    <h3>Are web services easy to use <br />by developers?</h3>
 
     <p>Which programming languages are supported?<br /></p>
-    <p>
-        <br />
+    <p><br />
         <ul>
             <li class="fragment">This is REST API so every language is supported!</li>
             <li class="fragment">Not exactly...</li>
@@ -74,21 +73,21 @@
 
 </section>
 <section>
-    <p>Very nice! But what are architectual constraints <br />of RESFul API?</p>
+    <p>Very nice! But what are architectural constraints <br />of RESTFul API?</p>
     <p><br />
         <ul>
-            <li class="fragment">Client-server</li>
-            <li class="fragment">Stateless</li>
-            <li class="fragment">Cacheable</li>
-            <li class="fragment">Layered system</li>
+            <li class="fragment" style="width:100%;">Client-server <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Stateless <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Cacheable <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
+            <li class="fragment">Layered system <img src=img/checked.png style="margin-bottom:3px; margin-right:6px"/></li>
             <li class="fragment">Uniform interface</li> 
         </ul> 
     </p>    
 </section>
 <section>
-    <p>And what is the most important feature <br />of the RESFul API?</p>
+    <p>And what is the most important feature <br />of the RESTFul API?</p>
     
-    <p class="fragment"><br /><b>Uniform interface</b>, which manifests itselfs in:</p>
+    <p class="fragment"><br /><b>Uniform interface</b>, which manifests itself in:</p>
 
     <h1 class="fragment">URI!</h1>
     
@@ -105,7 +104,7 @@
             <li class="fragment">simple</li>
             <li class="fragment">fixed</li>
             <li class="fragment">self descriptive</li>
-            <li class="fragment">self decumenting - HATEOAS</li>
+            <li class="fragment">self documenting - HATEOAS</li>
         </ul>
     </p>
     
@@ -121,7 +120,7 @@
 </section>
 
 <section>
-    <h3>Web resource?</h3>
+    <h4>Web resource?</h4>
     <p>
         A primitive, fundamental element of web architecture.<br />
         Web resources in ChEMBL WS:
@@ -168,7 +167,7 @@
 
 </section>
 <section>
-    <h3>Redundancy in the identifier type</h3>
+    <h4>Redundancy in the identifier type</h4>
     <p class="fragment"><b>Wrong:</b></p>
     <ul>
         <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1">compounds/CHEMBL1</a></li>
@@ -182,28 +181,11 @@
         <li class="fragment">compounds/CCCCCC</li>
     </ul>
 
-    <p class="fragment"><b>The form of identifier can be used it distinguish it's type.</b></p>
+    <p class="fragment"><b>Identifier's form can be used it distinguish it's type.</b></p>
 
 </section>
 <section>
-    <h3>Redundancy in ChEMBL ID</h3>
-    <p class="fragment"><b>Wrong:</b></p>
-    <ul>
-        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL1">compounds/CHEMBL1</a> - returns 200</li>
-        <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/1">... but compounds/1</a> - returns 400</li>
-        <li class="fragment">Invalid Chembl Identifier supplied: 1</li>
-    </ul>
-    <p class="fragment"><b>Right:</b></p>
-    <ul>
-        <li class="fragment">compounds/1 is equvalent to</li>
-        <li class="fragment">compounds/CHEMBL1</li>
-    </ul>
-
-    <p class="fragment"><b>still can be distinguished from SMILES and inchi key</b></p>
-
-</section>
-<section>
-    <h3>Redundancy in resource type</h3>
+    <h4>Redundancy in resource type</h4>
     <p class="fragment"><b>Wrong:</b></p>
     <ul>
         <li class="fragment"><a href="https://www.ebi.ac.uk/chemblws/compounds/CHEMBL2/bioactivities">compounds/CHEMBL2/bioactivities</a></li>
@@ -283,9 +265,21 @@
         <li class="fragment">Batch retrieval without specifying a list of ids</li>
         <li class="fragment">Easy to cache</li>
         <li class="fragment">Easy to implement</li>
-        <li class="fragment">Makes webservices almost as flexible as SQL</li>
+        <li class="fragment">Makes web services almost as flexible as SQL</li>
     </ul>
 
+</section>
+
+<section>
+    <h3>Benefits of filtering</h3>
+    <p class="fragment"><b>Keyword based searches</b></p>
+    <p><br />
+    <ul>
+        <li class="fragment">One of the big missing bits from existing services</li>
+        <li class="fragment">Solr/Lucene can be used to improve speed</li>
+        <li class="fragment">Web interface can use web services to provide keyword based search</li>
+    </ul>    
+    </p>
 </section>
 
 <section>
@@ -306,7 +300,7 @@
         <li class="fragment">Using POST is the only way for SMILES containing URI unsafe characters</li>
         <li class="fragment">This is why all 3 API methods requiring SMILES (compound by SMILES, substructure, similarity) support POST</li>
         <li class="fragment">But others don't - why?</li>
-        <li class="fragment">Let's give the user decide</li>
+        <li class="fragment">Let users decide</li>
     </ul>
 </section>
 
@@ -345,8 +339,8 @@
 </section>
 
 <section>
-    <p class="fragment">To keep URIs simple we should have new kinds of resources:</p>
-    <p><br />
+    <p class="fragment">New kinds of resources:</p>
+    <p>
     <ul>
         <li class="fragment">compounds/CHEMBL2/image -> images/CHEMBL2</li>
         <li class="fragment">targets/CHEMBL240/bioactivities -> bioactivities/CHEMBL240 </li>
@@ -358,13 +352,13 @@
 </section>
 
 <section>
-    <h3>Conforming to standards - HATEOAS</h3>
+    <h4>Conforming to standards - HATEOAS</h4>
     <ul>
         <li class="fragment">Having flat resources SPORE endpoint can be generated automatically</li>
         <li class="fragment">Current SPORE endopint is written by hand because it's faster</li>
         <li class="fragment">We use SPORE to generate JavaScript based live documentation</li>
         <li class="fragment">This documentation is shipped with myChEMBL</li>
-        <li class="fragment">It should be presented on webservices index page as well</li>
+        <li class="fragment">It should be presented on web services index page</li>
         <li class="fragment">This would be a nice example of using ws from js</li>
         <li class="fragment">Proof we have CORS up and running</li>
     </ul>
@@ -373,15 +367,15 @@
 <section>
     <h3>Other useful things</h3>
     <ul>
-        <li class="fragment">Make webserices code open source and available on github</li>
+        <li class="fragment">Make web serices code open source and available on github</li>
         <li class="fragment">Everyone can have it's own ws instance even without myChEMBL</li>
-        <li class="fragment">Gitub excellent issue tracking</li>
+        <li class="fragment">Github excellent issue tracking</li>
         <li class="fragment">Community support</li>
     </ul>
 </section>
 
 <section>
-    <h3>Include Beaker in webserives</h3>
+    <h3>Include Beaker in web serives</h3>
     <ul>
         <li class="fragment">So far ws only serve data</li>
         <li class="fragment">Tandem with beaker would add ability to manipulate with compounds</li>
@@ -403,11 +397,21 @@
 <section>
     <h3>How much work is this?</h3>
     <ul>
-        <li class="fragment">Most of the features desribed are already implemented in our other apps</li>
+        <li class="fragment">Most of the features described are already implemented in our other apps</li>
         <li class="fragment">Some of them are simply commented out from ws code to maintain backwards compatibility</li>
-        <li class="fragment">Very small amound of development required</li>
+        <li class="fragment">Very small amount of development required</li>
         <li class="fragment">Still needs to be carefully tested</li>
         <li class="fragment">Won't break anything (v2)</li>
+    </ul>
+</section>
+
+<section>
+    <h3>Timeline</h3>
+    <ul>
+        <li class="fragment">Development - summertime</li>
+        <li class="fragment">Community access to beta version - 6 months</li>
+        <li class="fragment">Base URL format change - by the end of year</li>
+        <li class="fragment">Depracation - based on <a href="https://wwwint.ebi.ac.uk/es/servicesdb/bi/webstats.flow">stats</a></li>
     </ul>
 </section>
 
