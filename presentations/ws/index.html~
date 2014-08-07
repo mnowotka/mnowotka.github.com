@@ -40,8 +40,8 @@
     <p>
         <br />
         <ul>
-            <li class="fragment">Java -> Python</li>
-            <li class="fragment">Spring -> Django</li>
+            <li class="fragment">Java ➡ Python</li>
+            <li class="fragment">Spring ➡ Django</li>
             <li class="fragment">ORM made WS database agnostic</li>
             <li class="fragment">WS shipped with myChEMBL (RDKit + PG)</li>
             <li class="fragment">We can open the source code now</li> 
@@ -181,7 +181,7 @@
         <li class="fragment">compounds/CCCCCC</li>
     </ul>
 
-    <p class="fragment"><b>Identifier's form can be used it distinguish it's type.</b></p>
+    <p class="fragment"><b>Identifier's form can be used to distinguish it's type.</b></p>
 
 </section>
 <section>
@@ -209,7 +209,7 @@
 
     <ul>
         <li class="fragment">No ability to loop over ids</li>
-        <li class="fragment">To get data you need to know a piece od this data</li>
+        <li class="fragment">To get data you need to know a piece of this data</li>
         <li class="fragment">This is not a canonical URI</li>
         <li class="fragment">Bioactivity should be resource on it's own</li>
     </ul>
@@ -412,6 +412,16 @@
         <li class="fragment">Community access to beta version - 6 months</li>
         <li class="fragment">Base URL format change - by the end of year</li>
         <li class="fragment">Depracation - based on <a href="https://wwwint.ebi.ac.uk/es/servicesdb/bi/webstats.flow">stats</a></li>
+    </ul>
+</section>
+
+<section>
+    <h3>Things not mentioned</h3>
+    <ul>
+        <li class="fragment">Client libraries</li>
+        <li class="fragment">New python client lib</li>
+        <li class="fragment">Comming out this or next week</li>
+        <li class="fragment">Blog post is ready</li>
     </ul>
 </section>
 
