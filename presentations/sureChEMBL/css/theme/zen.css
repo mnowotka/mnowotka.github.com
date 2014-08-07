@@ -266,11 +266,52 @@ small.liup{
 
 li {
     padding: 0px;
-    margin: 0px 0px 0.5em;
+    margin: 0px 0px 0.5em !important;
 }
 
+li {
+  color: #3B8843 !important; /* bullet color */
+}
+
+li span {color: black;}
 
 ul {
     list-style: none outside none;
 }
+
+li ul { margin-top: 0.5em !important;}
+
+.ebi-service{
+    font-size: small !important;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+}
+
+.reveal p{
+    font-size: 25px !important;
+}
+
+.round{
+    margin-bottom: 10px !important;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+}
+
+#sure_wrap { width: 1200px; height: 700px; padding: 0; overflow: hidden; border: 0;}
+#sure_frame { width: 1300px; height: 800px; border: 1px solid black; border:0;}
+#sure_frame {
+        -ms-zoom: 0.75;
+        -moz-transform: scale(0.75);
+        -moz-transform-origin: 0 0;
+        -o-transform: scale(0.75);
+        -o-transform-origin: 0 0;
+        -webkit-transform: scale(0.75);
+        -webkit-transform-origin: 0 0;
+}
+
+
 

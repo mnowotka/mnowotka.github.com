@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8">
-    <title>Reverse engineering Marvin</title>
-    <meta name="description" content="Web based presentation about marvin and marvin for js.">
+    <title>SureChEMBL: An open system for exploration of patent chemistry space.</title>
+    <meta name="description" content="SureChEMBL: An open system for exploration of patent chemistry space.">
     <meta name="author" content="Michał Nowotka">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -28,323 +28,441 @@
 <div class="reveal">
 <div class="slides">
 <section>
-    <h2>Reverse engineering Marvin</h2>
+    <img src="img/soup-can.png" width="30%" style="margin-bottom:30px;"/>
+    <h2 style="text-transform:none;">SureChEMBL</h2>
+    <h3>An open system for exploration of patent chemistry space</h3>
 
     <p>
         <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
     </p>
 </section>
-<section>
-    <h3>New Java vulnerability</br>discovered</h3>
-
-    <blockquote>
-    Unspecified vulnerability in the Java Runtime Environment (JRE) component in Oracle Java SE 7 Update 21 and earlier, 6 Update 45 and earlier, and 5.0 Update 45 and earlier, and OpenJDK 7, allows remote attackers to affect confidentiality, integrity, and availability via unknown vectors related to 2D. NOTE: the previous information is from the June 2013 CPU. Oracle has not commented on claims from another vendor that this issue allows remote attackers to bypass the Java sandbox via vectors related to “Incorrect image attribute verification” in 2D.
-    </blockquote>
+<section data-background="img/ebi.png" data-background-size="60%" data-background-color="white">
+    <h3 style="float:right;">EMBL-EBI Resources</h3>
+    <div class="fragment round" style="background-color: rgba(216,196, 158, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Genes, genomes & variation</strong></span><br/>
+        <span class="ebi-service">European Nucleotide Archive</span>
+        <span class="ebi-service">Ensembl</span>
+        <span class="ebi-service">European Genome-phenome Archive</span><br/>
+        <span class="ebi-service">1000 Genomes</span>
+        <span class="ebi-service">Ensembl Genomes</span>
+        <span class="ebi-service">Metagenomocs portal</span>
+        </p>
+    </div>
+    <div class="fragment round" style="background-color: rgba(207, 179, 205, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Gene, protein & metabolite expression</strong></span><br/>
+        <span class="ebi-service">ArrayExpress</span>
+        <span class="ebi-service">Expression Atlas</span>
+        <span class="ebi-service">Metabolights</span><br/>
+        <span class="ebi-service">PRIDE</span>
+        </p>
+    </div>
+    <div class="fragment round" style="background-color: rgba(118, 201, 220, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Protein sequences, families & motifs</strong></span><br/>
+        <span class="ebi-service">InterPro</span>
+        <span class="ebi-service">Pfam</span>
+        <span class="ebi-service">UniProt</span>
+        </p>
+    </div>
+    <div class="fragment round" style="background-color: rgba(187, 206, 188, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Molecular structures</strong></span><br/>
+        <span class="ebi-service">Protein Data Bank in Europe</span><br/>
+        <span class="ebi-service">Electron Microscpoy Data Bank</span>
+        </p>
+    </div>
+    <div class="fragment round" style="background-color: rgba(252, 206, 159, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Chemical biology</strong></span><br/>
+        <span class="ebi-service">ChEMBL</span>
+        <span class="ebi-service">ChEBI</span>
+        </p>
+    </div>
+    <div class="fragment round" style="background-color: rgba(247, 183, 178, 0.7); float:left;clear:both;">
+        <p>
+        <span><strong>Systems</strong></span><br/>
+        <span class="ebi-service">BioModels</span>
+        <span class="ebi-service">BioSamples</span><br/>
+        <span class="ebi-service">Enzyme Portal</span><br/>
+        </p>
+    </div>
 </section>
-<section>
-    <h3>Consequences</h3>
-    <ul>
-        <li class="fragment"><q>Java enabled browsers are highly vulnerable</q> (<code>thehackernews.com, 27-03-2013</code>)</li>
-        <li class="fragment"><q>Firefox 26 Released With On Demand Java Plugin Feature</q> (<code>omgubuntu.co.uk, 10-12-2013</code>)</li>
-        <li class="fragment"><q>Apple updates Safari web plugin blocker to disable new Java vulnerability</q> (<code>9to5mac.com, 29-08-2013</code>)</li>
-        <li class="fragment">Chrome does not support Java 7 on the Mac platform anyway...</li>  
+<section data-background-color="white">
+    <h3>Drug discovery takes time</h3>
+    <img src="img/discovery.png" width="40%" style="float:left;"/>
+    <ul class="fragment" style="width:40%; float:right;">
+        <li class="fragment"><span>From discoverig a target to a drug reaching the market:<br/></span><span style="color: red;"> 12 years</span></li>
+        <li class="fragment"><span>Bioinformatics shortens time to target discovery</span></li>
+        <li class="fragment"><span>EMBL-EBI services support all stages of drug discovery</span></li>
     </ul>
 </section>
 <section>
-    <h2>More consequences</h2>
-
-    <img src="img/java.png" />
-
+    <h3>ChEMBL - Data For Drug Discovery</h3>
+    <img src="img/chembl_schema.png" />
 </section>
 <section>
-    <h3>JavaScript to the rescue</h3>
+    <h3>Patent Data</h3>
+    <p>
+        <ul class="fragment">
+            <li class="fragment"><span>Do we include patent data in the ChEMBL database?</span>
+            <ul class="fragment">
+                <li class="fragment"><span>We do provide cross-references (UniChem), but not the underlying chemical data.</span></li>
+                <li class="fragment"><span>Most common question asked about ChEMBL during training and outreach.</span></li>
+            </ul>
+            </li>
+            <li class="fragment"><span>Why is this so important to Drug Discovery researchers?</span>
+            <ul class="fragment">
+                <li class="fragment"><span>Patent literature 2-3 years ahead of published literature.</span></li>
+                <li class="fragment"><span>Prior art and freedom to operate</span>.</li>
+                <li class="fragment"><span>Lots more data - but high cost to extract + lots of noisy data.</span></li>
+            </ul>
+            </li>
+        </ul>
+    </p>
+</section>
+<section>
+    <img src="img/ds_logo.png"  style="float:right;" />
+    <h3>SureChem = SureChEMBL</h3>
 
     <p>
-        <img src="img/m4js.jpg" width="40%"/>
-    </p>
 
-    <p class="fragment">
-        <br/>Curation Interface detects Java availability and decides at runtime, which version to load.
+        <ul class="fragment">
+            <li class="fragment"><span> December 2013 EMBL-EBI acquired SureChem - a leading 'chemistry patent mining' product from Digital Science, Macmillan Group</span></li>
+            <li class="fragment"><span> SureChem provides a live (updated daily) view chemical patent space</span></li>
+            <li class="fragment"><span> EMBL-EBI will rovide an ongoing, free and open resource to entire community</span></li>
+            <li class="fragment"><span> Rebranded SureChEMBL</span></li>
+        </ul>
     </p>
 </section>
 <section>
-    <h2>DEMO</h2>
+    <section>
+        <h2>SureChEMBL System</h2>
+        <div id="sure_wrap">
+            <iframe id="sure_frame" src="SureChem.html" frameBorder="0"></iframe>
+        </div>
+    </section>
+    <section>
+        <h2>SureChEMBL System</h2>
+        <p>
+            <img src="img/results.png" width="50%" />
+        </p>
+    </section>
+    <section>
+        <h2>SureChEMBL System</h2>
+        <p>
+            <img src="img/details.png" width="50%" />
+        </p>
+    </section>
+    <section>
+        <h2>SureChEMBL System</h2>
+        <p>
+            <img src="img/export.png" width="50%" />
+        </p>
+    </section>
+    <section>
+        <h2>SureChEMBL System</h2>
+        <p>
+            <img src="img/single.png" width="50%" />
+        </p>
+    </section>
 </section>
 <section>
-    <h3>Viewer - technologies</h3>
+    <h3>SureChEMBL Data Processing</h3>
     <p>
-        <img src="img/viewer.png" />
-    </p>
-    
-    <p>ChEMBL contribution to RDKit:<br /><br /> <a href="https://github.com/rdkit/rdkit/pull/124/files">https://github.com/rdkit/rdkit/pull/124/files</a></p>
-</section>
-<section>
-    <h3>Compounds as JSON</h3>
-
-    <ul class="fragment">
-        <li class="fragment">Smaller than images</li>
-        <li class="fragment">Highly compressible</li>
-        <li class="fragment">Better quality</li>
-        <li class="fragment">Web friendly</li>
-    </ul>
-    
-    <p class="fragment"><strong><br />Use cases:</strong></p>
-    
-    <ul class="fragment" >
-        <li class="fragment">Interactive web widgets</li>
-        <li class="fragment">Easily stored in DBs</li>
-        <li class="fragment">Webservices?</li>
-    </ul>
-
-</section>
-<section>
-    <h2>Problems with viewer</h2>
-    <p>
-    <ul>
-        <li class="fragment">Every web application is sandboxed by browser</li>
-        <li class="fragment">No way to access clipboard</li>
-        <li class="fragment">How to copy from viewer and paste to sketcher?</li>
-    </ul>
-    </p>
-
-</section>
-<section>
-    <h3>Solution - SO</h3>
-    <p>Stack Overflow question:<br /> <a href="http://stackoverflow.com/questions/17527870/how-does-trello-access-the-users-clipboard">How does Trello access the user's clipboard?</a></p>
-    <pre><code data-trim contenteditable>
-    _.defer =&gt;
-        $clipboardContainer = $(&quot;#clipboard-container&quot;)
-        $clipboardContainer.empty().show()
-        $(&quot;&lt;textarea id='clipboard'&gt;&lt;/textarea&gt;&quot;)
-        .val(@value)
-        .appendTo($clipboardContainer)
-        .focus()
-        .select()
-    </code></pre>
-    <p>Append invisible textarea, fill it with molfile, set focus, select whole text when user press <code>Ctrl</code>.</p>
-</section>
-<section data-state="filosofia-porque">
-    <h2>Demo</h2>
-</section>
-<section data-state="filosofia-porque">
-    <h3>Marvin for JS (sketcher) limitations</h3>
-    <p>
-    <ul>
-        <li class="fragment">Not all functionality present in Java version can be reimplemented in JavaScript</li>
-        <li class="fragment">Format conversion / 2D coords / stereo info...</li>
-        <li class="fragment">Need to be performed on the server side</li>
-        <li class="fragment">Webservices!</li>
-        <li class="fragment">ChemAxon requires separate licence to use their webservices!</li>
-        <li class="fragment">But at least they publish <a href="https://marvin4js.chemaxon.com/marvin4js-latest/docs/dev/webservices.html">specification</a></li>
-    </ul>
+        <img src="img/sure_chembl_diagram.png" />
     </p>
 </section>
 <section>
-    <h2>Open source solution - Beaker</h2>
-
-    <img src="img/beaker.png" style="position:fixed;left:1%;top:30%;">
-
-    <p style="font-size:22pt;">RDKit and OSRA in Bottle on Tornado</p>
-
-</section>
-
 <section>
-    <h3>What is Beaker?</h3>
+    <h3>Technical Challenges</h3>
+
+    <p class="fragment">Enhanced Entity Extraction</p>
 
     <p>
-    <ul>
-        <li class="fragment">A portable, lightweight webserver</li>
-        <li class="fragment">REST-speaking</li>
-        <li class="fragment">CORS-ready</li>
-        <li class="fragment">Wraps RDKit and OSRA</li>
-        <li class="fragment">Built on Bottle and Tornado</li>
-    </ul>
+        <ul class="fragment">
+            <li class="fragment"><span>Identify new entity types e.g. proteins, diseases, cell lines, assays</span></li>
+            <li class="fragment"><span>Bioactivity Data Extraction</span></li>
+            <li class="fragment"><span>Markush Structure Extraction</span></li>
+            <li class="fragment"><span>Image Processing</span></li>
+        </ul>
     </p>
 </section>
 <section>
-    <h3>What it does?</h3>
+    <h3>Entity Extraction</h3>
     <p>
-    <ul>
-        <li class="fragment">Format conversion</li>
-        <li class="fragment">Compound recognition</li>
-        <li class="fragment">Image generation (including JSON)</li>
-        <li class="fragment">Fingerprints, descriptors</li>
-        <li class="fragment">Marvin 4 JS compatible webservices</li>
-    </ul>
+        <img src="img/entity_extraction.png" />
     </p>
-
 </section>
-
 <section>
-    <h2>Code & demo!</h2>
+    <h3>Bioactivity Data Extraction</h3>
+    <p>
+        <img src="img/bio_extraction.png" />
+    </p>
+</section>
+<section>
+    <h3>Markush Structure Extraction</h3>
+    <p>
+        <img src="img/markush_extraction.png" />
+    </p>
+</section>
+</section>
+<section>
+    <h2>Curation Interface</h2>
+    <p>
+        <ul>
+            <li class="fragment"><span>Load compounds to DB, calulate properties</span></li>
+            <li class="fragment"><span>Web based application to help scientific curators</span></li>
+            <li class="fragment"><span>High level graphical intrface, no more SQL</span></li>
+            <li class="fragment"><span>Handling many input formats</span></li>
+        </ul>
+    </p>
+</section>
+<section>
+    <section>
+        <h4>Curation Interface <br/> handling different file formats</h4>
+        <p>
+            <img src="img/created_compound.png" width="75%" />
+        </p>
+    </section>
+    <section>
+        <h4>Curation Interface <br/> handling different file formats</h4>
+        <p>
+            <img src="img/sdf_list_view.png" width="75%" />
+        </p>
+    </section>
+    <section>
+        <h4>Curation Interface <br/> handling different file formats</h4>
+        <p>
+            <img src="img/sdf_mol_preview.png" width="75%" />
+        </p>
+    </section>
+    <section>
+        <h4>Curation Interface <br/> handling different file formats</h4>
+        <p>
+            <img src="img/progress_monitor.png" width="75%" />
+        </p>
+    </section>
+</section>
+<section>
+    <h4>Curation Interface - image extraction</h4>
+    <p>
+        <img src="img/preview.png" width="75%" />
+    </p>
+</section>
+<section>
+    <section>
+        <h4>Curation Interface - PDF extraction</h4>
+        <p>
+            <img src="img/pdf_preview.png" />
+        </p>
+    </section>
+    <section>
+        <h4>Curation Interface - PDF extraction</h4>
+        <p>
+            <img src="img/pdf_image_extraction.png" />
+        </p>
+    </section>
+    <section>
+        <h4>Curation Interface - PDF extraction</h4>
+        <p>
+            <img src="img/pdf_image_preview.png" />
+        </p>
+    </section>
+</section>
+<section>
+    <section>
+        <h4>Image segmentation - compound extraction</h4>
+        <p>
+            <img src="img/presegment.png" width="75%" />
+        </p>
+    </section>
+    <section>
+        <h4>Image segmentation - compound extraction</h4>
+        <p>
+            <img src="img/postsegment.png" width="65%" />
+        </p>
+    </section>
+</section>
+<section>
+    <section>
+        <h4>Image segmentation - layout detection</h4>
+        <p>
+            <img src="img/prelayout.png" width="45%" />
+        </p>
+    </section>
+    <section>
+        <h4>Image segmentation - layout detection</h4>
+        <p>
+            <img src="img/postlayout.png" width="95%" />
+        </p>
+    </section>
+</section>
+<section>
+    <h3>Entity classification</h3>
+    <p>
+        <img src="img/reco.png" />
+    </p>
+    <p>
+        <ul>
+            <li class="fragment"><span>How to train classifier?</span></li>
+            <li class="fragment"><span>SureChEMBL patent data?</span></li>
+        </ul>
+    </p>
+</section>
+<section>
+    <h3>ChEMBL Web Services</h3>
+    <p>
+        <img src="img/resources.jpg" />
+    </p>
+    <p>
+        <ul>
+            <li class="fragment"><span>Only data</span></li>
+            <li class="fragment"><span>Lack of compound manipulation services</span></li>
+        </ul>
+    </p>
+</section>
+<section>
+    <section>
+        <h4>Open source solution - Beaker</h4>
 
-    <p>Beaker code is available as github repository:
+        <img src="img/beaker.png" style="position:fixed;left:10%;top:0; width: 8%">
+
+        <p>
+            <ul>
+                <li class="fragment"><span>Server platform and virtual chemistry container</span></li>
+                <li class="fragment"><span>Provides cheminformatics tools</span></li>
+                <li class="fragment"><span>REST-like HTTP API</span></li>
+                <li class="fragment"><span>Easy to use from any programming language</span></li>
+                <li class="fragment"><span>Install Beaker on one machine instead of installing RDKit on many hardware/software configurations</span></li>
+            </ul>
+        </p>
+    </section>
+    <section>
+        <h4>Open source solution - Beaker</h4>
+
+        <img src="img/beaker.png" style="position:fixed;left:10%;top:0; width: 8%">
+
+        <p>Trivial installation:<br />
+                    <pre class="fragment">
+                        <code class="bash">
+pip install rdkit
+                        </code>
+                    </pre>
+        </p>
+    <p class="fragment">Beaker code is available as github repository:
         <br/>
         <a href="https://github.com/mnowotka/chembl_beaker">https://github.com/mnowotka/chembl_beaker</a>
         <br/>
     </p>
-
+                    <pre class="fragment">
+                        <code class="bash">
+git clone https://github.com/mnowotka/chembl_beaker.git
+                        </code>
+                    </pre>
+    </section>
 </section>
 
 <section>
-    <h2>Potential use cases</h2>
+    <section>
+        <h3>Beaker - features</h3>
 
-    <ul>
-        <li class="fragment">Access from languages like java script, ruby</li>
-        <li class="fragment">Web applications</li>
-        <li class="fragment">Mobile apps (camera + OSRA + RDKit)</li>
-        <li class="fragment">Small desktop apps (clippy)</li>
-        <li class="fragment">Marvin Backend</li>
-        <li class="fragment">Part of webservices?</li>
-    </ul>
-
+        <p>
+        <ul>
+            <li class="fragment"><span>Format conversion</span></li>
+            <li class="fragment"><span>2D/3D compound rendering</span></li>
+            <li class="fragment"><span>Compound regognition (OSRA)</span></li>
+            <li class="fragment"><span>Fingerprints, descriptors</span></li>
+            <li class="fragment"><span>Marvin 4 JS compilant webservices</span></li>
+        </ul>
+        </p>
+    </section>
+        <section>
+        <h4>Beaker - features</h4>
+        <p>
+            <img src="img/beaker_doc.png" />
+        </p>
+    </section>
+        <section>
+        <h4>Beaker - features</h4>
+        <p>
+            <img src="img/beaker_details.png"  />
+        </p>
+    </section>
 </section>
 
 <section>
-    <h3>New webservices</h3>
-    <ul>
-        <li class="fragment">Released last week</li>
-        <li class="fragment">Different software stack: Java/Spring -> Python/Django</li>
-        <li class="fragment">Can run on Oracle, Postgres, (MySQL)</strong></li>
-    </ul>
+    <section>
+        <h3>Potential use cases</h3>
 
+        <ul>
+            <li class="fragment"><span>Access from languages like java script, ruby</span></li>
+            <li class="fragment"><span>Web applications</span></li>
+            <li class="fragment"><span>Mobile apps (camera + OSRA + RDKit)</span></li>
+            <li class="fragment"><span>Small desktop apps (clippy)</span></li>
+            <li class="fragment"><span>Marvin Backend</span></li>
+            <li class="fragment"><span>Part of new web services</span></li>
+        </ul>
+    </section>
+        <section>
+        <h3>Potential use cases</h3>
+        <p>
+            <img src="img/app.png" />
+        </p>
+    </section>
 </section>
 
 <section>
-    <h3>New webservices</h3>
-    <p>Can run on any machine:</p>
-    <img src="img/raspberry.jpg" width="40%"/>
-</section>
+    <h3 style="text-transform:none;">myChEMBL</h3>
+        <ul>
+            <li class="fragment"><span>Virtual Machine</span></li>
+            <li class="fragment"><span>Contains open data and cheminformatics tools</span></li>
+            <li class="fragment"><span>Self contained web interface</span></li>
+            <li class="fragment"><span>Complete and free</span></li>
+            <li class="fragment"><span>Easy to install</span></li>
+        </ul>
 
+</section>
 <section>
-    <h3>New webservices</h3>
-    <p>Image generation:</p>
-    <ul>
-        <li class="fragment">Improved quality</li>
-        <li class="fragment">Two engines: RDKit and Indigo</li>
-        <li class="fragment">Computing coordinates</strong></li>
-        <li class="fragment">Dimensions</li>
-    </ul>
+<h3>myChEMBL LaunchPad</h3>
+<p>
+    <img src="img/mychembl.png" />
+</p>
+<p class="fragment">Available on github:<br/>
+    <a href="https://github.com/chembl/mychembl">https://github.com/chembl/mychembl</a>
+</p>
 </section>
-
 <section>
-    <h3>New webservices</h3>
-    <p class="fragment">JSONP and CORS support</p>
-    <p class="fragment">Can be used from JavaScript</p>
-    <p class="fragment"><a href="http://www.ebi.ac.uk/Tools/biojs/registry/Biojs.ChEMBLCompound.html">Bio.js ChEMBL</a> component can be improved</p>
+    <h3 style="text-transform:none;">myChEMBL - contents</h3>
+        <ul>
+            <li class="fragment"><span>ChEMBL DB (Postgres + RDKIt Cartridge)</span></li>
+            <li class="fragment"><span>Web interface</span></li>
+            <li class="fragment"><span>RDKit toolkit</span></li>
+            <li class="fragment"><span>Web services + client software</span></li>
+            <li class="fragment"><span>Scientific python tools (numpy/scipy etc.)</span></li>
+            <li class="fragment"><span>ipython server with many useful notebooks</span></li>
+            <li class="fragment"><span>OSRA</span></li>
+            <li class="fragment"><span>Beaker</span></li>
+        </ul>
 
-    <img class="fragment" src="img/biojs.png" width="60%"/>
 </section>
-
 <section>
-    <h3>New webservices</h3>
-    <p class="fragment">NoSQL approach to caching:</p>
-    <ul>
-        <li class="fragment">New webservices are intended to be used outside ChEMBL</li>
-        <li class="fragment">They can use only public part of the DB schema</li>
-        <li class="fragment">No materialised views</strong></li>
-        <li class="fragment">Requests can be expensive</li>
-        <li class="fragment">Caching is required</li>
-    </ul>
-</section>
+    <h3 style="text-transform:none;">myChEMBL - deployment options</h3>
+        <ul>
+            <li class="fragment"><span>ISO image from FTP + VirtualBox</span></li>
+            <li class="fragment"><span>vagrant init chembl/myChEMBL && vagrant up</span></li>
+            <li class="fragment"><span>bootstrap.sh + bare metal machine</span></li>
+        </ul>
 
+</section>
 <section>
-    <h3>Cache characteristics</h3>
-    <ul>
-        <li class="fragment">Once cached, request won't change until next ChEMBL release</li>
-        <li class="fragment">Cache should be shared across many production machines</li>
-        <li class="fragment">Independent of output format</strong></li>
-        <li class="fragment">Available from python, supported by EBI</li>
-        <li class="fragment">Failproof, timeout</li>
-    </ul>
-</section>
+    <h3>Overview</h3>
+        <p>
+            <img src="img/over.png" />
+        </p>
 
-<section>
-    <h3>Our implementation</h3>
-    <ul>
-        <li class="fragment">Key-value store built on MongoDB</li>
-        <li class="fragment">Key is MD5 hash of certain request parameters</li>
-        <li class="fragment">Value is base64-encoded, z-lib compressed pickle of Django QuerySet</li>
-        <li class="fragment">Values are divided into 16MB chunks to bypass MongoDB limitation</li>
-        <li class="fragment">Timeout set to 1 second.</li>
-    </ul>
 </section>
-
-<section>
-    <h3>How to monitor cache?</h3>
-    
-    <p class="fragment">Sentry!</p>
-    
-    <ul>
-        <li class="fragment">Realtime event logging and aggregation platform</li>
-        <li class="fragment">Specializes in monitoring errors</li>
-        <li class="fragment">Alternative to standard user feedback loop.</li>
-        <li class="fragment">Can be used with any programming language.</li>
-    </ul>
-</section>
-
-<section data-state="filosofia-porque">
-    <h2>Demo</h2>
-</section>
-
-<section>
-    <h3>Sentry is just a part of deployment environment</h3>
-    
-    <p class="fragment">Other parts</p>
-    
-    <ul>
-        <li class="fragment">Fabric</li>
-        <li class="fragment">PIP</li>
-        <li class="fragment">Virtualenv/Virtualenv wrapper</li>
-        <li class="fragment">Rsync</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Relationship between components</h2>
-    
-    <img src="img/devel.png" />
-</section>
-
-<section>
-    <h2>Deployment in practice</h2>
-    
-    <img src="img/deploy.png" width="60%"/>
-    <p class="fragment">Almost zero downtime (apache restart)</p>
-</section>
-
-<section>
-    <h2>Curation Interface update</h2>
-    
-    <ul>
-        <li class="fragment">Github-like image comparison</li>
-        <li class="fragment">Document segmentation</li>
-        <li class="fragment">Use case scenarios</li>
-    </ul>
-</section>
-
-<section data-state="filosofia-porque">
-    <h2>Demo</h2>
-</section>
-
-<section>
-    <h2>Document segmentation</h2>
-    
-    <img src="img/presegment.png" width="60%"/>
-</section>
-
-<section>
-    <h2>Document segmentation</h2>
-    
-    <img src="img/postsegment.png" width="55%"/>
-</section>
-
-<section>
-    <h2>CI use cases</h2>
-    
-    <img src="img/usecase.png" width="80%"/>
-</section>
-
 <section>
     <h2>Thank you!</h2>
 
@@ -356,7 +474,7 @@
 <footer>
     <div style="">
         <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
-        <img src="img/ebi_logo.png"/> Hinxton, 4 February 2014
+        <img src="img/ebi_logo.png"/> San Francisco, 11 August 2014
     </div>
 </footer>
 
