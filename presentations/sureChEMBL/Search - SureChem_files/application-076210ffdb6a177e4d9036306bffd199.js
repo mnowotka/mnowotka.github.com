@@ -4350,7 +4350,6 @@ function(e, t) {
             return s = ["&shy;", "<style>", e, "</style>"].join(""), a.id = v, a.innerHTML += s, p.appendChild(a), o = n(a, e), a.parentNode.removeChild(a), !!o
         },
         A = function(t) {
-            if (e.matchMedia) return matchMedia(t).matches;
             var n;
             return L("@media " + t + " { #" + v + " { position: absolute; } }", function(t) {
                 n = (e.getComputedStyle ? getComputedStyle(t, null) : t.currentStyle).position == "absolute"
