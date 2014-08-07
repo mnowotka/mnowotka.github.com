@@ -279,7 +279,7 @@ ul {
     list-style: none outside none;
 }
 
-li ul { margin-top: 1.2em !important;}
+li ul { margin-top: 0.5em !important;}
 
 .ebi-service{
     font-size: small !important;
