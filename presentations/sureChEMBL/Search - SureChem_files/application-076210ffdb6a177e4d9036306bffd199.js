@@ -4352,7 +4352,7 @@ function(e, t) {
         A = function(t) {
             var n;
             return L("@media " + t + " { #" + v + " { position: absolute; } }", function(t) {
-                n = (e.getComputedStyle ? getComputedStyle(t, null) : t.currentStyle).position == "absolute"
+                n = true
             }), n
         },
         O = function() {
