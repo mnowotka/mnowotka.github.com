@@ -385,7 +385,7 @@
 	<g
    id="g3668"
    transform="matrix(-0.01470443,-0.67566953,0.67566953,-0.01470443,44.48928,-69.49694)"
-   inkscape:export-filename="/home/mnowotka/Documents/app.png"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <polygon
@@ -533,7 +533,7 @@
    y="-50.492264"
    id="text3786"
    sodipodi:linespacing="125%"
-   inkscape:export-filename="/home/mnowotka/Documents/app.png"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"><tspan
      sodipodi:role="line"
@@ -836,13 +836,13 @@ AAAAAElFTkSuQmCC
 "
    height="77.696793"
    width="55.497707"
-   inkscape:export-filename="/home/mnowotka/Documents/app.png"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90" />
 <text
    inkscape:export-ydpi="90"
    inkscape:export-xdpi="90"
-   inkscape:export-filename="/home/mnowotka/Documents/app.png"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
    xml:space="preserve"
    style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
    x="320.33887"
@@ -1232,7 +1232,10 @@ AAAAAElFTkSuQmCC
        y="263.21796" /></flowRegion><flowPara
      id="flowPara16853"></flowPara></flowRoot><g
    id="g17164"
-   transform="matrix(0.72826323,0,0,0.72826323,42.3243,349.0046)">
+   transform="matrix(0.72826323,0,0,0.72826323,42.3243,349.0046)"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <g
      id="Captions">
 </g>
@@ -1334,14 +1337,20 @@ iQaU6+WVBG+cNJ5/EVB5Kt8Tp2dg7F79haEj3elPGHdKdzrOGPP+mXbu9u2P9UeW/w3Of7ZO6Fxe
 VIgdOr2gIoSx/R8N373yFP8N4cHfjgPz6J8AAAAASUVORK5CYII=
 "
    height="18"
-   width="133" />
+   width="133"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <text
    xml:space="preserve"
    style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
    x="79.855164"
    y="163.64423"
    id="text17433"
-   sodipodi:linespacing="125%"><tspan
+   sodipodi:linespacing="125%"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"><tspan
      sodipodi:role="line"
      id="tspan17435"
      x="82.402039"
@@ -1358,7 +1367,10 @@ VIgdOr2gIoSx/R8N373yFP8N4cHfjgPz6J8AAAAASUVORK5CYII=
    x="-165.93309"
    y="162.41431"
    id="text17439"
-   sodipodi:linespacing="125%"><tspan
+   sodipodi:linespacing="125%"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"><tspan
      sodipodi:role="line"
      id="tspan17441"
      x="-163.38622"
@@ -1372,7 +1384,7 @@ VIgdOr2gIoSx/R8N373yFP8N4cHfjgPz6J8AAAAASUVORK5CYII=
 <text
    inkscape:export-ydpi="90"
    inkscape:export-xdpi="90"
-   inkscape:export-filename="/home/mnowotka/Documents/app.png"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
    sodipodi:linespacing="125%"
    id="text17445"
    y="441.50775"
@@ -1388,32 +1400,78 @@ VIgdOr2gIoSx/R8N373yFP8N4cHfjgPz6J8AAAAASUVORK5CYII=
    style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
    d="m 78.84756,108.54412 0,-122.38066"
    id="path17455"
-   inkscape:connector-curvature="0" />
+   inkscape:connector-curvature="0"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <path
    style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Lend)"
    d="M 279.29864,110.65413 143.20291,-25.4416"
    id="path17457"
-   inkscape:connector-curvature="0" />
+   inkscape:connector-curvature="0"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <path
    inkscape:connector-curvature="0"
    id="path17459"
    d="M -124.79709,110.65413 11.29864,-25.4416"
-   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)" />
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <path
    style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
    d="M -124.79709,232.5584 11.29864,368.65413"
    id="path17461"
-   inkscape:connector-curvature="0" />
+   inkscape:connector-curvature="0"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <path
    inkscape:connector-curvature="0"
    id="path17463"
    d="M 279.29864,232.5584 143.20291,368.65413"
-   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Lend)" />
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Lend)"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
 <path
    inkscape:connector-curvature="0"
    id="path17465"
    d="m 78.84756,330.54412 0,-122.38066"
-   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none;marker-start:url(#Arrow2Lstart)" />
+   style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none;marker-start:url(#Arrow2Lstart)"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
+<path
+   sodipodi:type="arc"
+   style="fill:none;stroke:#000000;stroke-width:1.70000005;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6.8, 6.8;stroke-dashoffset:0"
+   id="path19885"
+   sodipodi:cx="395.09961"
+   sodipodi:cy="382.96109"
+   sodipodi:rx="345.51434"
+   sodipodi:ry="345.51434"
+   d="m 740.61395,382.96109 a 345.51434,345.51434 0 1 1 -691.028684,0 345.51434,345.51434 0 1 1 691.028684,0 z"
+   transform="matrix(0.94821899,0,0,0.94821899,-300.67625,-205.08905)"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90" />
+<text
+   xml:space="preserve"
+   style="font-size:10px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+   x="257.53848"
+   y="446.9809"
+   id="text19887"
+   sodipodi:linespacing="125%"
+   inkscape:export-filename="/home/mnowotka/Documents/over.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"><tspan
+     sodipodi:role="line"
+     id="tspan19889"
+     x="257.53848"
+     y="446.9809"
+     style="font-size:16px;font-style:normal;font-weight:normal;-inkscape-font-specification:Sans">myChEMBL</tspan></text>
 </g>
   </g>
 </svg>
