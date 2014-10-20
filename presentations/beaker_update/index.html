@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ChEMBL beaker</title>
+    <meta name="description" content="Web based presentation provining an update on Beaker server.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h3>Using RDKit <br />without RDKit</h3>
+    <img src="img/beaker.png" style="position:fixed;left:1%;top:2%;">
+
+    <p style="font-size:22pt;">Beaker update</p>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h3>What is Beaker?</h3>
+    <p class="fragment">
+        Remote RDKit (and OSRA) accessible over HTTP from the Internet or locally.
+    </p>
+</section>
+<section>
+    <h3>Can you be more specific?</h3>
+    <p>
+        <ul>
+            <li class="fragment">A lightweight web framework</li>
+            <li class="fragment">Written in Python</li>
+            <li class="fragment">Based on Bottle</li>
+            <li class="fragment">Exposing REST API</li>
+            <li class="fragment">Provinding cheminformatics services</li>
+            <li class="fragment">Easy to extend and modify</li>
+        </ul>
+    </p>
+</section>
+<section>
+    <h3>What has changed?</h3>
+    <p>
+        <ul>
+            <li class="fragment">Beaker was first presented a year ago</li>
+            <li class="fragment">It's not a ... anymore</li>
+            <li class="fragment">Production ready</li>
+            <li class="fragment">In fact, used in production already</li>
+            <li class="fragment">Provinding cheminformatics services</li>
+            <li class="fragment">Easy to extend and modify</li>
+        </ul>
+    </p>
+</section>
+<section>
+    <h2>Disclaimer</h2>
+
+    <ul>
+        <li class="fragment">This is a pet-project</li>
+        <li class="fragment">Developed in free time</li>
+        <li class="fragment">Unfinished</li>
+        <li class="fragment">Proof-of-concept</li>
+    </ul>
+
+</section>
+<section>
+    <h2>Motivation</h2>
+
+    <p>
+        RDKit installation process:
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Expectations:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        activate rdkit-virtualenv
+        pip install rdkit
+    </code></pre>
+
+    <p class="fragment">
+        <br/>
+        Reality:
+    <ul>
+        <li class="fragment">859 hits for <em>build</em> on <code>rdkit-discuss</code></li>
+        <li class="fragment">498 hits for <em>install</em></li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Motivation</h2>
+
+    <p>
+    <ul>
+        <li class="fragment"><em>Virtualenv</em> is <strong>essential</strong> tool for python developers</li>
+        <li class="fragment">Remember <em>PIL</em> and <em>Pillow</em> case?</li>
+        <li class="fragment">VMs and Doker are not (yet?) an answer</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Motivation</h2>
+
+    <p>
+        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>Sorl</strong></em> to
+        <em><strong>Lucene</strong></em>.
+    </p>
+
+    <p class="fragment">
+        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>aquarium</strong></em>
+        to <em><strong>fish</strong></em>.
+    </p>
+
+    <p style="margin-top:30px">
+    <ul>
+        <li class="fragment">Server platform and RDKit container</li>
+        <li class="fragment">Provides cheminformatics tools</li>
+        <li class="fragment">REST-like HTTP API</li>
+        <li class="fragment">Easy to use from any programming language</li>
+        <li class="fragment">Install Beaker on one machine instead of installing RDKit on many hardware/software
+            configurations
+        </li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Motivation</h2>
+
+    <ul>
+        <li class="fragment">More and more people are using RDKit as a service</li>
+        <li class="fragment">Why not to try to standardise it?</li>
+        <li class="fragment">Maybe even include in distribution...</li>
+        <li class="fragment">So we don't have to reinvent the wheel all the time</li>
+    </ul>
+
+</section>
+<section>
+    <h2>Motivation</h2>
+
+    <p class="fragment">
+        I'm into webservices anyway:<br/> <a href="https://www.ebi.ac.uk/chemblws2">https://www.ebi.ac.uk/chemblws2</a>
+    </p>
+
+    <p></br><span class="fragment">So why something different?</span> <span class="fragment"><strong>Software
+        stack!</strong></span></p>
+
+    <p class="fragment">
+        <br/>
+    <ul>
+        <li class="fragment">Django ORM</li>
+        <li class="fragment">Tastypie</li>
+        <li class="fragment">Kilolines of code</li>
+        <li class="fragment">And RDKit webservices can be dead simple!</li>
+    </ul>
+    </p>
+
+</section>
+<section>
+    <h2>RDKit and OSRA <br/>together?</h2>
+    <ul>
+        <li class="fragment">Complementary Cheminformatics libraries</li>
+        <li class="fragment">OSRA extends possible RDKit input formats</li>
+        <li class="fragment">Both are <strong>Open</strong></li>
+        <li class="fragment">OSRA is even harder to install and available only in C++</li>
+    </ul>
+</section>
+<section data-state="filosofia-porque">
+    <h2>Ingredients</h2>
+
+    <p>
+    <ul>
+        <li class="fragment"><strong>OSRA</strong> - utility designed to convert graphical representations of chemical
+            structures.
+        </li>
+        <li class="fragment"><strong>RDKit</strong> - Cheminformatics and Machine Learning Software.</li>
+        <li class="fragment"><strong>Bottle</strong> - fast, simple and lightweight WSGI micro web-framework for Python.
+        </li>
+        <li class="fragment"><strong>Tornado</strong> - Python web framework and asynchronous networking library.</li>
+    </ul>
+    </p>
+</section>
+<section data-state="filosofia-porque">
+    <h2>Why this choice?</h2>
+
+    <p>
+    <ul>
+        <li class="fragment">This needs to be lightweight.</li>
+        <li class="fragment">But fast and efficient.</li>
+        <li class="fragment">With small number of small dependencies.</li>
+        <li class="fragment">Well known, standard, virtualenv-friendly dependencies</li>
+        <li class="fragment">Small and simple codebase.</li>
+        <li class="fragment">Generic, elegant, robust API</li>
+    </ul>
+    </p>
+</section>
+<section>
+    <h2>Overview</h2>
+
+    <p>Format conversion:</p>
+
+    <p>
+        <br/>
+    <ul>
+        <li class="fragment"><code>ctab2smiles / smiles2ctab</code></li>
+        <li class="fragment"><code>ctab2inchi / inchi2ctab</code></li>
+        <li class="fragment"><code>ctab2image / image2ctab</code></strong></li>
+        <li class="fragment"><code>inchi2inchiKey</code></li>
+    </ul>
+    </p>
+
+</section>
+
+<section>
+    <h2>Overview</h2>
+
+    <ul>
+        <li class="fragment">All methods implemented as <code>POST</code> and some (<code>x2ctab</code>) as
+            <code>GET</code></li>
+        <li class="fragment">For <code>GET</code>, parameters have to be <code>base64</code> encoded</li>
+        <li class="fragment">All methods support batch processing</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Demo</h2>
+					<pre><code class="ruby">
+                        curl -X POST http://beaker/ctab2image -F filedata="@out.mol" > out.png
+                        curl -X POST http://beaker/image2ctab --data-binary "@aspirin.jpg" > out.mol
+                        curl -X POST http://beaker/smiles2ctab --data-binary "@a.smi"
+                        curl -X POST http://beaker/smiles2ctab --data "CNc1ncnc2c1ncn2Cc1cccc(F)c1F
+                        curl -X POST http://beaker/inchi2inchiKey --data "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"
+                    </code></pre>
+
+    <p><br/>Better example: <strong>Clippy</strong></p>
+
+</section>
+
+<section>
+    <h2>Potential use cases</h2>
+
+    <ul>
+        <li class="fragment">Access from languages like java script, ruby</li>
+        <li class="fragment">Webapplications</li>
+        <li class="fragment">Mobile apps (camera + OSRA + RDKit)</li>
+        <li class="fragment">Small desktop apps (clippy)</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Future</h2>
+    <ul>
+        <li class="fragment">Different output formats: json, jsonp, xml</li>
+        <li class="fragment">Implement stub methods</li>
+        <li class="fragment">Compound descriptors: logP, TPSA, molWt, etc.</strong></li>
+        <li class="fragment">Editing molecules: addHs, removeHs, kekulize</li>
+        <li class="fragment">Ring information, SSSR, sanitize...</li>
+        <li class="fragment">IUPAC names</li>
+        <li class="fragment">Pymol, matplotlib</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Code!</h2>
+
+    <p>Beaker code is available as github repository:
+        <br/>
+        <a href="https://github.com/mnowotka/chembl_beaker">https://github.com/mnowotka/chembl_beaker</a>
+        <br/>
+    </p>
+
+</section>
+
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/>Darmstadt, 23 October 2014
+    </div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:false,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
+
