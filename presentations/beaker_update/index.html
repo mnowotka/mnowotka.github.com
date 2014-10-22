@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>ChEMBL beaker</title>
-    <meta name="description" content="Web based presentation provining an update on Beaker server.">
+    <meta name="description" content="Web based presentation providing an update on Beaker server.">
     <meta name="author" content="Michał Nowotka">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
@@ -51,7 +51,7 @@
             <li class="fragment">Written in Python</li>
             <li class="fragment">Based on Bottle</li>
             <li class="fragment">Exposing REST API</li>
-            <li class="fragment">Provinding cheminformatics services</li>
+            <li class="fragment">Providing cheminformatics services</li>
             <li class="fragment">Easy to extend and modify</li>
         </ul>
     </p>
@@ -61,222 +61,193 @@
     <p>
         <ul>
             <li class="fragment">Beaker was first presented a year ago</li>
-            <li class="fragment">It's not a ... anymore</li>
+            <li class="fragment">It's not a pet project anymore</li>
             <li class="fragment">Production ready</li>
-            <li class="fragment">In fact, used in production already</li>
-            <li class="fragment">Provinding cheminformatics services</li>
-            <li class="fragment">Easy to extend and modify</li>
+            <li class="fragment">In fact, used in production already!</li>
         </ul>
     </p>
 </section>
 <section>
-    <h2>Disclaimer</h2>
-
-    <ul>
-        <li class="fragment">This is a pet-project</li>
-        <li class="fragment">Developed in free time</li>
-        <li class="fragment">Unfinished</li>
-        <li class="fragment">Proof-of-concept</li>
-    </ul>
-
+    <h3>What's new then?</h3>
+    <p>
+        <ul>
+            <li class="fragment">Live online documentation</li>
+            <li class="fragment">Better configuration</li>
+            <li class="fragment">Caching system</li>
+            <li class="fragment">Throttling system</li>
+            <li class="fragment">Authentication</li>
+            <li class="fragment">Better security</li>
+            <li class="fragment">New methods</li>
+        </ul>
+    </p>
 </section>
 <section>
-    <h2>Motivation</h2>
-
+    <h3>What's new then?</h3>
     <p>
-        RDKit installation process:
+        <ul>
+            <li class="fragment">mod_wsgi ready (Apache, NGINX)</li>
+            <li class="fragment">Python client library</li>
+            <li class="fragment">Development server improved</li>
+            <li class="fragment">Lots of bugfixes</li>
+            <li class="fragment">Easier to extend/write own methods</li>
+        </ul>
     </p>
-
-    <p class="fragment">
-        <br/>
-        Expectations:
-    </p>
+</section>
+<section>
+    <h3>How to install it?</h3>
 
     <pre class="fragment"><code class="bash">
-        activate rdkit-virtualenv
-        pip install rdkit
+        sudo pip install chembl_beaker
     </code></pre>
 
-    <p class="fragment">
-        <br/>
-        Reality:
-    <ul>
-        <li class="fragment">859 hits for <em>build</em> on <code>rdkit-discuss</code></li>
-        <li class="fragment">498 hits for <em>install</em></li>
-    </ul>
+</section>
+
+<section>
+    <h3>Can I use it without installing?</h3>
+
+    <h6 class="fragment">Yes!</h6>
+    <h3 class="fragment">Yes!!</h3>
+    <h1 class="fragment">Yes!!!</h1>
+
+</section>
+
+<section>
+    <h3>Beaker availability:</h3>
+    <p>
+        <ul>
+            <li class="fragment">PyPi (`pip install chembl_beaker`)</li>
+            <li class="fragment">myChEMBL</li>
+            <li class="fragment"><a href="https://www.ebi.ac.uk/chembl/api/utils/docs" target="_blank" >online</a></li>
+        </ul>
     </p>
 </section>
+
 <section>
-    <h2>Motivation</h2>
+    <h3>Using Beaker from myChEMBL:</h3>
+
+    <pre class="fragment"><code class="bash">
+        vagrant init chembl/myChEMBL
+        vagrant up
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>Using public instance of Beaker:</h3>
 
     <p>
-    <ul>
-        <li class="fragment"><em>Virtualenv</em> is <strong>essential</strong> tool for python developers</li>
-        <li class="fragment">Remember <em>PIL</em> and <em>Pillow</em> case?</li>
-        <li class="fragment">VMs and Doker are not (yet?) an answer</li>
-    </ul>
+        <ul>
+            <li class="fragment">IP-based rate limiting: 1 request per sec</li>
+            <li class="fragment">You can ask for an API key</li>
+            <li class="fragment"><a href="https://www.ebi.ac.uk/chembl/api/utils/docs" target="_blank" >https://www.ebi.ac.uk/chembl/api/utils/docs</a></li>
+            <li class="fragment">as an addition to: <a href="https://www.ebi.ac.uk/chemblws/docs" target="_blank" >https://www.ebi.ac.uk/chemblws/docs</a></li>
+        </ul>
     </p>
+
 </section>
+
 <section>
-    <h2>Motivation</h2>
+    <h3>For Python, we provide a very convenient client library:</h3>
+
+    <pre class="fragment"><code class="bash">
+        pip install chembl-webresource-client
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>Beaker client library:</h3>
 
     <p>
-        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>Sorl</strong></em> to
-        <em><strong>Lucene</strong></em>.
-    </p>
-
-    <p class="fragment">
-        <em><strong>Beaker</strong></em> is to <em><strong>RDkit</strong></em> like <em><strong>aquarium</strong></em>
-        to <em><strong>fish</strong></em>.
-    </p>
-
-    <p style="margin-top:30px">
-    <ul>
-        <li class="fragment">Server platform and RDKit container</li>
-        <li class="fragment">Provides cheminformatics tools</li>
-        <li class="fragment">REST-like HTTP API</li>
-        <li class="fragment">Easy to use from any programming language</li>
-        <li class="fragment">Install Beaker on one machine instead of installing RDKit on many hardware/software
-            configurations
-        </li>
-    </ul>
-    </p>
-</section>
-<section>
-    <h2>Motivation</h2>
-
-    <ul>
-        <li class="fragment">More and more people are using RDKit as a service</li>
-        <li class="fragment">Why not to try to standardise it?</li>
-        <li class="fragment">Maybe even include in distribution...</li>
-        <li class="fragment">So we don't have to reinvent the wheel all the time</li>
-    </ul>
-
-</section>
-<section>
-    <h2>Motivation</h2>
-
-    <p class="fragment">
-        I'm into webservices anyway:<br/> <a href="https://www.ebi.ac.uk/chemblws2">https://www.ebi.ac.uk/chemblws2</a>
-    </p>
-
-    <p></br><span class="fragment">So why something different?</span> <span class="fragment"><strong>Software
-        stack!</strong></span></p>
-
-    <p class="fragment">
-        <br/>
-    <ul>
-        <li class="fragment">Django ORM</li>
-        <li class="fragment">Tastypie</li>
-        <li class="fragment">Kilolines of code</li>
-        <li class="fragment">And RDKit webservices can be dead simple!</li>
-    </ul>
+        <ul>
+            <li class="fragment">Caches results</li>
+            <li class="fragment">Generates methods from SPORE specs</li>
+            <li class="fragment">By default uses public instance of Beaker...</li>
+            <li class="fragment">... but can be configured</li>
+            <li class="fragment">Described in 07_* my_ChEMBL python notebook</li>
+        </ul>
     </p>
 
 </section>
 <section>
-    <h2>RDKit and OSRA <br/>together?</h2>
-    <ul>
-        <li class="fragment">Complementary Cheminformatics libraries</li>
-        <li class="fragment">OSRA extends possible RDKit input formats</li>
-        <li class="fragment">Both are <strong>Open</strong></li>
-        <li class="fragment">OSRA is even harder to install and available only in C++</li>
-    </ul>
+    <h3>Potential use cases:</h3>
+    <p>
+        <ul>
+            <li class="fragment">Web widgets</li>
+            <li class="fragment">Mobile applications</li>
+            <li class="fragment">Desktop applications</li>
+            <li class="fragment">Ipython notebooks</li>
+            <li class="fragment">Fast prototyping</li>
+            <li class="fragment">Marvin 4 JS backend</li>
+        </ul>
+    </p>
 </section>
-<section data-state="filosofia-porque">
-    <h2>Ingredients</h2>
+<section>
+    <h3>Caching backends:</h3>
 
     <p>
-    <ul>
-        <li class="fragment"><strong>OSRA</strong> - utility designed to convert graphical representations of chemical
-            structures.
-        </li>
-        <li class="fragment"><strong>RDKit</strong> - Cheminformatics and Machine Learning Software.</li>
-        <li class="fragment"><strong>Bottle</strong> - fast, simple and lightweight WSGI micro web-framework for Python.
-        </li>
-        <li class="fragment"><strong>Tornado</strong> - Python web framework and asynchronous networking library.</li>
-    </ul>
+        <ul>
+            <li class="fragment">MongoDB (for production)</li>
+            <li class="fragment">Memcached (for production)</li>
+            <li class="fragment">SQLite (for testing)</li>
+            <li class="fragment">Local memory (for testing)</li>
+            <li class="fragment">Your own?</li>
+        </ul>
     </p>
+
 </section>
-<section data-state="filosofia-porque">
-    <h2>Why this choice?</h2>
+
+<section>
+    <h3>Throttling backends:</h3>
 
     <p>
-    <ul>
-        <li class="fragment">This needs to be lightweight.</li>
-        <li class="fragment">But fast and efficient.</li>
-        <li class="fragment">With small number of small dependencies.</li>
-        <li class="fragment">Well known, standard, virtualenv-friendly dependencies</li>
-        <li class="fragment">Small and simple codebase.</li>
-        <li class="fragment">Generic, elegant, robust API</li>
-    </ul>
+        <ul>
+            <li class="fragment">Cache</li>
+            <li class="fragment">Your own?</li>
+        </ul>
     </p>
-</section>
-<section>
-    <h2>Overview</h2>
 
-    <p>Format conversion:</p>
+</section>
+
+<section>
+    <h3>Authentication:</h3>
 
     <p>
-        <br/>
-    <ul>
-        <li class="fragment"><code>ctab2smiles / smiles2ctab</code></li>
-        <li class="fragment"><code>ctab2inchi / inchi2ctab</code></li>
-        <li class="fragment"><code>ctab2image / image2ctab</code></strong></li>
-        <li class="fragment"><code>inchi2inchiKey</code></li>
-    </ul>
+        <ul>
+            <li class="fragment">IP based</li>
+            <li class="fragment">API Key</li>
+            <li class="fragment">Your own?</li>
+        </ul>
     </p>
 
 </section>
 
 <section>
-    <h2>Overview</h2>
+    <h3>Security:</h3>
 
-    <ul>
-        <li class="fragment">All methods implemented as <code>POST</code> and some (<code>x2ctab</code>) as
-            <code>GET</code></li>
-        <li class="fragment">For <code>GET</code>, parameters have to be <code>base64</code> encoded</li>
-        <li class="fragment">All methods support batch processing</li>
-    </ul>
-
-</section>
-
-<section>
-    <h2>Demo</h2>
-					<pre><code class="ruby">
-                        curl -X POST http://beaker/ctab2image -F filedata="@out.mol" > out.png
-                        curl -X POST http://beaker/image2ctab --data-binary "@aspirin.jpg" > out.mol
-                        curl -X POST http://beaker/smiles2ctab --data-binary "@a.smi"
-                        curl -X POST http://beaker/smiles2ctab --data "CNc1ncnc2c1ncn2Cc1cccc(F)c1F
-                        curl -X POST http://beaker/inchi2inchiKey --data "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"
-                    </code></pre>
-
-    <p><br/>Better example: <strong>Clippy</strong></p>
-
-</section>
-
-<section>
-    <h2>Potential use cases</h2>
-
-    <ul>
-        <li class="fragment">Access from languages like java script, ruby</li>
-        <li class="fragment">Webapplications</li>
-        <li class="fragment">Mobile apps (camera + OSRA + RDKit)</li>
-        <li class="fragment">Small desktop apps (clippy)</li>
-    </ul>
+    <p>
+        <ul>
+            <li class="fragment">Cross-origin requests controlled</li>
+            <li class="fragment">Rate limiting (DDOS)</li>
+            <li class="fragment">No persistence, no SQL injection</li>
+            <li class="fragment">URL-safe base64 encoding for url parameters</li>
+            <li class="fragment">IP white/black listing</li>
+            <li class="fragment">Maximum file upload size (configurable)</li>
+        </ul>
+    </p>
 
 </section>
 
 <section>
     <h2>Future</h2>
     <ul>
-        <li class="fragment">Different output formats: json, jsonp, xml</li>
-        <li class="fragment">Implement stub methods</li>
-        <li class="fragment">Compound descriptors: logP, TPSA, molWt, etc.</strong></li>
-        <li class="fragment">Editing molecules: addHs, removeHs, kekulize</li>
-        <li class="fragment">Ring information, SSSR, sanitize...</li>
-        <li class="fragment">IUPAC names</li>
-        <li class="fragment">Pymol, matplotlib</li>
+        <li class="fragment">Sessions</li>
+        <li class="fragment">Parallel processing</li>
+        <li class="fragment">More support for creating pipelines...</li>
+        <li class="fragment">...KNIME like web interface?</li>
+        <li class="fragment">Windows binary</li>
+        <li class="fragment">ReadTheDocs documentation and separate website</li>
+        <li class="fragment">Improved live docs</li>
     </ul>
 
 </section>
