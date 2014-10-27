@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <meta name="description" content="">
+    
+
+    
+    <meta name="author" content="">
+    
+
+    <!--NEW RELIC Start Perf Measurement-->
+    
+    <!--NREND-->
+
+    <!-- Le styles -->
+    <!--<link href="/static/css/bootstrap.css" rel="stylesheet">-->
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/docs.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/bootstrap.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/bootstrap-responsive.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/animate.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/font-awesome.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/nbviewer.css" rel="stylesheet">
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://nbviewer.ipython.org/static/ico/ipynb_icon_16x16.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://nbviewer.ipython.org/static/ico/apple-touch-icon-57-precomposed.png">
+    
+    
+    
+
+    
+
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    <meta name="twitter:title" content="Notebook on nbviewer">
+    
+
+    
+    <meta name="twitter:description" content="Check out this IPython notebook!">
+    
+
+    
+    <meta name="twitter:domain" content="nbviewer.ipython.org">
+    
+
+    <meta name="twitter:image:src" content="http://ipython.org/ipython-doc/dev/_images/ipynb_icon_128x128.png">
+    
+    
+    
+
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/ipython.css" rel="stylesheet">
+    <link href="08_myChEMBL_Django_ORM.ipynb_files/pygments.css" rel="stylesheet">
+    <style type="text/css" media="screen and (min-width:980px)">
+   
+    body {
+        padding-top: 40px;
+    }
+
+    </style>
+    <style type="text/css">
+    .imgwrap {
+        text-align: center;
+    }
+
+    @media (max-width: 767px){
+
+        div.input, div.output_area {
+            -webkit-box-orient: vertical;
+            -moz-box-orient: vertical;
+            box-orient: vertical;
+        }
+
+        div.prompt {
+            text-align:left;
+        }
+
+    }
+
+    
+    </style>
+    
+    <script src="08_myChEMBL_Django_ORM.ipynb_files/analytics.js" async=""></script><script src="08_myChEMBL_Django_ORM.ipynb_files/MathJax.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    init_mathjax = function() {
+        if (window.MathJax) {
+            // MathJax loaded
+            MathJax.Hub.Config({
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true,
+                    processEnvironments: true
+                },
+                displayAlign: 'center',
+                "HTML-CSS": {
+                    styles: {'.MathJax_Display': {"margin": 0}},
+                    linebreaks: { automatic: true }
+                }
+            });
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+        }
+    }
+    init_mathjax();
+    </script>
+    
+  <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="50"><div style="display: none;" id="MathJax_Message"></div>
+
+  <!-- These are loaded at the top of the body so they are available to notebook
+  cells when they are loaded below. -->
+  <script src="08_myChEMBL_Django_ORM.ipynb_files/jquery.js"></script>
+  <script src="08_myChEMBL_Django_ORM.ipynb_files/require.js"></script>
+  <script src="08_myChEMBL_Django_ORM.ipynb_files/moment.js"></script>
+
+  <!-- Navbar
+  ================================================== -->
+    <div id="menubar" class="navbar navbar-fixed-top hidden-print animated slideInDown">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+
+                <li>
+        <a href="http://nbviewer.ipython.org/" title="nbviewer">
+            <strong>
+            <span>nbviewer</span>
+            </strong>
+        </a>
+    </li>
+                <li>
+        <a href="http://nbviewer.ipython.org/faq" title="FAQ">
+            
+            <span>FAQ</span>
+            
+        </a>
+    </li>
+
+              <li class="">
+                <a href="http://www.ipython.org/">IPython</a>
+              </li>
+            </ul>
+            <ul class="nav pull-right"> 
+              
+              
+      
+        <li>
+        <a href="https://github.com/chembl/mychembl/blob/master/ipython_notebooks/08_myChEMBL_Django_ORM.ipynb" title="Notebook Home">
+            <span class="fa fa-github fa-2x menu-icon"></span>
+            <span class="menu-text">Notebook Home</span>
+        </a>
+    </li>
+      
+        <li>
+        <a href="https://raw.githubusercontent.com/chembl/mychembl/master/ipython_notebooks/08_myChEMBL_Django_ORM.ipynb" title="Download Notebook" download="">
+            <span class="fa fa-download fa-2x menu-icon"></span>
+            <span class="menu-text">Download Notebook</span>
+        </a>
+    </li>
+    
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+     
+    
+<ul class="breadcrumb">
+    
+    <li><a href="http://nbviewer.ipython.org/github/chembl/mychembl/tree/master">mychembl</a> <span class="divider">/</span></li>
+    
+    <li><a href="http://nbviewer.ipython.org/github/chembl/mychembl/tree/master/ipython_notebooks">ipython_notebooks</a> <span class="divider">/</span></li>
+    
+</ul>
+
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Using-Django-ORM-to-access-the-ChEMBL-DB-without-SQL">Using Django ORM to access the ChEMBL DB without SQL<a class="anchor-link" href="#Using-Django-ORM-to-access-the-ChEMBL-DB-without-SQL">¶</a></h1>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="myChEMBL-team,-ChEMBL-group,-EMBL-EBI.">myChEMBL team, ChEMBL group, EMBL-EBI.<a class="anchor-link" href="#myChEMBL-team,-ChEMBL-group,-EMBL-EBI.">¶</a></h3>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ORM stands from <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">Object Relational Mapping</a>. It is a technology that allows access to a database in a native object oriented manner. Using ORM has several advantages:</p>
+<ol>
+<li>You don't have to put SQL strings into your code</li>
+<li>Your code is no longer tied to a specific database backend (such us postgres)</li>
+<li>Code written using ORM is more intuitive</li>
+</ol>
+<p>There is already one ORM interface for ChEMBL, called <a href="https://github.com/kzfm/pychembldb">pychembldb</a>. It's based on the popular <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> library. To complete this picture, we provide ORM models based on <a href="https://www.djangoproject.com/">Django</a>. This notebook presents how complex DB queries can be built using Django ORM within a IPython Notebook.</p>
+<p>Django models described here are used in ChEMBL production code, for 
+example in ChEMBL web services. As a result, the models can be loaded 
+into myChEMBL, which uses postgres and they still work in ChEMBL 
+production environment, where Oracle is used. The same codebase works 
+against two different DB engines without modifying a single line of 
+code.</p>
+<p>Please note that this notebook covers only most basic usage of Django ORM in the context of ChEMBL data.
+For more comprehensive description and advanced usage, read <a href="https://docs.djangoproject.com/en/dev/topics/db/queries/">Making Queries Django Tutorial</a> and <a href="https://docs.djangoproject.com/en/dev/ref/models/querysets/">QuerySet API reference</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[1]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># In order to use django ORM we have to provide a settings module. This module must be kept in a separate file.</span>
+<span class="c"># A minimal settings.py contains database connection details, logging and caching configuration as well as a list of </span>
+<span class="c"># applications (python packages) defining models we are planning to use. Let's see how our settings.py file for this</span>
+<span class="c"># notebook will look like:</span>
+<span class="o">!</span>cat /home/chembl/ipynb_workbench/settings.py
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>DEBUG = False
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'chembl_19', # Or path to database file if using sqlite3.
+        'USER': 'chembl', # Not used with sqlite3.
+        'PASSWORD': '', # Not used witis oracle
+        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432', # Set to empty string for default. Not used with sqlite3.
+    },
+}
+
+EXPORT_MODE = True
+CORE_TABLES_MANAGED = False
+APP_SPECIFIC_TABLES_MANAGED = False
+COMPOUND_MOLS_TABLE = 'mols_rdkit'
+CTAB_COLUMN = 'm'
+
+SECRET_KEY = '3v2xb&amp;amp;@&amp;amp;_kibf0o!4m249njy3!qjxptht0m%q2w&amp;amp;ry8v&amp;amp;ok$na'
+
+INSTALLED_APPS = (
+    'chembl_core_db',
+    'chembl_core_model',
+    )
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># In order to configure django to use our settings we have to append the module containing it to system path and set </span>
+<span class="c"># DJANGO_SETTINGS_MODULE environment variable.</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">'/home/chembl/ipynb_workbench'</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"DJANGO_SETTINGS_MODULE"</span><span class="p">,</span> <span class="s">"settings"</span><span class="p">)</span>
+<span class="c"># That's it! We are ready to use our models.</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[2]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>'settings'
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># First, lets import our ChEMBL ORM models. The module is called 'chembl_migration_model' because it describes ChEMBL DB</span>
+<span class="c"># schema, that is used in my_ChEMBL VM and in public SQL dumps. Internally, ChEMBL group is working on slightly more complex</span>
+<span class="c"># schema, containing more tables and columns.</span>
+<span class="kn">import</span> <span class="nn">chembl_migration_model</span>
+
+<span class="c"># OK, now we can take a look at all available models:</span>
+<span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">model</span> <span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">chembl_migration_model</span><span class="o">.</span><span class="n">models</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">model</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'__'</span><span class="p">)])</span>
+
+<span class="c"># As you see each model corresponds to single table in ChEMBL DB. The name of the model is the name of the corresponding table,</span>
+<span class="c"># but without underscores and written in camel case, i.e. ASSAY_PARAMETERS (DB table) =&gt; AssayParameters (ORM model)</span>
+
+<span class="c"># For convenience we will import model names into default namespece:</span>
+<span class="kn">from</span> <span class="nn">chembl_migration_model.models</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c"># We need CompoundMols model to perform substructure and similarity search:</span>
+<span class="kn">from</span> <span class="nn">chembl_core_model.models</span> <span class="kn">import</span> <span class="n">CompoundMols</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ActionType
+Activities
+ActivityStdsLookup
+AssayParameters
+AssayType
+Assays
+AtcClassification
+BindingSites
+BioComponentSequences
+BiotherapeuticComponents
+Biotherapeutics
+CellDictionary
+ChemblIdLookup
+ComponentClass
+ComponentDomains
+ComponentSequences
+ComponentSynonyms
+CompoundProperties
+CompoundRecords
+CompoundStructures
+ConfidenceScoreLookup
+CurationLookup
+DataValidityLookup
+DefinedDailyDose
+Docs
+Domains
+DrugMechanism
+Formulations
+LigandEff
+MechanismRefs
+MoleculeAtcClassification
+MoleculeDictionary
+MoleculeHierarchy
+MoleculeSynonyms
+OrganismClass
+ParameterType
+PredictedBindingDomains
+Products
+ProteinClassSynonyms
+ProteinClassification
+ProteinFamilyClassification
+RelationshipType
+ResearchCompanies
+ResearchStem
+SiteComponents
+Source
+TargetComponents
+TargetDictionary
+TargetRelations
+TargetType
+UsanStems
+Version
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Getting-objects-count">Getting objects count<a class="anchor-link" href="#Getting-objects-count">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># For starters, lets see how many unique compounds we currently have at ChEMBL:</span>
+<span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[4]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>1411786
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># How about tagets?</span>
+<span class="n">TargetDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[5]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>10579
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[6]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Assays?</span>
+<span class="n">Assays</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[6]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>1106285
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Filtering-objects">Filtering objects<a class="anchor-link" href="#Filtering-objects">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># We will learn filtering on CompoundPoperties model. First let's get all CompoundProperties objects with molecular</span>
+<span class="c"># formula = C9H8O4</span>
+<span class="n">compounds</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">full_molformula</span><span class="o">=</span><span class="s">"C9H8O4"</span><span class="p">)</span>
+<span class="c"># how many of them exist?</span>
+<span class="k">print</span> <span class="n">compounds</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>29
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># OK, let's take the first object:</span>
+<span class="n">compound</span> <span class="o">=</span> <span class="n">compounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c"># We can access all properties of this compound, for example alogp, numner of aromatic rings, molecular weight, etc:</span>
+<span class="k">print</span> <span class="n">compound</span><span class="o">.</span><span class="n">alogp</span>
+<span class="k">print</span> <span class="n">compound</span><span class="o">.</span><span class="n">aromatic_rings</span>
+<span class="k">print</span> <span class="n">compound</span><span class="o">.</span><span class="n">full_mwt</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.23
+1
+180.16
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># What if we would like for a result to be a list of certain fields not a collection of whole objects?</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">full_molformula</span><span class="o">=</span><span class="s">"C9H8O4"</span><span class="p">)</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'hba'</span><span class="p">,</span> <span class="s">'hbd'</span><span class="p">,</span> <span class="s">'psa'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">results</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[(4, 1, Decimal('63.60')), (4, 3, Decimal('77.76')), (4, 0, Decimal('60.44')), (4, 1, Decimal('63.60')), (4, 2, Decimal('74.59')), (4, 1, Decimal('63.60')), (4, 2, Decimal('74.60')), (4, 2, Decimal('74.60')), (4, 1, Decimal('63.60')), (4, 1, Decimal('63.60')), (4, 1, Decimal('63.60')), (4, 1, Decimal('55.76')), (4, 1, Decimal('55.76')), (4, 1, Decimal('55.76')), (4, 1, Decimal('55.76')), (4, 1, Decimal('55.76')), (4, 1, Decimal('55.76')), (4, 3, Decimal('77.75')), (4, 2, Decimal('66.75')), (4, 2, Decimal('74.59')), '...(remaining elements truncated)...']
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Perfect, can I include many conditions in filters?</span>
+
+<span class="c"># Yes! Following query will get only structures with formula = C9H8O4, hbd &gt; 1 and psa between (60 and 70):</span>
+<span class="n">compounds</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">full_molformula</span><span class="o">=</span><span class="s">"C9H8O4"</span><span class="p">,</span> <span class="n">hbd__gt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">psa__range</span><span class="o">=</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">70.0</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">compounds</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">compounds</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'full_mwt'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2
+[Decimal('180.16'), Decimal('180.16')]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Additionally to 'filter' there is 'exclude' method as well:</span>
+
+<span class="c"># Let's select all structures, without aromatic rings:</span>
+<span class="n">non_aromatic</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">aromatic_rings__gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">non_aromatic</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c"># Having non-aromatic structures, can we apply more fileters only to them?</span>
+
+<span class="c"># Yes, we can chain 'filter' and 'exclude' methods:</span>
+
+<span class="n">light_non_aromatic</span> <span class="o">=</span> <span class="n">non_aromatic</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">full_mwt__lte</span><span class="o">=</span><span class="mf">180.0</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">light_non_aromatic</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>134439
+7851
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Great, but so har we've only seen a conjunction of filters, what if I would like to have alternative?</span>
+
+<span class="c"># How would I select all structures with 2 aromatic rings OR with formula = C9H8O4?</span>
+<span class="c"># This is where we need django helper operator called 'Q' (stands from Query):</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+
+<span class="c"># Now using Q, we can ask for alternative:</span>
+<span class="n">aromatic_or_formula</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">aromatic_rings__gt</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">full_molformula</span><span class="o">=</span><span class="s">"C9H8O4"</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">aromatic_or_formula</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>559822
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Distinct-values-and-ordering">Distinct values and ordering<a class="anchor-link" href="#Distinct-values-and-ordering">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[13]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># I would like to see all distinct avlues of the numer of aromatics rings across all compound structures:</span>
+
+<span class="k">print</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'aromatic_rings'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[None, 8, 12, 17, 19, 2, 1, 15, 3, 10, 11, 4, 5, 13, 9, 0, 7, 6]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Hmm, the result is not ordered...</span>
+
+<span class="k">print</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'aromatic_rings'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">'aromatic_rings'</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 19, None]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># OK, but I need descending order...</span>
+
+<span class="k">print</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'aromatic_rings'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">distinct</span><span class="p">()</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">'-aromatic_rings'</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[None, 19, 17, 15, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Limiting-results">Limiting results<a class="anchor-link" href="#Limiting-results">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># I want just a ranking of 10 most heavy structures from ChEMBL:</span>
+
+<span class="n">heaviest</span> <span class="o">=</span> <span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">'-full_mwt'</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">heaviest</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c"># And the winner is:</span>
+<span class="n">winner</span> <span class="o">=</span> <span class="n">heaviest</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">print</span> <span class="n">winner</span><span class="o">.</span><span class="n">full_mwt</span>
+<span class="k">print</span> <span class="n">winner</span><span class="o">.</span><span class="n">full_molformula</span>
+
+<span class="c"># Lets get a list of molformulas and wiights:</span>
+<span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">heaviest</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'full_molformula'</span><span class="p">,</span> <span class="s">'full_mwt'</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+13050.36
+C614H1110N39O198P21S6
+(u'C614H1110N39O198P21S6', Decimal('13050.36'))
+(u'C396H390F252N66O24P42', Decimal('12546.26'))
+(u'C540H960N39O198P21S6', Decimal('12010.38'))
+(u'C504H888N39O198P21S6', Decimal('11505.43'))
+(u'C324H318F252N42P42', Decimal('10888.77'))
+(u'C468H828N27O198P21S6', Decimal('10844.48'))
+(u'C480H828N27O186P21S6', Decimal('10796.62'))
+(u'C325H387N118O209P29', Decimal('10188.45'))
+(u'C319H383N118O209P29', Decimal('10112.36'))
+(u'C318H382N119O208P29', Decimal('10097.35'))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Checking-for-existence">Checking for existence<a class="anchor-link" href="#Checking-for-existence">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[17]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Let's check if there is a compound with 2 aromatic rings and weight lesst than 200:</span>
+
+<span class="n">CompoundProperties</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">aromatic_rings</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">full_mwt__lt</span><span class="o">=</span><span class="mf">200.0</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[17]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>True
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Getting-single-object">Getting single object<a class="anchor-link" href="#Getting-single-object">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Sometimes we want to be sure that only a single object has been selected, </span>
+<span class="c"># this time let's take MoleculeDictionary as the example:</span>
+
+<span class="n">chembl_18</span> <span class="o">=</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chembl_id</span><span class="o">=</span><span class="s">'CHEMBL18'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">chembl_18</span><span class="o">.</span><span class="n">pref_name</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ETHOXZOLAMIDE
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[19]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># 'get' method will throw an exception in case when no results or more than one results were found:</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">imaginary</span> <span class="o">=</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chembl_id</span><span class="o">=</span><span class="s">'CHEMBLX'</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'does not exist'</span>
+    
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">too_many</span> <span class="o">=</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prodrug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">MultipleObjectsReturned</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">'too many'</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>does not exist
+too many
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Chemistry-stuff---substructure-and-similarity-search">Chemistry stuff - substructure and similarity search<a class="anchor-link" href="#Chemistry-stuff---substructure-and-similarity-search">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The important feature of every chemistry database it the ability to 
+perform substructure and similarity search. By default, Django is 
+copletely chemistry unaware but 'chembl_core_model' brings this 
+functionality.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[20]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># We can perform similarity search using CompoundMols object:</span>
+<span class="n">similar</span> <span class="o">=</span> <span class="n">CompoundMols</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">similar_to</span><span class="p">(</span><span class="s">'CC(=O)Oc1ccccc1C(=O)O'</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">similar</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c"># Due to some strane bug in Django we always have to mantion additional 'similarity' field but this is even better</span>
+<span class="c"># because this field is so useful :)</span>
+<span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">similar</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'molecule_id'</span><span class="p">,</span> <span class="s">'similarity'</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+(1280, 1.0)
+(506546, 1.0)
+(454071, 0.894736842105263)
+(287927, 0.888888888888889)
+(954218, 0.8)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[21]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># substructure search works the same way:</span>
+<span class="n">sub</span> <span class="o">=</span> <span class="n">CompoundMols</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">with_substructure</span><span class="p">(</span><span class="s">'CN(CCCN)c1cccc2ccccc12'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">sub</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>72
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Related-objects---joins">Related objects - joins<a class="anchor-link" href="#Related-objects---joins">¶</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The whole idea of having relational database is the ability to join related objecs together.
+Let's see how this can be achieved using ORM.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[22]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># First of all let's join our substructure and similarity search results with other objects to get some useful information.</span>
+<span class="c"># For example, we will get CHEMBL_ID and preffered name of similarity results.</span>
+<span class="c"># Here we join CompouldMols objects (`similar` variable) with `pref_name` field of MoleculeDictionary</span>
+<span class="c"># Double underscore before field name means we are accessing related object:</span>
+<span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">similar</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'molecule_id'</span><span class="p">,</span> <span class="s">'similarity'</span><span class="p">,</span> <span class="s">'molecule__pref_name'</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1280, 1.0, u'ASPIRIN')
+(506546, 1.0, u'ACETYLSALICYLATE')
+(454071, 0.894736842105263, u'BROMOASPIRIN')
+(287927, 0.888888888888889, None)
+(954218, 0.8, None)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># And molecular formula and molecular weight of first 10 of substructure results:</span>
+<span class="k">print</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">sub</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'molecule__compoundproperties__full_molformula'</span><span class="p">,</span> <span class="s">'molecule__compoundproperties__full_mwt'</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(u'C45H35N5', Decimal('645.79'))
+(u'C23H17N3O5', Decimal('415.40'))
+(u'C28H21N3O5', Decimal('479.48'))
+(u'C27H20N2O4', Decimal('436.46'))
+(u'C23H20BrN3O3', Decimal('466.33'))
+(u'C26H27N3O3', Decimal('429.51'))
+(u'C25H22N4O3', Decimal('426.47'))
+(u'C19H19N3O5', Decimal('369.37'))
+(u'C25H23N5O3', Decimal('441.48'))
+(u'C21H22N4O3', Decimal('378.42'))
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[24]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Get the synonyms of aspirin:</span>
+<span class="n">aspirin</span> <span class="o">=</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chembl_id</span><span class="o">=</span><span class="s">'CHEMBL25'</span><span class="p">)</span>
+
+<span class="c"># When having a single object we can simply access realted objects using dot (`.`) operator:</span>
+<span class="k">print</span> <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">aspirin</span><span class="o">.</span><span class="n">moleculesynonyms_set</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'synonyms'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8-Hour Bayer, Acetylsalicylic Acid, Aspirin, Aspirin, Aspirin, Aspirin, Aspirin, Bayer Extra Strength, Measurin, Acetosalic Acid, Acetylsalicylic Acid, Ecotrin, Equi-Prin, Salicylic Acid Acetate, Acetylsalicylic Acid, Aspirin
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[25]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Get 10 preferred names of compounds containing 'CN(CCCN)c1cccc2ccccc12' substructure:</span>
+<span class="k">print</span> <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CompoundMols</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">molecule__pref_name__isnull</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">with_substructure</span><span class="p">(</span><span class="s">'c1cccc2ccccc12'</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'molecule__pref_name'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>METHYLRUBILACTONE, DANSYLSARCOSINE, R-NORDULOXETINE, NAPHTHYLOXYACETIC ACID, TOMEGLOVIR, BENZO[B]FLUORANTHENE, ACETOMENAPHTHONE, LANDOMYCIN R, LANDOMYCIN O, ARISTOLAMIDE II
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[26]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c">#Retrieve all the compounds which have an IC50 bioactivity value in nM:</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">MoleculeDictionary</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">activities__standard_type</span> <span class="o">=</span> <span class="s">'IC50'</span><span class="p">,</span> <span class="n">activities__standard_units</span> <span class="o">=</span> <span class="s">'nM'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">result</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="k">print</span> <span class="s">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values_list</span><span class="p">(</span><span class="s">'chembl_id'</span><span class="p">,</span> <span class="n">flat</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1236586
+CHEMBL113081, CHEMBL324340, CHEMBL324340, CHEMBL109600, CHEMBL357278, CHEMBL357119, CHEMBL152968, CHEMBL152968, CHEMBL152968, CHEMBL152968
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[26]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+
+
+     <!-- <hr/> -->
+     <div class="row hidden-print">
+      <div class="span12 text-center">
+        <a href="#">Back to top</a>
+      </div>
+    </div>
+
+     <!-- Footer
+     ================================================== -->
+      
+      <footer class="footer hidden-print">
+      <div class="span12 row-fluid footer-row">
+          <div class="span4">
+            <p>This web site does not host notebooks, it only renders notebooks available on other websites.</p>
+          </div>
+
+          <div class="span4">
+            <p>Thanks to <a href="http://www.rackspace.com/">Rackspace</a> for hosting.</p>
+            <p>nbviewer GitHub <a href="https://github.com/ipython/nbviewer">repository</a>.</p>
+            <p>nbviewer <a href="https://github.com/ipython/nbviewer/blob/master/LICENSE.txt" target="_blank">license</a>.</p>
+          </div>
+
+          <div class="span4">
+            
+
+              
+                <p>
+                    nbviewer version:
+                    <a href="https://github.com/ipython/nbviewer/commit/2da9e6ad2efd8df75b54efb931060862222b3fe4">2da9e6a</a>
+                </p>
+              
+            
+
+<p class="text-muted">
+    IPython version: 2.3.0
+    
+</p>
+
+
+            
+
+            
+
+<p class="text-muted">
+Rendered <span class="date" data-date="Mon, 27 Oct 2014 10:12:57 UTC" title="Mon, 27 Oct 2014 10:12:57 UTC">a few seconds ago</span>
+</p>
+
+
+          </div>
+      </div>
+      </footer>
+      
+
+    </div><!-- /container -->
+
+    <script src="08_myChEMBL_Django_ORM.ipynb_files/bootstrap-collapse.js"></script>
+    <script src="08_myChEMBL_Django_ORM.ipynb_files/headroom.js"></script>
+    <script src="08_myChEMBL_Django_ORM.ipynb_files/jQuery.js"></script>
+
+
+    
+    
+    
+    <script>
+    $(document).ready(
+                function(){
+                    $("#menubar").headroom({
+                        "tolerance": 5,
+                        "offset": 205,
+                        "classes": {
+                            "initial": "animated",
+                            "pinned": "slideInDown",
+                            "unpinned": "slideOutUp"
+                        }
+                    })
+                }
+            );
+    </script>
+
+
+    <!-- Analytics
+    ================================================== -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-38683231-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <script>
+        var update_date  = function(){
+            var str = window.moment($('.date').data('date')).fromNow();
+            $('.date').text(str);
+        }
+        setInterval(update_date , 61*1000);
+        $(update_date);
+    </script>
+    <!--NEW RELIC Stop Perf Measurement-->
+    
+    <!--NEW RELIC End-->
+  
+</body></html>
