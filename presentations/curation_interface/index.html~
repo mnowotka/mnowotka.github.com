@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Curation Interface - update</title>
+    <meta name="description" content="Web based presentation about curation interface.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h1>Curation<br/>Interface</h1>
+
+    <p>Business logic</p>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h3>What is business logic?</h3>
+
+    <p>
+        In computer software, <i>business logic</i> or <i>domain logic</i> is the part of the 
+        program that encodes the real-world business rules that determine <u>how</u> 
+        data can be <u>created, displayed, stored, and changed</u>. 
+    </p>	
+
+</section>
+<section>
+    <h2>What is business logic?</h2>
+
+    <ul>
+        <li class="fragment">Prescribes how business objects interact with one another</li>
+        <li class="fragment">Enforces the routes and the methods by which business objects are accessed and updated</li>
+        <li class="fragment">Model real-life business objects (such as molecules, documents, targets)</li>
+        <li class="fragment">Describes workflows that are the ordered tasks of passing data from one participant to another</li>
+    </ul>
+</section>
+<section>
+    <h3>ChEMBL app schema</h3>
+
+    <p>
+        <img src="img/chembl_19_schema.png" width="50%" />
+    </p>	
+
+</section>
+
+<section>
+    <h3>ChEMBL app schema</h3>
+
+    <p>
+        <img src="img/ci_schema.png" width="30%" />
+    </p>	
+
+</section>
+
+<section>
+    <h3>Complexity</h3>
+
+    <p>
+        With the Curation Interface, the complexity of business logic in not
+        due to chemistry rules (this is covered by PP/RDkit) but the nature of 
+        complex one-to-many relation between unique molecule and its records 
+        (occurences).
+    </p>	
+
+</section>
+
+<section>
+    <h3>Single table operations:</h3>
+
+    <p>
+       <img src="img/molecule_dict.png" width="15%">
+    </p>	
+
+    <p class="fragment">
+       <br/>CRUD:
+    </p>
+
+    <p>
+    <br />
+        <ul>
+            <li class="fragment">Create</li>
+            <li class="fragment">Retrieve</li>
+            <li class="fragment">Update</li>
+            <li class="fragment">Delete</li>
+        </ul>
+    </p>
+
+</section>
+
+<section>
+    <h2>Dependent objects:</h2>
+
+    <p>
+       <img src="img/compound_deps.png" width="70%">
+    </p>
+    
+    <p>
+       Just more CRUDs...
+    </p>    
+    	
+</section>
+<section>
+    <h2>Compound records</h2>
+
+    <p>
+       <img src="img/full_dep.png" width="45%">
+    </p>
+    
+    <p>
+       New set of available operations.
+    </p>
+    
+</section>
+<section>
+    <h3>1. Create New Compound</h3>
+
+    <p>
+       <img src="img/create.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>2. Insert New Record</h3>
+
+    <p>
+       <img src="img/new_record.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>3. Update Compound</h3>
+
+    <p>
+       <img src="img/update.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>4. Redraw Compound</h3>
+
+    <p>
+       <img src="img/redraw.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>5. Split Compound</h3>
+
+    <p>
+       <img src="img/split.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>6. Merge Compound</h3>
+
+    <p>
+       <img src="img/merge.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>7. Move Compound</h3>
+
+    <p>
+       <img src="img/move.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>Molecule Hierarchy handling</h3>
+
+    <p>
+       <img src="img/hierarchy.png" width="70%">
+    </p>
+    
+</section>
+<section>
+    <h3>Curate view</h3>
+
+    
+</section>
+<section>
+    <h3>Future improvements:</h3>
+
+    <ul>
+        <li class="fragment">Flexible views</li>
+        <li class="fragment">Mapping records back to original document</li>
+        <li class="fragment">Automated downgrading after molecule record update</li>
+        <li class="fragment">Possibly lots of bugfixes</li>
+    </ul>
+    
+</section>
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+<footer>
+    <div style="">
+        <a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+        <img src="img/ebi_logo.png"/> Hinxton, 18 November 2014
+        <div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:true,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
