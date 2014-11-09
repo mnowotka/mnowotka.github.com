@@ -142,12 +142,18 @@
     
 </section>
 <section>
+    <video autoplay controls src="videos/create.webm" width="90%">    
+</section>
+<section>
     <h3>2. Insert New Record</h3>
 
     <p>
        <img src="img/new_record.png" width="70%">
     </p>
     
+</section>
+<section>
+    <video autoplay controls src="videos/new_record.webm" width="90%">    
 </section>
 <section>
     <h3>3. Update Compound</h3>
@@ -158,12 +164,18 @@
     
 </section>
 <section>
+    <video autoplay controls src="videos/update.webm" width="90%">    
+</section>
+<section>
     <h3>4. Redraw Compound</h3>
 
     <p>
        <img src="img/redraw.png" width="70%">
     </p>
     
+</section>
+<section>
+    <video autoplay controls src="videos/redraw.webm" width="90%">    
 </section>
 <section>
     <h3>5. Split Compound</h3>
@@ -174,6 +186,9 @@
     
 </section>
 <section>
+    <video autoplay controls src="videos/split.webm" width="90%">    
+</section>
+<section>
     <h3>6. Merge Compound</h3>
 
     <p>
@@ -182,12 +197,18 @@
     
 </section>
 <section>
+    <video autoplay controls src="videos/merge.webm" width="90%">    
+</section>
+<section>
     <h3>7. Move Compound</h3>
 
     <p>
        <img src="img/move.png" width="70%">
     </p>
     
+</section>
+<section>
+    <video autoplay controls src="videos/move.webm" width="90%">    
 </section>
 <section>
     <h3>Molecule Hierarchy handling</h3>
