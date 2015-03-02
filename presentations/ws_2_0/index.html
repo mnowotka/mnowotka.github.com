@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ChEMBL Web Services ver. 2.x</title>
+    <meta name="description" content="Web based presentation about ChEMBL web services ver 2.x.">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>ChEMBL <br/></h2>
+    <h1>Web Services</h1>
+
+    <h3>version 2.x</h3>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+<section>
+    <h3>What's new?</h3>
+
+    <ul>
+        <li class="fragment"><span>More resources</span></li>
+        <li class="fragment"><span>Better (more RESTful design)</span></li>
+        <li class="fragment"><span>Pagination</span></li>
+        <li class="fragment"><span>Filtering</span></li>
+        <li class="fragment"><span>Ordering</span></li>
+        <li class="fragment"><span>Improved client</span></li>
+        <li class="fragment"><span>Beaker integration</span></li>
+        <li class="fragment"><span>Vector images</span></li>
+    </ul>	
+
+</section>
+<section>
+    <h3>What's new?</h3>
+
+    <p>
+        <img src="img/doge.jpg" width="50%" />
+    </p>	
+
+</section>
+
+<section>
+    <h3>Resources</h3>
+
+    <p>
+        <img src="img/resource_list.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>Pagination</h3>
+
+    <p>
+        <img src="img/page.png" width="90%" />
+    </p>	
+
+</section>
+
+<section>
+    <h3>Pagination</h3>
+
+    <p>
+       <script src="https://gist.github.com/mnowotka/3985c83ceea04643cde4.js"></script>
+    </p>	
+
+</section>
+
+<section>
+    <h2>Filtering</h2>
+
+    <p class="fragment">
+       Select all approved drugs:<br/>
+       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4" target="_blank">molecule?max_phase=4</a>
+    </p>
+    
+    <p class="fragment">
+       <br/>
+       Select all approved drugs with two or more aromatic rings:
+       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&molecule_properties__aromatic_rings__gte=2" target="_blank">molecule?max_phase=4&molecule_properties__aromatic_rings__gte=2</a>
+    </p>    
+
+    <p class="fragment">
+      <br/>
+       Select all targets with name starting from 'serotonin':
+       <a href="
+https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" target="_blank">target?pref_name__istartswith=serotonin</a>
+    </p>
+
+</section>
+<section>
+    <h2>Ordering</h2>
+
+    <p class="fragment">
+       Order molecules by weight, ascending:<br/>
+       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt" target="_blank">molecule?order_by=molecule_properties__full_mwt</a>
+    </p>
+
+    <p class="fragment">
+       <br/>
+       Order molecules by weight, descending:<br/>
+       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt" target="_blank">molecule?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt</a>
+    </p>
+
+    <p class="fragment">
+      <br/>
+       Order by aromatic rings ascending and then by weight descending:
+       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt" target="_blank">molecule?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt</a>
+    </p>
+    
+</section>
+
+<section>
+    <h3>Intergration with Beaker</h3>
+
+    <p>
+       <img src="img/tandem.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>KNIME integration</h3>
+
+    <p><a href="http://www.knime.org/blog/knime-and-rest-a-dream-team-for-life-sciences-discovery-informatics">"KNIME and REST: A dream team for Life Sciences Discovery Informatics"</a></p>
+
+    <p>
+       <img src="img/knime.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>Python client</h3>
+
+    <ul>
+        <li class="fragment"><span>Hides all network interaction</span></li>
+        <li class="fragment"><span>Kind of RPC</span></li>
+        <li class="fragment"><span>Tons of syntactic sugar</span></li>
+        <li class="fragment"><span>Lazy eavluation based on Django's QuerySet</span></li>
+        <li class="fragment"><span>Client-side caching</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Python client</h3>
+
+    <p class="fragment">
+       <pre><code>
+       molecule.get(['CHEMBL6498', 'CHEMBL6499', 'CHEMBL6505'])
+
+       molecule.filter(molecule_properties__acd_logp__gte=1.9)
+            .filter(molecule_properties__aromatic_rings__lte=3)
+            .filter(chirality=(-1))
+            .exists()
+
+       mol = utils.smiles2ctab("[Na]OC(=O)c1ccccc1")
+       br = utils.breakbonds(mol)
+       fingerprints = utils.sdf2fps(mol)
+    </code>
+    </pre>
+    </p>
+
+    <ul>
+        <li class="fragment"><span>No makefiles</span></li>
+        <li class="fragment"><span>Tons of syntactic sugar</span></li>
+        <li class="fragment"><span>No heavy FTP downloads</span></li>
+        <li class="fragment"><span>How cool is that?</span></li>
+    </ul>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Technologies used</h3>
+
+    <p>
+       <img src="img/technologies.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>Software dependencies</h3>
+
+    <p>
+       <img src="img/deps.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>Software dependencies</h3>
+
+    <p>
+       <img src="img/dep.png" width="60%" />
+    </p>
+
+</section>
+
+<section>
+    <h3>Future improvements</h3>
+
+    <ul>
+        <li class="fragment"><span>Solr-based search</span></li>
+        <li class="fragment"><span>BLAST</span></li>
+        <li class="fragment"><span>Widgets gallery</span></li>
+        <li class="fragment"><span>JSON-LD support</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:false,
+        progress:true,
+        history:true,
+        center:true,
+        overview:true,
+        transition:'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks:false,
+        mouseWheel:true,
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
