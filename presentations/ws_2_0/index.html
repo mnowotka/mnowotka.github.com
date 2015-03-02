@@ -29,6 +29,7 @@
 <div class="slides">
 <section>
     <h2>ChEMBL <br/></h2>
+
     <h1>Web Services</h1>
 
     <h3>version 2.x</h3>
@@ -49,15 +50,15 @@
         <li class="fragment"><span>Improved client</span></li>
         <li class="fragment"><span>Beaker integration</span></li>
         <li class="fragment"><span>Vector images</span></li>
-    </ul>	
+    </ul>
 
 </section>
 <section>
     <h3>What's new?</h3>
 
     <p>
-        <img src="img/doge.jpg" width="50%" />
-    </p>	
+        <img src="img/doge.jpg" width="50%"/>
+    </p>
 
 </section>
 
@@ -65,7 +66,7 @@
     <h3>Resources</h3>
 
     <p>
-        <img src="img/resource_list.png" width="60%" />
+        <img src="img/resource_list.png" width="60%"/>
     </p>
 
 </section>
@@ -74,8 +75,8 @@
     <h3>Pagination</h3>
 
     <p>
-        <img src="img/page.png" width="90%" />
-    </p>	
+        <img src="img/page.png" width="90%"/>
+    </p>
 
 </section>
 
@@ -83,8 +84,8 @@
     <h3>Pagination</h3>
 
     <p>
-       <script src="https://gist.github.com/mnowotka/3985c83ceea04643cde4.js"></script>
-    </p>	
+        <script src="https://gist.github.com/mnowotka/3985c83ceea04643cde4.js"></script>
+    </p>
 
 </section>
 
@@ -92,20 +93,22 @@
     <h2>Filtering</h2>
 
     <p class="fragment">
-       Select all approved drugs:<br/>
-       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4" target="_blank">molecule?max_phase=4</a>
+        Select all approved drugs:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4"
+           target="_blank">molecule?max_phase=4</a>
     </p>
-    
-    <p class="fragment">
-       <br/>
-       Select all approved drugs with two or more aromatic rings:
-       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&molecule_properties__aromatic_rings__gte=2" target="_blank">molecule?max_phase=4&molecule_properties__aromatic_rings__gte=2</a>
-    </p>    
 
     <p class="fragment">
-      <br/>
-       Select all targets with name starting from 'serotonin':
-       <a href="
+        <br/>
+        Select all approved drugs with two or more aromatic rings:
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&molecule_properties__aromatic_rings__gte=2"
+           target="_blank">molecule?max_phase=4&molecule_properties__aromatic_rings__gte=2</a>
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Select all targets with name starting from 'serotonin':
+        <a href="
 https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" target="_blank">target?pref_name__istartswith=serotonin</a>
     </p>
 
@@ -114,29 +117,32 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <h2>Ordering</h2>
 
     <p class="fragment">
-       Order molecules by weight, ascending:<br/>
-       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt" target="_blank">molecule?order_by=molecule_properties__full_mwt</a>
+        Order molecules by weight, ascending:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt"
+           target="_blank">molecule?order_by=molecule_properties__full_mwt</a>
     </p>
 
     <p class="fragment">
-       <br/>
-       Order molecules by weight, descending:<br/>
-       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt" target="_blank">molecule?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt</a>
+        <br/>
+        Order molecules by weight, descending:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt"
+           target="_blank">molecule?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt</a>
     </p>
 
     <p class="fragment">
-      <br/>
-       Order by aromatic rings ascending and then by weight descending:
-       <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt" target="_blank">molecule?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt</a>
+        <br/>
+        Order by aromatic rings ascending and then by weight descending:
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt"
+           target="_blank">molecule?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt</a>
     </p>
-    
+
 </section>
 
 <section>
     <h3>Intergration with Beaker</h3>
 
     <p>
-       <img src="img/tandem.png" width="60%" />
+        <img src="img/tandem.png" width="60%"/>
     </p>
 
 </section>
@@ -144,10 +150,11 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 <section>
     <h3>KNIME integration</h3>
 
-    <p><a href="http://www.knime.org/blog/knime-and-rest-a-dream-team-for-life-sciences-discovery-informatics">"KNIME and REST: A dream team for Life Sciences Discovery Informatics"</a></p>
+    <p><a href="http://www.knime.org/blog/knime-and-rest-a-dream-team-for-life-sciences-discovery-informatics">"KNIME
+        and REST: A dream team for Life Sciences Discovery Informatics"</a></p>
 
     <p>
-       <img src="img/knime.png" width="60%" />
+        <img src="img/knime.png" width="60%"/>
     </p>
 
 </section>
@@ -170,17 +177,17 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 
     <p class="fragment">
        <pre><code>
-       molecule.get(['CHEMBL6498', 'CHEMBL6499', 'CHEMBL6505'])
+           molecule.get(['CHEMBL6498', 'CHEMBL6499', 'CHEMBL6505'])
 
-       molecule.filter(molecule_properties__acd_logp__gte=1.9)
-            .filter(molecule_properties__aromatic_rings__lte=3)
-            .filter(chirality=(-1))
-            .exists()
+           molecule.filter(molecule_properties__acd_logp__gte=1.9)
+           .filter(molecule_properties__aromatic_rings__lte=3)
+           .filter(chirality=(-1))
+           .exists()
 
-       mol = utils.smiles2ctab("[Na]OC(=O)c1ccccc1")
-       br = utils.breakbonds(mol)
-       fingerprints = utils.sdf2fps(mol)
-    </code>
+           mol = utils.smiles2ctab("[Na]OC(=O)c1ccccc1")
+           br = utils.breakbonds(mol)
+           fingerprints = utils.sdf2fps(mol)
+       </code>
     </pre>
     </p>
 
@@ -193,11 +200,91 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 
 </section>
 
+<section>
+    <h3>Javascript "Client"</h3>
+
+    <ul>
+        <li class="fragment"><span>Data live documentation: <a href="https://www.ebi.ac.uk/chembl/api/data/docs"
+                                                               target="_blank">https://www.ebi.ac.uk/chembl/api/data/docs</a></span>
+        </li>
+        <li class="fragment"><span>Services (Beaker) live documentation <a
+                href="https://www.ebi.ac.uk/chembl/api/utils/docs" target="_blank">https://www.ebi.ac.uk/chembl/api/utils/docs</a></span>
+        </li>
+        <li class="fragment"><span>JS widgets (to be done)</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Getting raster images from JS</h3>
+
+    <p>
+        <iframe width="100%" height="600"
+                src="http://jsfiddle.net/j0te8pm4/2/embedded/js,resources,html,result/presentation"
+                allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    </p>
+
+</section>
+
+<section>
+    <h3>Getting vector images from JS</h3>
+
+    <p>
+        <iframe width="100%" height="600" src="http://jsfiddle.net/22ed1mq6/3/embedded/js,html,result/presentation"
+                allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    </p>
+
+</section>
+
+<section>
+    <h3>Vector graphics can be animated!</h3>
+
+    <p>
+        <iframe width="100%" height="600" src="http://jsfiddle.net/L2rd1e1g/3/embedded/js,html,result/presentation"
+                allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+    </p>
+
+</section>
+
+
+<section>
+    <h3>Easter egg!</h3>
+
+    <p>
+        <a href="http://thinfi.com/kqa" target="_blank">Here</a>
+    </p>
+
+</section>
+
+<section>
+    <h3>Other ideas</h3>
+
+    <ul>
+        <li class="fragment"><span>Chemical flashcards</span></li>
+        <li class="fragment"><span>Chemspider-like (or better) interfaces</span></li>
+        <li class="fragment"><span>Drag and Drop OSRA</span></li>
+        <li class="fragment"><span>In browser Clippy</span></li>
+        <li class="fragment"><span>Mobile app</span></li>
+        <li class="fragment"><span>Data Tables</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Other ideas</h3>
+
+    <p>
+        <a href="http://www.jsplumb.org/demo/flowchart/dom.html" target="_blank">JsPlumb</a> for web based KNIME-like
+        experience.
+    </p>
+
+</section>
+
 <section style="background-color: rgba(255,255,255,0.69);">
     <h3>Technologies used</h3>
 
     <p>
-       <img src="img/technologies.png" width="60%" />
+        <img src="img/technologies.png" width="60%"/>
     </p>
 
 </section>
@@ -206,7 +293,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <h3>Software dependencies</h3>
 
     <p>
-       <img src="img/deps.png" width="60%" />
+        <img src="img/deps.png" width="60%"/>
     </p>
 
 </section>
@@ -215,7 +302,16 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <h3>Software dependencies</h3>
 
     <p>
-       <img src="img/dep.png" width="60%" />
+        <img src="img/dep.png" width="60%"/>
+    </p>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Deployment infrastructure</h3>
+
+    <p>
+        <img src="img/deployment_ws.png" width="70%"/>
     </p>
 
 </section>
@@ -228,6 +324,56 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
         <li class="fragment"><span>BLAST</span></li>
         <li class="fragment"><span>Widgets gallery</span></li>
         <li class="fragment"><span>JSON-LD support</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Other info</h3>
+
+    <ul>
+        <li class="fragment">
+            <span>Source and issue tracker: 
+                <a href="https://github.com/chembl/chembl_webservices_2">
+                    https://github.com/chembl/chembl_webservices_2
+                </a>
+            </span>
+        </li>
+
+        <li class="fragment">
+            <span>
+                ChEMBL Web Services: Streamlining Access to Drug Discovery Data and Utilities - submitted to NAR
+            </span>
+        </li>
+
+        <li class="fragment">
+            <span>
+                <a href="http://www.mdpi.com/2078-1547/5/2/444">
+                    ChEMBL Beaker: A Lightweight Web Framework Providing Robust and Extensible Cheminformatics Services
+                    - Challenges
+                </a>
+            </span>
+        </li>
+
+        <li class="fragment">
+            <span>
+                <a href="https://github.com/thesgc/chembiohub_ws">
+                    chembiohub - SGC Oxford
+                </a>
+            </span>
+        </li>
+
+        <li class="fragment">
+            <span>
+                vernalis.com
+            </span>
+        </li>
+
+        <li>
+            <span>
+                Lots of blog posts but lots more needed
+            </span>
+        </li>
     </ul>
 
 </section>
@@ -250,33 +396,33 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-        controls:false,
-        progress:true,
-        history:true,
-        center:true,
-        overview:true,
-        transition:'linear',
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
         //theme: 'zen', // available themes are in /css/theme
-        rollingLinks:false,
-        mouseWheel:true,
+        rollingLinks: false,
+        mouseWheel: true,
         // Optional libraries used to extend on reveal.js
-        dependencies:[
-            { src:'lib/js/classList.js', condition:function () {
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
                 return !document.body.classList;
             } },
-            { src:'plugin/markdown/showdown.js', condition:function () {
+            { src: 'plugin/markdown/showdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src:'plugin/markdown/markdown.js', condition:function () {
+            { src: 'plugin/markdown/markdown.js', condition: function () {
                 return !!document.querySelector('[data-markdown]');
             } },
-            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
                 hljs.initHighlightingOnLoad();
             } },
-            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
                 return !!document.body.classList;
             } },
-            { src:'plugin/notes/notes.js', async:true, condition:function () {
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
                 return !!document.body.classList;
             } }
         ]
