@@ -11,10 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="css/reveal.css">
 
-    <link href="http://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
 
     <link rel="stylesheet" href="css/theme/zen.css" id="theme">
-    <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
     <script>
         document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
     </script>
@@ -167,7 +167,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 <section>
     <h3>KNIME integration</h3>
 
-    <p><a href="http://www.knime.org/blog/knime-and-rest-a-dream-team-for-life-sciences-discovery-informatics">"KNIME
+    <p><a href="http://www.knime.org/blog/knime-and-rest-a-dream-team-for-life-sciences-discovery-informatics" target="_blank">"KNIME
         and REST: A dream team for Life Sciences Discovery Informatics"</a></p>
 
     <p>
@@ -185,6 +185,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
         <li class="fragment"><span>Tons of syntactic sugar</span></li>
         <li class="fragment"><span>Lazy eavluation based on Django's QuerySet</span></li>
         <li class="fragment"><span>Client-side caching</span></li>
+        <li class="fragment"><span><b>TODO: </b>Include UniChEM</span></li>
     </ul>
 
 </section>
@@ -218,6 +219,21 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 </section>
 
 <section>
+    <h3>Alternative client - bioservices</h3>
+    <p>
+        "A short comment with respect to the difference of speed between BioServices and your implementation on the example provided (9 minutes instead of a few seconds sounds bad indeed).<br />
+
+        If you use the latest version of BioServices (1.3.5), this should now be equivalent in terms of speed. The reason for the slow behaviour in previous versions was that we were waiting 1 second between requests (if the request was failing) to be nice with ChEMBL REST API.<br />
+
+        Thomas Cokelaer, on behalf of BioServices users and developers.<br/>
+
+        <a href="https://pypi.python.org/pypi/bioservices" target="_blank">BioServices on Pypi</a><br/>
+
+        <a href="https://github.com/cokelaer/bioservices" target="_blank">BioServices on github</a>"
+    </p>    
+</section>
+
+<section>
     <h3>Javascript "Client"</h3>
 
     <ul>
@@ -237,7 +253,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 
     <p>
         <iframe width="100%" height="600"
-                src="http://jsfiddle.net/j0te8pm4/2/embedded/js,resources,html,result/presentation"
+                src="https://jsfiddle.net/j0te8pm4/2/embedded/js,resources,html,result/presentation"
                 allowfullscreen="allowfullscreen" frameborder="0"></iframe>
     </p>
 
@@ -247,7 +263,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <h3>Getting vector images from JS</h3>
 
     <p>
-        <iframe width="100%" height="600" src="http://jsfiddle.net/22ed1mq6/3/embedded/js,html,result/presentation"
+        <iframe width="100%" height="600" src="https://jsfiddle.net/22ed1mq6/3/embedded/js,html,result/presentation"
                 allowfullscreen="allowfullscreen" frameborder="0"></iframe>
     </p>
 
@@ -257,7 +273,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <h3>Vector graphics can be animated!</h3>
 
     <p>
-        <iframe width="100%" height="600" src="http://jsfiddle.net/L2rd1e1g/3/embedded/js,html,result/presentation"
+        <iframe width="100%" height="600" src="https://jsfiddle.net/L2rd1e1g/3/embedded/js,html,result/presentation"
                 allowfullscreen="allowfullscreen" frameborder="0"></iframe>
     </p>
 
@@ -367,7 +383,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
         <li class="fragment"><span>Solr-based search</span></li>
         <li class="fragment"><span>BLAST</span></li>
         <li class="fragment"><span>Widgets gallery</span></li>
-        <li class="fragment"><span>JSON-LD support</span></li>
+        <li class="fragment"><span><a href="http://json-ld.org/" target="_blank">JSON-LD</a> support</span></li>
     </ul>
 
 </section>
@@ -378,7 +394,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
     <ul>
         <li class="fragment">
             <span>Source and issue tracker: 
-                <a href="https://github.com/chembl/chembl_webservices_2">
+                <a href="https://github.com/chembl/chembl_webservices_2" target="_blank">
                     https://github.com/chembl/chembl_webservices_2
                 </a>
             </span>
@@ -392,7 +408,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 
         <li class="fragment">
             <span>
-                <a href="http://www.mdpi.com/2078-1547/5/2/444">
+                <a href="https://www.mdpi.com/2078-1547/5/2/444" target="_blank">
                     ChEMBL Beaker: A Lightweight Web Framework Providing Robust and Extensible Cheminformatics Services
                     - Challenges
                 </a>
@@ -405,7 +421,7 @@ standard commandline tools (EMBL - in progress)</span>
 
         <li class="fragment">
             <span>
-                <a href="https://github.com/thesgc/chembiohub_ws">
+                <a href="https://github.com/thesgc/chembiohub_ws" target="_blank">
                     chembiohub - SGC Oxford
                 </a>
             </span>
