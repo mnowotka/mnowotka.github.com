@@ -257,6 +257,33 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
 </section>
 
 <section>
+    <h3>More RESTful?</h3>
+
+    <p class="fragment">
+        Better GET support
+    </p>
+
+    <ul>
+        <li class="fragment"><span>SMILES can contain non-url safe characters: <b>[Na+].CO[C@@H](CCC#C\C=C/CCCC(C)CCCCC=C)C(=O)[O-]</b></span></li>
+        <li class="fragment"><span>This wont work: https://www.ebi.ac.uk/chemblws/compounds/smiles/[Na+].CO[C@@H](CCC#C\C=C/CCCC(C)CCCCC=C)C(=O)[O-]</span></li>
+        <li class="fragment"><span>But this will: <a href="https://www.ebi.ac.uk/chembl/api/data/molecule/%5BNa+%5D.CO%5BC@@H%5D%28CCC%23C%5CC=C/CCCC%28C%29CCCCC=C%29C%28=O%29%5BO-%5D" target="_blank" >https://www.ebi.ac.uk/chembl/api/data/molecule/[Na+].CO[C@@H](CCC%23C\C=C/CCCC(C)CCCCC=C)C(=O)[O-]</a></span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>GET or POST?</h3>
+
+    <ul>
+    <li class="fragment"><span><a href="https://blogs.dropbox.com/developers/2015/03/limitations-of-the-get-method-in-http/#disqus_thread" target="_blank">Dropbox team: limitations of the get method in http</a></span></li>
+    <li class="fragment"><span><a href="http://evertpot.com/dropbox-post-api/" target="_blank">Dropbox starts using POST, and why this is poor API design.</a>
+    </span></li>
+    <li class="fragment"><span><p>"I really like how the Google Translate API handles this issue[1]. <br />The actual HTTP method can be POST, but the intended HTTP<br /> method must always be GET (using the "X-HTTP-Method-Override" header)."<br /><a href="https://cloud.google.com/translate/v2/using_rest#WorkingResults" target="_blank" >https://cloud.google.com/translate/v2/using_rest#WorkingResults</a></p></span></li>
+    </ul>
+
+</section>
+
+<section>
     <h3>Other ideas</h3>
 
     <ul>
@@ -369,7 +396,7 @@ https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" t
             </span>
         </li>
 
-        <li>
+        <li class="fragment">
             <span>
                 Lots of blog posts but lots more needed
             </span>
