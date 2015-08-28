@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Want drugs? Use Python.</title>
+    <meta name="description" content="Web based presentation for Euro SciPy 2015">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>Want drugs?</h2>
+
+    <h1>Use Python</h1>
+
+    <p>
+        <small>Michał Nowotka &loz;<br/>George Papadatos<br/>Mark Davies<br/>&nbsp;<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3>What's ChEMBL?</h3>
+
+        <blockquote class="fragment">Our team develops and manages ChEMBL, a database of quantitative small molecule bioactivity data focussed in the area of drug discovery.</blockquote>
+        <br/><br/>
+        <blockquote class="fragment">The majority of the ChEMBL data is derived by manual abstraction and curation from the primary scientific literature.</blockquote>
+
+</section>
+
+<section>
+    <h3>ChEMBL Database</h3>
+
+    <ul>
+        <li class="fragment"><span>Current version: 20</span></li>
+        <li class="fragment"><span>62 Tables</span></li>
+        <li class="fragment"><span>Distinct compounds: 1,463,270</span></li>
+        <li class="fragment"><span>Targets: 10,774</span></li>
+        <li class="fragment"><span>Activities: 13,520,737</span></li>
+        <li class="fragment"><span>Publications: 59,610</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>ChEMBL Django ORM Model</h3>
+
+    <ul>
+        <li class="fragment"><span><b>chembl_core_db</b> - adds functionality not offered by Django</span></li>
+        <li class="fragment"><span><b>chembl_core_model</b> - actual ORM model</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>ChEMBL Web Services</h3>
+
+    <ul>
+        <li class="fragment"><span>Written in Python</span></li>
+        <li class="fragment"><span>RESTful design</span></li>
+        <li class="fragment"><span>Apache 2.0 Licensed</span></li>
+        <li class="fragment"><span>Available on GitHub, PyPI</span></li>
+        <li class="fragment"><span>Providing data</span></li>
+        <li class="fragment"><span>Providing chemical utilities</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Utilities and data</h3>
+
+    <p>
+        <img src="img/tandem.png" width="60%"/>
+    </p>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Technologies used</h3>
+
+    <p>
+        <img src="img/technologies.png" width="50%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>IPython notebooks</h3>
+
+    <ul>
+        <li class="fragment"><span>Collection of notebooks</span></li>
+        <li class="fragment"><span>Explain how to leverage the data</span></li>
+        <li class="fragment"><span>Various difficulty levels</span></li>
+        <li class="fragment"><span>Open sourced</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>IPython notebooks examples</h3>
+
+    <ul>
+        <li class="fragment"><span>Retrieving data (SQL, ORM, REST, Python client)</span></li>
+        <li class="fragment"><span>Plotting (D3.js, matplotlib)</span></li>
+        <li class="fragment"><span>RDKit tutorial</span></li>
+        <li class="fragment"><span>Machine learning (sklearn, scipy, numpy)</span></li>
+        <li class="fragment"><span>Data mining</span></li>
+        <li class="fragment"><span>Exploring patent data from SureChEMBL</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>myChEMBL</h3>
+
+    <ul>
+        <li class="fragment"><span>ChEMBL DB (on Postgres)</span></li>
+        <li class="fragment"><span>RDKit DB Cartridge (substructure/similarity)</span></li>
+        <li class="fragment"><span>Chemical toolkits (RDKit, Indigo)</span></li>
+        <li class="fragment"><span>Chemistry software (OSRA)</span></li>
+        <li class="fragment"><span>Notebooks</span></li>
+        <li class="fragment"><span>Web Services</span></li>
+        <li class="fragment"><span>Web Interface</span></li>
+        <li class="fragment"><span>All preconfigured and loaded into a single VM</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>myChEMBL launchpad</h3>
+
+    <p>
+        <img src="img/mychembl.png" width="60%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>myChEMBL</h3>
+    <ul style="line-height: 1.0em;">
+        <li class="fragment"><span>Distribution channels:</span></li>
+        <ul>
+            <li class="fragment"><span>FTP</span></li>
+            <li class="fragment"><span>Vagrant</span></li>
+        </ul>    
+        <li class="fragment"><span>Operating systems:</span></li>
+        <ul>
+            <li class="fragment"><span>CentOS</span></li>
+            <li class="fragment"><span>Ubuntu</span></li>
+        </ul>    
+        <li class="fragment"><span>Virtualization techniques:</span></li>
+        <ul>
+            <li class="fragment"><span>Virtual Box</span></li>
+            <li class="fragment"><span>QEMU/KML</span></li>
+            <li class="fragment"><span>Docker Containers</span></li>
+        </ul>    
+    </ul>
+
+</section>
+
+<section>
+    <h3>Other applications</h3>
+    <ul>
+        <li class="fragment"><span>ADME Sarfari (A tool for predicting and comparing cross-species ADME targets)</span></li>
+        <li class="fragment"><span>Curation Interface (helps extracting data)</span></li>
+        <li class="fragment"><span>NoSQL approaches (neo4j, MongoDB)</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a>
+<img src="img/ebi_logo.png"/> Cambridge, 28 August 2015
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
