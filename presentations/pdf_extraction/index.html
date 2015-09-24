@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PDF extraction tools</title>
+    <meta name="description" content="Web based presentation about tools for extracting data from pdf documents">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>PDF extraction <br />tools</h2>
+
+    <p>
+        <small>Michał Nowotka<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3>Overview</h3>
+
+    <ul>
+        <li class="fragment"><span><a href="https://www.pdftables.com/">www.pdftables.com</a></span></li>
+        <li class="fragment"><span><a href="https://euske.github.io/pdfminer/">PDFMiner</a></span></li>
+        <li class="fragment"><span><a href="http://www.foolabs.com/xpdf/">Xpdf</a></span></li>
+        <li class="fragment"><span><a href="https://pythonhosted.org/PyPDF2/">pyPdf2</a></span></li>
+        <li class="fragment"><span><a href="https://messytables.readthedocs.org/en/latest/">messytables</a></span></li>
+        <li class="fragment"><span><a href="https://mozilla.github.io/pdf.js/">pdf.js</a></span></li>
+    </ul>
+
+</section>
+
+<section>
+    <a href="https://www.pdftables.com/">www.pdftables.com</a>
+</section>
+
+<section>
+    <h3>Python tools</h3>
+
+    <p class="fragment">We will use miniconda to create <br/>clean Python environments on OSX:</p>
+
+    <pre class="fragment"><code class="bash">
+        curl -o miniconda.sh http://repo.continuum.io/miniconda/Miniconda-latest-MacOSX-x86_64.sh
+        bash miniconda.sh -b -p $HOME/conda
+        export PATH="$HOME/conda/bin:$PATH"
+        conda update -q conda
+
+        conda create -q -n pdf_tools python=2.7.6
+        source activate pdf_tools
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>PDFMiner</h3>
+
+    <p class="fragment">
+        Installation:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        pip install pdfminer
+    </code></pre>
+
+    <p><br /></p>
+
+    <p class="fragment">
+        Basic usage:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        pdf2txt.py jm301215e.pdf > jm301215e.txt
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>PDFMiner</h3>
+
+    <p class="fragment">
+        Using in Python as a library:<br/>
+        (We'll have to use a wrapper /Dropbox/pdfs/pdfScanner.py)
+    </p>
+
+    <pre class="fragment"><code class="python">
+import tempfile
+from pdfScanner import get_pages
+tmp = tempfile.mkdtemp()
+print tmp
+f = open('jm301215e.pdf', 'rb')
+print ''.join(get_pages(f, images_folder=tmp))
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>Xpdf</h3>
+
+    <p class="fragment">
+        Installation:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        brew install homebrew/x11/xpdf
+    </code></pre>
+
+    <p><br /></p>
+
+    <p class="fragment">
+        Basic usage:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        pdftotext jm301215e.pdf
+    </code></pre>
+
+    <p><br /></p>
+
+    <p class="fragment">
+        Written in C and 20x faster than pdfminer!
+    </p>
+
+</section>
+
+<section>
+    <h3>pyPdf2</h3>
+
+    <p class="fragment">
+        Installation:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        pip install PyPDF2
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>pyPdf2</h3>
+
+    <p class="fragment">
+        Using in Python as a library:<br/>
+    </p>
+
+    <pre class="fragment"><code class="python">
+from PyPDF2 import PdfFileReader
+f = open('jm301215e.pdf', 'rb')
+reader = PdfFileReader(f)
+print ''.join([reader.getPage(i).extractText() for i in range(reader.getNumPages())])
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>messytables</h3>
+
+    <p class="fragment">
+        Installation:
+    </p>
+
+    <pre class="fragment"><code class="bash">
+        pip install pdftables messytables XlsxWriter
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>messytables</h3>
+
+    <p class="fragment">
+        Converting pdf to xlsx using messytables<br/>
+    </p>
+
+    <pre class="fragment"><code class="python">
+from messytables import PDFTableSet, type_guess, \
+  types_processor, headers_guess, headers_processor, \
+  offset_processor, any_tableset
+
+import xlsxwriter
+  
+f = open('08800Table1.pdf', 'rb')
+workbook = xlsxwriter.Workbook('08800Table1.xlsx')
+header_format = workbook.add_format()
+header_format.set_pattern(1)
+header_format.set_bg_color('#7FCDDB')
+table_set = PDFTableSet(f)
+
+for row_set in table_set.tables:
+  worksheet = workbook.add_worksheet()
+  offset, headers = headers_guess(row_set.sample)
+  for i, header in enumerate(headers):
+    worksheet.write(0, i, header, header_format)
+  row_set.register_processor(headers_processor(headers))
+  row_set.register_processor(offset_processor(offset + 1))
+  types = type_guess(row_set.sample, strict=True)
+  row_set.register_processor(types_processor(types))
+  for row_num, row in enumerate(row_set):
+    for col_num, cell in enumerate(row):
+      worksheet.write(row_num + 1, col_num, cell.value)
+      
+workbook.close()      
+    </code></pre>
+
+</section>
+
+<section>
+    <h3>pdj.js</h3>
+
+    <ul>
+        <li class="fragment"><span>JavaScript library</span></li>
+        <li class="fragment"><span>Used for rendering pdfs in browser</span></li>
+        <li class="fragment"><span>With some modifications can be used to extract pdf contents</span></li>
+        <li class="fragment"><span>We'll try it now :)</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>pdj.js</h3>
+
+    <ul>
+        <li class="fragment"><span>DEMO!</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a> | <a href="https://github.com/chembl">github.com/chembl</a>
+<img src="img/ebi_logo.png"/> Cambridge, 28 August 2015
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
