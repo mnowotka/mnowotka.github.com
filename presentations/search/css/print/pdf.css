@@ -84,7 +84,7 @@ ul, ol, div, p {
 .reveal .slides {
 	position: static;
 	width: 100%;
-	height: 100%;
+	height: auto;
 
 	left: auto;
 	top: auto;
@@ -115,7 +115,7 @@ ul, ol, div, p {
 	visibility: visible !important;
 	position: static !important;
 	width: 100% !important;
-	height: 100% !important;
+	height: auto !important;
 	min-height: initial !important;
 	display: block !important;
 	overflow: visible !important;

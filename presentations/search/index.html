@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Searching in ChEMBL</title>
+    <meta name="description" content="Web based presentation for Euro SciPy 2015">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>Searching in <br />ChEMBL</h2>
+
+    <p>
+        <small>Michał Nowotka&nbsp;<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3>What's ChEMBL?</h3>
+
+        <blockquote class="fragment">Our team develops and manages ChEMBL, a database of quantitative small molecule bioactivity data focused in the area of drug discovery.</blockquote>
+        <br/><br/>
+        <blockquote class="fragment">The majority of the ChEMBL data is derived by manual abstraction and curation from the primary scientific literature.</blockquote>
+
+</section>
+
+<section>
+    <h3>ChEMBL Database</h3>
+
+    <ul>
+        <li class="fragment"><span>Current version: 20 (21 coming #soon)</span></li>
+        <li class="fragment"><span>62 Tables</span></li>
+        <li class="fragment"><span>Distinct compounds: 1,463,270</span></li>
+        <li class="fragment"><span>Targets: 10,774</span></li>
+        <li class="fragment"><span>Activities: 13,520,737</span></li>
+        <li class="fragment"><span>Publications: 59,610</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>ChEMBL Django ORM Model</h3>
+
+    <ul>
+        <li class="fragment"><span>No more raw SQL in Python code</span></li>
+        <li class="fragment"><span>DB agnostic interface</span></li>
+        <li class="fragment"><span>Less sensitive to schema changes</span></li>
+        <li class="fragment"><span>myChEMBL</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>ChEMBL Web Services</h3>
+
+    <ul>
+        <li class="fragment"><span>Written in Python</span></li>
+        <li class="fragment"><span>RESTful design</span></li>
+        <li class="fragment"><span>Apache 2.0 Licensed</span></li>
+        <li class="fragment"><span>Available on <a href="https://github.com/chembl">GitHub<a/>, <a href="https://pypi.python.org/pypi?%3Aaction=search&term=chembl&submit=search">PyPI</a></span></li>
+        <li class="fragment"><span>Providing data</span></li>
+        <li class="fragment"><span>Providing chemical utilities</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Utilities and data</h3>
+
+    <p>
+        <img src="img/tandem.png" width="60%"/>
+    </p>
+
+</section>
+
+<section>
+    <h2>Filtering</h2>
+
+    <p class="fragment">
+        Select all approved drugs:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4"
+           target="_blank">molecule?max_phase=4</a>
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Select all approved drugs with two or more aromatic rings:
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?max_phase=4&molecule_properties__aromatic_rings__gte=2"
+           target="_blank">molecule?max_phase=4&molecule_properties__aromatic_rings__gte=2</a>
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Select all targets with name starting from 'serotonin':
+        <a href="
+https://www.ebi.ac.uk/chembl/api/data/target?pref_name__istartswith=serotonin" target="_blank">target?pref_name__istartswith=serotonin</a>
+    </p>
+
+</section>
+
+<section>
+    <h2>Ordering</h2>
+
+    <p class="fragment">
+        Order molecules by weight, ascending:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__full_mwt"
+           target="_blank">molecule?order_by=molecule_properties__full_mwt</a>
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Order molecules by weight, descending:<br/>
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt"
+           target="_blank">molecule?molecule_properties__isnull=false&order_by=-molecule_properties__full_mwt</a>
+    </p>
+
+    <p class="fragment">
+        <br/>
+        Order by aromatic rings ascending and then by weight descending:
+        <a href="https://www.ebi.ac.uk/chembl/api/data/molecule.json?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt"
+           target="_blank">molecule?order_by=molecule_properties__aromatic_rings&order_by=-molecule_properties__full_mwt</a>
+    </p>
+
+</section>
+
+<section>
+    <h2>Want viagra?</h2>
+
+    <ul>
+        <li class="fragment"><span>Search compounds by pref_name and synonyms</span></li>
+        <li class="fragment"><span>Search targets by pref_name and synonyms</span></li>
+        <li class="fragment"><span>Search in assay descriptions</span></li>
+        <li class="fragment"><span>Search in document abstracts</span></li>
+    </ul>
+
+</section>
+<section>
+    <h2>Why do we need this?</h2>
+
+    <ul>
+        <li class="fragment"><span>User feedback (<a href="https://github.com/chembl/chembl_webservices_2/issues/73">#73</a>, <a href="https://github.com/chembl/chembl_webservices_2/issues/79">#79</a>)</span></li>
+        <li class="fragment"><span>New version of web site will be based on API<br />
+        <img src="img/search_bar.png"></span></li>
+        <li class="fragment"><span>myChEMBL</span></li>
+        <li class="fragment"><span>web widgets</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Implmenting search</h2>
+
+    <ul>
+        <li class="fragment"><span>SQL would be too slow to execute</span></li>
+        <li class="fragment"><span>Speed depends on DB engine</span></li>
+        <li class="fragment"><span>Filtering simultaneously on many columns <br />results in a long filter</span></li>
+    </ul>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Software stack</h3>
+
+    <p>
+        <img src="img/stack.png" width="40%"/>
+    </p>
+
+</section>
+
+<section>
+    <h2>Django-haystack</h2>
+
+    <ul>
+        <li class="fragment"><span>Like ORM but for search</span></li>
+        <li class="fragment"><span>Provides uniform API</span></li>
+        <li class="fragment"><span>Model-oriented</span></li>
+        <li class="fragment"><span>Many search backends supported:</span></li>
+        <ul>
+            <li class="fragment"><span>Solr</span></li>
+            <li class="fragment"><span>Elastic</span></li>
+            <li class="fragment"><span>Whoosh</span></li>
+            <li class="fragment"><span>Xapian</span></li>
+        </ul>    
+    </ul>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Technologies used</h3>
+
+    <p>
+        <img src="img/technologies.png" width="40%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>Why sorl?</h3>
+
+    <ul>
+        <li class="fragment"><span>Mature and trusted</span></li>
+        <li class="fragment"><span>Already used at EBI</span></li>
+        <li class="fragment"><span>Apache license</span></li>
+        <li class="fragment"><span>BioSolr, compound similarity</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>What about Elastic?</h3>
+
+    <ul>
+        <li class="fragment"><span>Plans to use Kibi</span></li>
+        <li class="fragment"><span>Put Kibi on myChEMBL first</span></li>
+        <li class="fragment"><span>Make it public and evaluate</span></li>
+        <li class="fragment"><span>Kibi + sureChEMBL?</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>MongoDB</h3>
+
+    <ul>
+        <li class="fragment"><span>Used as a cache backend</span></li>
+        <li class="fragment"><span>Experiments with similarity search</span></li>
+        <li class="fragment"><span>LSH</span></li>
+        <li class="fragment"><span>Good performance, good results</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Cache characteristics</h3>
+    <ul>
+        <li class="fragment"><span>Once cached, request won't change until next ChEMBL release</span></li>
+        <li class="fragment"><span>Cache should be shared across many production machines</span></li>
+        <li class="fragment"><span>Available from python, supported by EBI</span></li>
+        <li class="fragment"><span>Failproof, timeout</span></li>
+    </ul>
+</section>
+
+<section>
+    <h3>LSH-based similarity search</h3>
+
+    <p>
+        <img src="img/sim.png" width="40%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>LSH-based similarity search</h3>
+
+    <p>
+        <img src="img/dis_a.png" width="40%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>myChEMBL</h3>
+
+    <ul>
+        <li class="fragment"><span>special NoSQL issue</span></li>
+        <li class="fragment"><span>Kibi</span></li>
+        <li class="fragment"><span>Mining relations using Neo4j</span></li>
+        <li class="fragment"><span>LSH-search on MongoDB</span></li>
+        <li class="fragment"><span>Ipython Notebooks</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>GraphQL</h3>
+
+    <ul>
+        <li class="fragment"><span>New way of structuring client applications</span></li>
+        <li class="fragment"><span>User decides what API returns</span></li>
+        <li class="fragment"><span>Fits perfectly into <a href="http://graphene-python.org/">Django stack</a></span></li>
+        <li class="fragment"><span>Very new idea (to us)</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a> | <a href="https://github.com/chembl">github.com/chembl</a>
+<img src="img/ebi_logo.png"/> Hinxton, 4 January 2016
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+

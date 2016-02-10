@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Design patterns</title>
+    <meta name="description" content="Web based presentation for Euro SciPy 2015">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h1 style="text-transform:none;">Design patterns</h1>
+    
+    <h2 style="text-transform:none;">and programming principles</h2>
+
+    <p>
+        <small>Michał Nowotka<br/>&nbsp;<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3 style="text-transform:none;">Design what?</h3>
+
+    <quote>
+        A general reusable solution to a commonly occurring problem within a given context in software design.
+        Patterns are formalized best practices that the programmer can use to solve common problems when designing an application or system.
+    </quote>    
+
+</section>
+
+<section>
+    <h3 style="text-transform:none;">Design what?</h3>
+
+    <quote>
+        Gained popularity in computer science after the book <em>Design Patterns: Elements of Reusable Object-Oriented Software</em> was published in 1994 by the so-called <em>Gang of Four</em> (Gamma <em>et al.</em>).
+    </quote> 
+    <p></p>
+    <img src="img/book.jpg" style="width:20%" />   
+
+</section>
+
+<section>
+    <h3>Classification</h3>
+     <ul>
+        <li class="fragment"><span>Creational (Factory, Prototype, Singleton)</span></li>
+        <li class="fragment"><span>Structural (Adapter, Decorator, Proxy)</span></li>
+        <li class="fragment"><span>Behavioral (Iterator, Strategy, Command)</span></li>
+        <li class="fragment"><span>Concurency (Lock, Join, Scheduler)</span></li>
+    </ul>
+</section>
+
+<section>
+    <h2>But first...</h2>
+
+    <h2 class="fragment">Basic programming <br />principles!</h2>    
+
+</section>
+
+<section>
+    <h3>DRY KISS</h3>
+    <img src="img/dry.jpg" style="width:80%;" />
+</section>
+
+<section>
+    <h3>Dry</h3>
+
+    <p><strong>D</strong>on't <strong>R</strong>epeat <strong>Y</strong>ourself<br/></p>
+    <p></p>
+    <p>Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.</p>
+
+</section>
+
+<section>
+    <h3>Example</h3>
+
+   <p class="fragment">Wrong:</p>
+    <pre class="fragment"><code class="bash">
+circumference = 2 * 3.14 * R
+...
+area = 3.14 * pow(R,2) 
+    </code></pre>
+    <p class="fragment">Right:</p>
+    <pre class="fragment"><code class="bash">
+PI = 3.14
+...
+circumference = 2 * PI * R
+...
+area = PI * pow(R,2) 
+    </code></pre>                        
+
+</section>
+
+<section>
+    <h3>KISS</h3>
+
+    <p><strong>K</strong>eep <strong>I</strong>t <strong>S</strong>imple <strong>S</strong>tupid<br/></p>
+    <p></p>
+    <p>Most systems work best if they are kept simple rather than made complicated, therefore simplicity should be a key goal in design and unnecessary complexity should be avoided.</p>
+
+</section>
+
+<section>
+    <h3 style="text-transform:none;">Premature optimization</h3>
+
+    <p>"Programmers waste enormous amounts of time thinking about (...) the speed of noncritical parts of their programs, and these attempts at efficiency actually have a strong negative impact when debugging and maintenance are considered. We should forget about small efficiencies, say about 97% of the time: <strong>premature optimization is the root of all evil</strong>.</p>
+
+    <p><i>Donald Knuth</i></p>
+
+
+</section>
+
+<section>
+    <h3>Donald Knuth</a></h3>
+
+    <img src="img/knuth.gif" style="width:20%"/>
+    <ul>
+        <li class="fragment"><span>Author of the book: <em>The Art of Computer Programming</em></span></li>
+        <li class="fragment"><span>Creator of TeX</span></li>
+        <li class="fragment"><span>Creator of METAFONT</span></li>
+     </ul>
+
+</section>
+
+<section>
+    <h3 style="text-transform:none;">Premature optimization</h3>
+
+    <p class="fragment">Optimizing up front is often regarded as breaking <br/><em><strong>Y</strong>ou <strong>A</strong>ren't <strong>G</strong>onna <strong>N</strong>eed <strong>I</strong>t</em> (YAGNI).</p>
+    <p></p>
+    <p class="fragment">Programmer should not add functionality until <br /><strong>deemed necessary</strong>.</p>
+    <p></p>
+    <p class="fragment">"Always implement things when you <strong>actually need them</strong>, never when you just foresee that you need them."</p>
+    <p></p>
+    <p class="fragment"><strong>If it's stupid and it works, it's not stupid.</strong></p>
+
+</section>
+
+<section>
+    <h3>Zen of Python (PEP20)</h3>
+
+    <pre class="fragment"><code class="python">
+import this
+    </code></pre>
+
+    <p class="fragment">Beautiful is better than ugly.</p>
+    <p class="fragment">Explicit is better than implicit.</p>
+    <p class="fragment">Simple is better than complex.</p>
+    <p class="fragment">Complex is better than complicated.</p>
+    <p class="fragment">Flat is better than nested.</p>
+    <p class="fragment">Sparse is better than dense.</p>
+    <p class="fragment">Readability counts.</p>
+    
+
+</section>
+
+<section>
+    <h3>Zen of Python (PEP20)</h3>
+
+    <p class="fragment">Special cases aren't special enough to break the rules.</p>
+    <p class="fragment">Although practicality beats purity.</p>
+    <p class="fragment">Errors should never pass silently.</p>
+    <p class="fragment">Unless explicitly silenced.</p>
+    
+
+</section>
+
+<section>
+    <h3>Zen of Python (PEP20)</h3>
+
+    <p class="fragment">In the face of ambiguity, refuse the temptation to guess.</p>
+    <p class="fragment">There should be one-- and preferably only one --obvious way to do it.</p>
+    <p class="fragment">Although that way may not be obvious at first unless you're Dutch.</p>
+    <p class="fragment">Now is better than never.</p>
+    <p class="fragment">Although never is often better than *right* now.</p>
+    
+
+</section>
+
+<section>
+    <h3>Zen of Python (PEP20)</h3>
+
+    <p class="fragment">If the implementation is hard to explain, it's a bad idea.</p>
+    <p class="fragment">If the implementation is easy to explain, it may be a good idea.</p>
+    <p class="fragment">Namespaces are one honking great idea -- let's do more of those!</p>
+    
+</section>
+
+<section>
+    <h3>Design patters</h3>
+
+    <h3 class="fragment">Python examples</h3>
+
+</section>
+
+<section>
+    <h3>Adapter</h3>
+
+<pre><code class="python">
+
+class FoobarWrapper(object):
+
+    def __init__(self, wrappee):
+        self.w = wrappee
+
+    def foobar(self, foo, bar):
+        return self.w.barfoo(bar, foo)
+
+</code></pre>
+
+</section>
+
+<section>
+    <h3>Singleton</h3>
+
+<pre><code class="python">
+
+class Foo(object):
+
+    def __init__(self):
+        self.session = None
+
+    def get_session(self):
+        if not self.session:
+            self.session = requests.Session()
+        return self.session
+            
+</code></pre>
+
+</section>
+
+<section>
+    <h3>Lazy initialization</h3>
+
+<pre><code class="python">
+fizz = Foo().filter(bar=baz).filter(bla=blah)
+for f in fizz:
+    do_something()
+
+class Foo(object):
+  
+    def filter(self):
+        clone = self._clone()
+            clone.query.add_filters(**kwargs)
+        return clone
+
+    def _clone(self):
+        clone = self.__class__()
+        clone.filters = self.filters
+        return clone
+
+    def __next__(self):
+        s = self.get_session()
+        res = s.get(self.url, data=self.filters)
+        ret = res[self.current_index]
+        self.current_index + 1
+        return ret
+
+</code></pre>
+
+</section>
+
+<section>
+    <h3>Model View Controller</h3>
+
+    <ul>
+        <li class="fragment"><span>Divides a given software application into three interconnected parts</span></li>
+        <li class="fragment"><span>Decouples components to increase flexibility and reuse</span></li>
+        <li class="fragment"><span><em><strong>M</strong>odel</em> provides data</span></li>
+        <li class="fragment"><span><em><strong>V</strong>iew</em> is its screen presentation</span></li>
+        <li class="fragment"><span><em><strong>C</strong>ontroller</em> defines the way the user interface reacts to user input</span></li>
+        <li class="fragment"><span>Extremely popular for designing web applications</span></li>
+     </ul>
+
+</section>
+
+<section>
+    <h3>MVC - Common misconception</h3>
+
+    <ul>
+        <li class="fragment"><span>The controller sits between model and view <strong>NOT</strong> between user and view</span></li>
+        <li class="fragment"><span>A <strong>view controller</strong> generates an output view and an embedded controller</span></li>
+        <li class="fragment"><span><strong>View controller</strong> and <strong>controller</strong> are separate entities</span></li>
+    </ul>
+
+</section>
+
+<section style="background-color: rgba(255,255,255,0.69);">
+    <h3>Model View Controller</h3>
+
+    <img src="img/mvc.png" style="width:45%"/>
+
+</section>
+
+<section>
+    <h3>Model View Controller</h3>
+
+    <img src="img/mvc1.png" style="width:45%"/>
+
+</section>
+
+<section>
+    <h3>Many MVC web frameworks exist for Python</h3>
+
+    <ul>
+        <li class="fragment"><span>Django</span></li>
+        <li class="fragment"><span>Pylons</span></li>
+        <li class="fragment"><span>Pyramid</span></li>
+        <li class="fragment"><span>Web2py</span></li>
+        <li class="fragment"><span>CherryPy</span></li>
+        <li class="fragment"><span>...</span></li>
+     </ul>
+
+</section>
+
+<section>
+    <h3>Python built-in patterns</h3>
+
+    <ul>
+        <li class="fragment"><span>Singleton (every module is a singleton)</span></li>
+        <li class="fragment"><span>RAII (via context managers - 'with')</span></li>
+        <li class="fragment"><span>Decorator</span></li>
+        <li class="fragment"><span>Iterator</span></li>
+        <li class="fragment"><span>Factory method (via type(name, bases, dict))</span></li>
+        <li class="fragment"><span>Lots of concurrency patterns in the standard library</span></li>
+     </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a> | <a href="https://github.com/chembl">github.com/chembl</a>
+<img src="img/ebi_logo.png"/> Hinxton, 25 November 2015
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
