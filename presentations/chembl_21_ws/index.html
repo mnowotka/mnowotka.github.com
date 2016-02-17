@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ChEMBL web services update</title>
+    <meta name="description" content="Web based presentation for Euro SciPy 2015">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h2>ChEMBL web services <br />update</h2>
+
+    <p>
+        <small>Michał Nowotka&nbsp;<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3>Why web services</h3>
+
+    <ul>
+        <li class="fragment"><span>Programmatic access to ChEMBL</span></li>
+        <li class="fragment"><span>No need to install DB</span></li>
+        <li class="fragment"><span>Just pure data</span></li>
+        <li class="fragment"><span>All languages supported</span></li>
+        <li class="fragment"><span>Web widgets</span></li>
+        <li class="fragment"><span>Web interface</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Structure</h3>
+
+    <p>
+        <img src="img/tandem.png" width="60%"/>
+    </p>
+
+</section>
+
+<section>
+    <h3>How to start?</h3>
+
+    <ul>
+        <li class="fragment"><span>General documentation: <br/><a href="https://www.ebi.ac.uk/chembl/ws">https://www.ebi.ac.uk/chembl/ws</a></span></li>
+        <li class="fragment"><span>Live documentation: <br/><a href="https://www.ebi.ac.uk/chembl/api/data/docs">https://www.ebi.ac.uk/chembl/api/data/docs</a></span></li>
+        <li class="fragment"><span>Utils live documentation: <br/> <a href="https://www.ebi.ac.uk/chembl/api/utils/docs">https://www.ebi.ac.uk/chembl/api/utils/docs</a></span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Python client</h3>
+
+    <p class="fragment">
+        Why not just:
+    </p>    
+    <p class="fragment">
+       <pre class="fragment"><code class="fragment">
+           import requests
+           requests.get('https://www.ebi.ac.uk/chembl/api/data/molecule/CHEMBL1.json')
+           data = requests.json()
+       </code>
+    </pre>
+    </p>
+
+    <ul>
+        <li class="fragment"><span>What if URL changes?</span></li>
+        <li class="fragment"><span>What if the request fail at the first time?</span></li>
+        <li class="fragment"><span>What if you need to go through ks of compounds?</span></li>
+        <li class="fragment"><span>What if you need to rerun in 5 mins?</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Python client</h3>
+
+    <p class="fragment">
+       <pre><code>
+           molecule.get(['CHEMBL6498', 'CHEMBL6499', 'CHEMBL6505'])
+
+           molecule.filter(molecule_properties__acd_logp__gte=1.9)
+           .filter(molecule_properties__aromatic_rings__lte=3)
+           .filter(chirality=(-1))
+           .exists()
+
+           mol = utils.smiles2ctab("[Na]OC(=O)c1ccccc1")
+           br = utils.breakbonds(mol)
+           fingerprints = utils.sdf2fps(mol)
+       </code>
+    </pre>
+    </p>
+
+    <ul>
+        <li class="fragment"><span>Takes care of HTTP details</span></li>
+        <li class="fragment"><span>Handles caching on the client side</span></li>
+        <li class="fragment"><span>Handles network errors and retries</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>New features in ChEMBL 21 WS</h3>
+
+    <p class="fragment">
+        New resources:
+    </p>  
+
+    <ul>
+        <li class="fragment"><span>Indication</span></li>
+        <li class="fragment"><span>Go Slim</span></li>
+        <li class="fragment"><span>Metabolism</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>New features in ChEMBL 21 WS</h3>
+
+    <p class="fragment">
+        Rendering compounds:
+    </p>  
+
+    <ul>
+        <li class="fragment"><span>Transparent background by default</span></li>
+        <li class="fragment"><span>Other colors can be obtained:</span></li>
+        <li class="fragment"><span><a href="https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1?bgColor=orange">https://www.ebi.ac.uk/chembl/api/data/image/CHEMBL1?bgColor=orange</a></span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>New features in ChEMBL 21 WS</h3>
+
+    <p class="fragment">
+        SOLR-based search:
+    </p>  
+
+    <ul>
+        <li class="fragment"><span>Search compounds by pref_name and synonyms</span></li>
+        <li class="fragment"><span>Search targets by pref_name and synonyms</span></li>
+        <li class="fragment"><span>Search in assay descriptions</span></li>        
+        <li class="fragment"><span><a href="https://www.ebi.ac.uk/chembl/api/data/molecule/search.json?q=viagra">https://www.ebi.ac.uk/chembl/api/data/molecule/search.json?q=viagra</a></span></li>
+        
+    </ul>
+
+</section>
+
+<section>
+    <h2>Why do we need this?</h2>
+
+    <ul>
+        <li class="fragment"><span>User feedback (<a href="https://github.com/chembl/chembl_webservices_2/issues/73">#73</a>, <a href="https://github.com/chembl/chembl_webservices_2/issues/79">#79</a>)</span></li>
+        <li class="fragment"><span>New version of web site will be based on API<br />
+        <img src="img/search_bar.png"></span></li>
+        <li class="fragment"><span>myChEMBL</span></li>
+        <li class="fragment"><span>web widgets</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>New features in the Python client</h3>
+
+    <p class="fragment">
+        searching is integrated
+    </p>  
+
+    <p class="fragment">
+       <pre class="fragment"><code class="fragment">
+           res = target.search('lipoxygenase')
+       </code>
+    </pre>
+
+</section>
+
+<section>
+    <h3>New features in the Python client</h3>
+
+    <p class="fragment">
+        Unichem web services are integrated as well.
+    </p>  
+
+    <p class="fragment">
+       <pre class="fragment"><code class="fragment">
+           ret = unichem.get('CHEMBL12',1)
+           ret = unichem.get('AAOVKJBEBIDNHE-UHFFFAOYSA-N')
+       </code>
+    </pre>
+
+</section>
+
+<section>
+    <h3>Other client-related issues</h3>
+
+    <ul>
+        <li class="fragment"><span>Better cache handling:</span></li>
+        <li class="fragment"><span>Shorter expiry time (1 day)</span></li>
+        <li class="fragment"><span>Kept in one central place</span></li>
+        <li class="fragment"><span>Invalidated during client update</span></li>
+        <li class="fragment"><span>Bringing sureChEMBL client to ChEMBL</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Advanced widgets</h3>
+
+    <ul>
+        <li class="fragment"><span>Interactive schema <a href="http://127.0.0.1:8080/schema.html" target="_blank">diagram</a></span></li>
+        <li class="fragment"><span>Interactive <a href="http://127.0.0.1:8080/ws.html" target="_blank">web services diagram</a></span></li>
+        <li class="fragment"><span>Better support for web widgets</span></li>
+        <li class="fragment"><span><a href="https://www.ebi.ac.uk/chembl/api/data/molecule/datatables.json">https://www.ebi.ac.uk/chembl/api/data/molecule/datatables.json</a></span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Demo?</h3>
+</section>
+
+<section>
+    <h3>GraphQL</h3>
+
+    <ul>
+        <li class="fragment"><span>New way of structuring client applications</span></li>
+        <li class="fragment"><span>User decides what API returns</span></li>
+        <li class="fragment"><span>Fits perfectly into <a href="http://graphene-python.org/">Django stack</a></span></li>
+        <li class="fragment"><span>Very new idea (to us)</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a> | <a href="https://github.com/chembl" target="_blank">github.com/chembl</a>
+<img src="img/ebi_logo.png"/> Hinxton, 16 February 2016
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
