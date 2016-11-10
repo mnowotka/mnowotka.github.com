@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fingerprints</title>
+    <meta name="description" content="Web based presentation about chemical fingerprints">
+    <meta name="author" content="Michał Nowotka">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.css">
+
+    <link href="https://www.ebi.ac.uk/favicon.ico" rel="icon"/>
+
+    <link rel="stylesheet" href="css/theme/zen.css" id="theme">
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/7.3/styles/monokai.min.css">
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+    <script src="js/modernizr.custom.53384.js"></script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+    <h3>Fingerprints</h3>
+
+    <p>
+        <small>Michał Nowotka<br/>ChEMBL Group<br/>EMBL-EBI</small>
+    </p>
+</section>
+
+<section>
+    <h3>Recap</h3>
+
+    <ul>
+        <li class="fragment"><span>Key-lock model (hand-glove)</span></li>
+        <li class="fragment"><span>Rational drug discovery</span></li>
+        <li class="fragment"><span>Structure-based drug desing</span></li>
+        <li class="fragment"><span>Ligand based drug design</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Rational Discovery</h3>
+
+    <ul>
+        <li class="fragment"><span>Traditional drug discovery rely on trial-and-error</span></li>
+        <li class="fragment"><span>Rational discovery is a "reverse pharmacoloogy"</span></li>
+        <li class="fragment"><span>Modulation of target may have therapeutic value</span></li>
+        <li class="fragment"><span>Evendence of linkage between the target and disease needed</span></li>
+        <li class="fragment"><span>Target must be druggable</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Assays</h3>
+
+    <ul>
+        <li class="fragment"><span>Suitable target is clone, produced and purified</span></li>
+        <li class="fragment"><span>Purified protein is used to establish a screening assay</span></li>
+        <li class="fragment"><span>3D structure of the target may be determined</span></li>
+        <li class="fragment"><span>Evendence of linkage between the target and disease needed</span></li>
+        <li class="fragment"><span>Target must be druggable</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Ligand</h3>
+
+    <ul>
+        <li class="fragment"><span>Candidate compound should be drug-like</span></li>
+        <li class="fragment"><span>High binding affinity</span></li>
+        <li class="fragment"><span>Selectivity</span></li>
+        <li class="fragment"><span>Oral bioavailability</span></li>
+        <li class="fragment"><span>Stability</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Ligand cd</h3>
+
+    <ul>
+        <li class="fragment"><span>Minimal toxic effects</span></li>
+        <li class="fragment"><span>Lipinski's Rule Of Five</span></li>
+        <li class="fragment"><span>High potency (high value of pIC50)</span></li>
+        <li class="fragment"><span>Adverse effects?</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>The goal</h3>
+
+    <p>
+        The most fundamental goal in drug design is to predict whether a given molecule will bind to a target and if so how strongly.
+    </p>
+
+</section>
+
+<section>
+    <h3>Methods?</h3>
+
+    <ul>
+        <li class="fragment"><span>Linear regression, classification (QSAR)</span></li>
+        <li class="fragment"><span>Machine learning (target prediction)</span></li>
+        <li class="fragment"><span><a href="https://arxiv.org/pdf/1610.02415v1.pdf">Neural networks</a></span></li>
+        <li class="fragment"><span>Data/relation mining (assays, documents)</span></li>
+        <li class="fragment"><span>Exproring screening chemical spaces</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Fingerprints</h3>
+
+    <ul>
+        <li class="fragment"><span>Abstract representation of certain structural features of a molecule</span></li>
+        <li class="fragment"><span>A way of encoding the structure of a molecule</span></li>
+        <li class="fragment"><span>Series of bits</span></li>
+        <li class="fragment"><span>Presence or absence of particular substructures in the molecule</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Fingerprints</h3>
+
+    <p class="fragment">
+        <img src="img/fingerprint.png" width="30%"/>
+    </p>
+
+    <ul>
+        <li class="fragment"><span>Assumption: molecules that are similar have a lot of fragments in 
+common</span></li>
+        <li class="fragment"><span>No “right” answer for defining similarity: no canonical definition 
+of similarity </span></li>
+        <li class="fragment"><span>Best fingerprint depends on data set</span></li>
+        <li class="fragment"><span>There are many different fingerprints available</span></li>
+    </ul>    
+
+</section>
+
+<section>
+    <h3>Distance</h3>
+
+    <p class="fragment">
+        <img src="img/tanimoto.svg" width="55%"/>
+    </p>
+
+    <p class="fragment">
+        <br />
+        Other metrics available as well, e.g. <a href="https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient">Dice coefficient</a>, <a href="https://en.wikipedia.org/wiki/Tversky_index">Tversky index</a> 
+    </p>
+
+</section>
+
+<section>
+    <h3>Interesting things</h3>
+
+    <p class="fragment">
+        The MinHash min-wise independent permutations <a href="https://en.wikipedia.org/wiki/Locality-sensitive_hashing">locality sensitive hashing</a> scheme may be used to efficiently compute an accurate estimate of the Jaccard similarity coefficient of pairs of sets, where each set is represented by a constant-sized signature derived from the minimum values of a hash function
+    </p>
+
+    <p class="fragment">
+        Dice coefficient s not a proper distance metric as it does not possess the property of <a href="https://en.wikipedia.org/wiki/Triangle_inequality">triangle inequality</a>.
+    </p>
+
+</section>
+
+<section>
+    <h3>Substructure?</h3>
+
+    <ul>
+        <li class="fragment"><span>Once we know how to compute distance we can compute similarity</span></li>
+        <li class="fragment"><span>But how to implement substructure search?</span></li>
+        <li class="fragment"><span>C1 is a subgraph of C2 if and only if every bit set in FP1 is also set in FP2</span></li>
+        <li class="fragment"><span>Use the above to screen out majority of compounds</span></li>
+        <li class="fragment"><span>Use slover but more accurate subgraph isomorphism alorithms</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Fingerprint types</h3>
+
+    <ul>
+        <li class="fragment"><span>RDKit</span></li>
+        <li class="fragment"><span>Morgan/Circular</span></li>
+        <li class="fragment"><span>Substructure based fingerprints FP3, FP4 and MACCS</span></li>
+        <li class="fragment"><span>Many more</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>RDKit Fingerprints Algorithm</h3>
+
+    <ul>
+        <li class="fragment"><span>For each subgraph of length [minPath-maxPath] bonds:</span></li>
+        <li class="fragment"><span>Generate hash for the path using bond types and each bond’s neighbor count</span></li>
+        <li class="fragment"><span>Seed random-number generator with hash</span></li>
+        <li class="fragment"><span>Generate nBitsPerHash random numbers between 0 and fpSize and set the corresponding bits</span></li>
+        <li class="fragment"><span>[optional]: “fold” fingerprint to target density of tgtDensity of bits set</span></li>
+    </ul>
+
+</section>
+
+<section>
+    <h3>Morgan fingerprints</h3>
+
+    <ul>
+        <li class="fragment"><span>For each atom take a neighborhood of specified radius</span></li>
+        <li class="fragment"><span>Encode each neighborhood</span></li>
+        <li class="fragment"><span>Typical radii: 0-3 bonds</span></li>
+    </ul>
+
+</section>                                                                                                        
+
+<section>
+    <h3>Noel O'Boyle<br />“Which is the best fingerprint for medicinal chemistry?”</h3>
+
+    <ul>
+        <li class="fragment"><span>Robust benchmarking <a href="http://jcheminf.springeropen.com/articles/10.1186/s13321-016-0148-0" target="blank">framework</a></span></li>
+        <li class="fragment"><span>Dataset from ChEMBL molecules</span></li>
+        <li class="fragment"><span>Benchmarks substructure and similarity</span></li>        
+    </ul>
+   
+</section>
+
+<section>
+    <h3>Research stuff to do</h3>
+
+    <ul>
+        <li class="fragment"><span>Install <a href="http://jcheminf.springeropen.com/articles/10.1186/1758-2946-5-26">Open-source platform to benchmark fingerprints</a></span></li>
+        <li class="fragment"><span>Reproduce results reported by Greg and Noel</span></li>
+        <li class="fragment"><span>Install <a href="https://github.com/maxhodak/keras-molecules">Autoencoder network for learning a continuous representation of molecular structures.</a></span></li>
+        <li class="fragment"><span>Use the benchmark to test it</span></li>
+    </ul>
+   
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+
+    <p>Questions?</p>
+</section>
+</div>
+
+</div>
+
+<footer>
+<div style="">
+<a href="mailto:mnowotka@ebi.ac.uk">mnowotka@ebi.ac.uk</a> | <a href="https://github.com/chembl">github.com/chembl</a>
+<img src="img/ebi_logo.png"/> Hinxton, 9 November 2016
+</div>
+</footer>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: true,
+        transition: 'linear',
+        //theme: 'zen', // available themes are in /css/theme
+        rollingLinks: false,
+        mouseWheel: true,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/showdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+    Reveal.addEventListener('contato', function () {
+        _gaq.push(['_trackEvent', 'Contato', 'Visto', 'Chegou até o fim da presentação']);
+    });
+
+    Reveal.addEventListener('guerreiros', function () {
+        _gaq.push(['_trackEvent', 'Guerreiros', 'Visto', 'Chegou até Guerreiros']);
+    });
+
+    Reveal.addEventListener('clientes', function () {
+        _gaq.push(['_trackEvent', 'Clientes', 'Visto', 'Chegou até Clientes']);
+    });
+
+    Reveal.addEventListener('filosofia-porque', function () {
+        _gaq.push(['_trackEvent', 'Zendev', 'Porque funciona', 'Chegou até o final da Filosofia']);
+    });
+
+</script>
+
+</body>
+</html>
+
